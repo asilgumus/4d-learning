@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Open, practical STEM project guides from FRC Team 6429, built for teams, educators and community leaders.">
+    <title>4D Learning Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body data-page="home">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="4D Learning Platform home">
+        <img src="assets/images/4d-logo.png" alt="">
+        <span><strong>4D Learning</strong><small>by FRC Team 6429</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span><span class="sr-only">Open menu</span></button>
+      <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+        <a href="#library">Project library</a>
+        <a href="#how-it-works">How to use</a>
+        <a href="https://www.frc6429.com/" target="_blank" rel="noopener">Meet the team <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Open STEM Education</p>
+          <h1>4D Learning<br>Platform</h1>
+          <p class="hero-lede">Free project guides and learning resources created by 4th Dimension for STEM teams around the world.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#library">Explore the projects</a>
+            <a class="button button-ghost" href="#how-it-works">How to use</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="library" class="library section-shell">
+        <div class="section-heading">
+          <div><p class="eyebrow">Project library</p><h2>Learning resources</h2></div>
+          <p>Each field guide turns one of our outreach projects into a format your team can understand, adapt and run.</p>
+        </div>
+        <div class="filter-bar" aria-label="Filter projects">
+          <div class="filters" role="group" aria-label="Project status">
+            <button class="filter active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter" type="button" data-filter="available" aria-pressed="false">Available now</button>
+            <button class="filter" type="button" data-filter="coming" aria-pressed="false">Coming soon</button>
+          </div>
+          <label class="search-label"><span class="sr-only">Search the project library</span><input id="library-search" type="search" placeholder="Search projects" autocomplete="off"></label>
+        </div>
+        <div id="project-grid" class="project-grid" aria-live="polite"></div>
+        <p id="empty-state" class="empty-state" hidden>No projects match that search.</p>
+      </section>
+
+      <section id="how-it-works" class="method">
+        <div class="section-shell method-inner">
+          <div class="method-intro"><p class="eyebrow light">How to use</p><h2>Bring a project<br>to your community.</h2></div>
+          <ol class="method-steps">
+            <li><span>01</span><div><h3>Understand</h3><p>Learn the purpose, audience and core idea behind the project.</p></div></li>
+            <li><span>02</span><div><h3>Prepare</h3><p>Use the material list, team roles and workshop notes to get ready.</p></div></li>
+            <li><span>03</span><div><h3>Adapt</h3><p>Adjust the activity for your community, resources and local context.</p></div></li>
+            <li><span>04</span><div><h3>Deliver</h3><p>Run the project, gather feedback and improve the next edition.</p></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="closing section-shell">
+        <p class="eyebrow">More than robots</p>
+        <h2>Learn, adapt and share.</h2>
+        <a class="button button-primary" href="#library">Choose a field guide</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand"><img src="assets/images/4d-logo.png" alt=""><div><strong>4D Learning Platform</strong><span>An open education initiative by FRC Team 6429</span></div></div>
+      <div><strong>4th Dimension</strong><span>İzmir, Türkiye</span></div>
+      <div class="footer-links"><a href="mailto:frc4thdimension@gmail.com">Email</a><a href="https://www.instagram.com/frc4thdimension/" target="_blank" rel="noopener">Instagram</a><a href="https://github.com/asilgumus/neurobridge" target="_blank" rel="noopener">GitHub</a></div>
+    </footer>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

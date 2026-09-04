@@ -1,0 +1,6 @@
+# Keep user-uploaded source files local after they are imported into assets.
+/*PP4THDIMENSION.pptx.pdf
+
+# Local development files
+.DS_Store
+.vercel/
