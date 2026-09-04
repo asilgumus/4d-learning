@@ -4,3 +4,4 @@
 # Local development files
 .DS_Store
 .vercel/
+.vercel
