@@ -36,7 +36,7 @@ h1, h2, h3, p { margin-top: 0; }
 .menu-toggle { display: none; padding: 8px; border: 0; color: white; background: transparent; cursor: pointer; }
 .menu-toggle > span:not(.sr-only) { display: block; width: 23px; height: 2px; margin: 5px 0; background: currentColor; }
 
-.hero { min-height: 680px; display: flex; align-items: center; color: white; background: linear-gradient(105deg, rgba(5,7,10,.97), rgba(5,7,10,.72)), url("assets/images/hero-robotics.png") center/cover; }
+.hero { min-height: 680px; display: flex; align-items: center; color: white; background: linear-gradient(105deg, rgba(5,7,10,.94), rgba(5,7,10,.45)), url("assets/images/4dweb-home-hero.jpg") 38% center/cover; }
 .hero-copy { width: min(var(--container), calc(100% - 40px)); margin: auto; padding: calc(var(--header-height) + 75px) 0 85px; }
 .eyebrow { margin-bottom: 13px; color: var(--red); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .eyebrow.light { color: #ff6675; }
