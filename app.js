@@ -24,7 +24,7 @@
 
   function projectCard(project) {
     const statusText = project.status === "available" ? "Available" : "Coming soon";
-    const href = project.webUrl || "https://4dweb.vercel.app/projects.html#4d-learning";
+    const href = project.webUrl;
     return `<a class="project-card" href="${escapeHtml(href)}" data-status="${project.status}" data-search="${escapeHtml(`${project.title} ${project.kicker} ${project.tags.join(" ")}`.toLowerCase())}">
       <div class="card-top"><span class="card-index">${project.index}</span><span class="status ${project.status === "coming" ? "coming" : ""}">${statusText}</span></div>
       ${project.index === "01" ? '<span class="card-graphic" aria-hidden="true">NB</span>' : ""}
