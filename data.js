@@ -50,7 +50,7 @@
     },
     {
       id: "arduino-experiments",
-      webUrl: "https://4dweb.vercel.app/projects.html#arduino-experiments",
+      webUrl: "https://4dweb.vercel.app/arduino-experiments.html",
       index: "03",
       title: "Arduino Experiments",
       kicker: "Electronics · Coding",
@@ -90,7 +90,7 @@
     },
     {
       id: "cybersecurity",
-      webUrl: "https://4dweb.vercel.app/projects.html#cybersecurity",
+      webUrl: "https://4dweb.vercel.app/cybersecurity.html",
       index: "05",
       title: "Cybersecurity",
       kicker: "Digital safety · Awareness",
@@ -145,7 +145,7 @@
     },
     {
       id: "technology-addiction",
-      webUrl: "https://4dweb.vercel.app/projects.html#technology-addiction",
+      webUrl: "https://4dweb.vercel.app/technology-addiction.html",
       index: "06",
       title: "Technology Addiction",
       kicker: "Digital wellbeing · Coming soon",
