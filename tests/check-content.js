@@ -15,6 +15,9 @@ assert(projects.length === 6, "Expected six learning tracks");
 assert(projects.filter((item) => item.status === "available").length === 5, "Expected five available tracks");
 assert(projects.filter((item) => item.status === "coming").length === 1, "Expected one coming-soon track");
 assert(fs.existsSync(path.join(root, "assets", "resources", "cybersecurity", "cybersecurity-presentation-tr.pdf")), "Missing cybersecurity presentation");
+for (const project of projects) {
+  assert(project.webUrl && project.webUrl.startsWith("https://4dweb.vercel.app/"), `${project.title} must link to 4DWeb`);
+}
 assert(experiments.length === 19, "Expected 19 Arduino experiments");
 assert(!experiments.some((item) => item.id === 10), "Experiment 10 should remain absent to match the source");
 assert(new Set(experiments.map((item) => item.id)).size === experiments.length, "Experiment IDs must be unique");

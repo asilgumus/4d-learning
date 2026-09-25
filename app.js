@@ -24,16 +24,16 @@
 
   function projectCard(project) {
     const statusText = project.status === "available" ? "Available" : "Coming soon";
-    const href = `project.html?id=${encodeURIComponent(project.id)}`;
-    return `<article class="project-card" data-status="${project.status}" data-search="${escapeHtml(`${project.title} ${project.kicker} ${project.tags.join(" ")}`.toLowerCase())}">
+    const href = project.webUrl || "https://4dweb.vercel.app/projects.html#4d-learning";
+    return `<a class="project-card" href="${escapeHtml(href)}" data-status="${project.status}" data-search="${escapeHtml(`${project.title} ${project.kicker} ${project.tags.join(" ")}`.toLowerCase())}">
       <div class="card-top"><span class="card-index">${project.index}</span><span class="status ${project.status === "coming" ? "coming" : ""}">${statusText}</span></div>
       ${project.index === "01" ? '<span class="card-graphic" aria-hidden="true">NB</span>' : ""}
       <p class="card-kicker">${escapeHtml(project.kicker)}</p>
       <h3 class="card-title">${escapeHtml(project.title)}</h3>
       <p class="card-description">${escapeHtml(project.summary)}</p>
       <div class="card-meta">${project.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
-      <a class="card-link" href="${href}" aria-label="${project.status === "available" ? "Open" : "View"} ${escapeHtml(project.title)}">${project.status === "available" ? "Open field guide" : "View track"} →</a>
-    </article>`;
+      <span class="card-link">View on 4DWeb ↗</span>
+    </a>`;
   }
 
   function initHome() {

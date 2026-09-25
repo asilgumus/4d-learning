@@ -4,6 +4,7 @@
   const projects = [
     {
       id: "neurobridge",
+      webUrl: "https://4dweb.vercel.app/neurobridge.html",
       index: "01",
       title: "NeuroBridge",
       kicker: "Neuroscience · Accessibility",
@@ -28,6 +29,7 @@
     },
     {
       id: "e-parenting-4-stem",
+      webUrl: "https://4dweb.vercel.app/e-parenting-4-stem.html",
       index: "02",
       title: "E-Parenting 4 STEM",
       kicker: "Families · STEM confidence",
@@ -48,6 +50,7 @@
     },
     {
       id: "arduino-experiments",
+      webUrl: "https://4dweb.vercel.app/projects.html#arduino-experiments",
       index: "03",
       title: "Arduino Experiments",
       kicker: "Electronics · Coding",
@@ -66,6 +69,7 @@
     },
     {
       id: "lego-mri",
+      webUrl: "https://4dweb.vercel.app/lego-mri.html",
       index: "04",
       title: "LEGO MRI",
       kicker: "Health · Child-centred design",
@@ -86,6 +90,7 @@
     },
     {
       id: "cybersecurity",
+      webUrl: "https://4dweb.vercel.app/projects.html#cybersecurity",
       index: "05",
       title: "Cybersecurity",
       kicker: "Digital safety · Awareness",
@@ -140,6 +145,7 @@
     },
     {
       id: "technology-addiction",
+      webUrl: "https://4dweb.vercel.app/projects.html#technology-addiction",
       index: "06",
       title: "Technology Addiction",
       kicker: "Digital wellbeing · Coming soon",
