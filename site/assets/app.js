@@ -1,14 +1,21 @@
 (function(){
 "use strict";
-// audience filter
-var fb=[].slice.call(document.querySelectorAll("[data-who]"));
+// library: audience filter + search
+var fb=[].slice.call(document.querySelectorAll("[data-who]")),qi=document.getElementById("q");
 if(fb.length){
-  var rows=[].slice.call(document.querySelectorAll(".row[data-levels]")),empty=document.getElementById("empty"),cnt=document.getElementById("count");
-  var apply=function(v){var n=0;rows.forEach(function(r){var ok=v==="all"||r.dataset.levels.split(" ").indexOf(v)>-1;r.hidden=!ok;if(ok)n++});
-    fb.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.who===v)});if(empty)empty.hidden=n>0;if(cnt)cnt.textContent=n;
-    try{history.replaceState(null,"",v==="all"?location.pathname:"#"+v)}catch(e){}};
-  fb.forEach(function(b){b.addEventListener("click",function(){apply(b.dataset.who)})});
-  var h=location.hash.slice(1);apply(fb.some(function(b){return b.dataset.who===h})?h:"all");
+  var rows=[].slice.call(document.querySelectorAll(".row[data-levels]")),empty=document.getElementById("empty"),cnt=document.getElementById("count"),who="all";
+  var fold=function(t){return t.toLocaleLowerCase("tr").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ı/g,"i")};
+  rows.forEach(function(r){r._s=fold(r.dataset.search||"")});
+  var apply=function(){var q=fold((qi&&qi.value||"").trim()),terms=q?q.split(/\s+/):[],n=0;
+    rows.forEach(function(r){var okW=who==="all"||r.dataset.levels.split(" ").indexOf(who)>-1,okQ=terms.every(function(t){return r._s.indexOf(t)>-1}),ok=okW&&okQ;r.hidden=!ok;if(ok)n++});
+    fb.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.who===who)});
+    if(empty)empty.hidden=n>0;if(cnt)cnt.textContent=n;
+    try{history.replaceState(null,"",who==="all"?location.pathname:"#"+who)}catch(e){}};
+  fb.forEach(function(b){b.addEventListener("click",function(){who=b.dataset.who;apply()})});
+  if(qi)qi.addEventListener("input",apply);
+  var rs=document.getElementById("reset");if(rs)rs.addEventListener("click",function(){who="all";if(qi)qi.value="";apply();if(qi)qi.focus()});
+  document.addEventListener("keydown",function(e){if(e.key==="/"&&qi&&!/input|textarea|select/i.test(document.activeElement.tagName)){e.preventDefault();qi.focus()}});
+  var h=location.hash.slice(1);if(fb.some(function(b){return b.dataset.who===h}))who=h;apply();
 }
 // decks
 [].forEach.call(document.querySelectorAll(".deck"),function(d){

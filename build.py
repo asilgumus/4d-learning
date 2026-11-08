@@ -32,17 +32,18 @@ def tint(m): t = TINT[(m["no"] - 1) % len(TINT)]; return f'--t:{t[0]};--tf:{t[1]
 def chips(m): return "".join(f'<span class="chip lv">{LV[l]}</span>' for l in m["levels"])
 
 def index():
-    rows = "".join(f'''<a class="row" href="m/{m["id"]}.html" data-levels="{" ".join(m["levels"])}" style="{tint(m)}">
+    def srch(m): return " ".join([m["title"], m["tagline"], m["summary"], m["kind"], " ".join(LV[l] for l in m["levels"]), " ".join(m["contents"])])
+    rows = "".join(f'''<a class="row" href="m/{m["id"]}.html" data-levels="{" ".join(m["levels"])}" data-search="{e(srch(m))}" style="{tint(m)}">
 <span class="no">{m["no"]}</span><div><h2>{e(m["title"])}</h2><p>{e(m["tagline"])}</p><div class="meta">{chips(m)}<span class="chip">{e(m["kind"])}</span><span class="chip">{e(m["minutes"])}</span></div></div><span class="go">Aç</span></a>''' for m in MODS)
     FL = [("all", "Tümü"), ("ilkokul", "İlkokul"), ("ortaokul", "Ortaokul"), ("lise", "Lise"), ("noro", "Nöroçeşitli çocuklar"), ("mr", "MR'a girecek çocuklar")]
     btns = "".join(f'<button type="button" data-who="{k}" aria-pressed="{str(k=="all").lower()}">{e(v)}</button>' for k, v in FL)
-    tiles = "".join(f'<a href="m/{m["id"]}.html" style="{tint(m)}" aria-label="{e(m["title"])}" title="{e(m["title"])}">{m["no"]}</a>' for m in MODS)
     body = f'''<section class="hero"><div class="wrap hero-in"><div class="hero-copy"><h1>Okulların ve kurumların doğrudan kullanabileceği eğitim içerikleri.</h1>
 <p class="lede">FRC 6429 4th Dimension takımı tarafından hazırlanan sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler. İndir, sınıfında veya kurumunda kullan.</p>
-<div class="filter" role="group" aria-label="Kimin için"><span>Kimin için?</span>{btns}</div></div>
-<figure class="hero-photo"><img src="assets/img/hero.jpg" alt="4D bayrağı, bir FIRST Robotics etkinliğinde" width="1400" height="788" fetchpriority="high"><figcaption>FIRST etkinliğinden · FRC 6429 4th Dimension</figcaption></figure></div></section>
-<div class="wrap">
-<section id="kutuphane" aria-label="Kütüphane"><div class="shelf">{rows}</div><p class="empty" id="empty" hidden>Bu grup için henüz içerik yok. Önerin varsa bize yaz.</p><p class="count"><span id="count">7</span> modül listeleniyor</p></section></div>
+<div class="btns"><a class="btn p" href="#kutuphane">Kütüphaneye git</a><a class="btn ghost" href="#nasil">Nasıl kullanılır</a></div></div></div><span class="hero-cap">FIRST etkinliğinden</span></section>
+<div class="wrap"><section id="kutuphane" class="lib" aria-label="Kütüphane"><div class="lib-head"><h2>Kütüphane</h2><p class="count"><span id="count">7</span> modül</p></div>
+<div class="fbar"><label class="search"><span class="sr">Kütüphanede ara</span><input id="q" type="search" placeholder="Modül, konu veya içerik ara" autocomplete="off"></label>
+<div class="filter" role="group" aria-label="Kimin için"><span>Kimin için</span>{btns}</div></div>
+<div class="shelf">{rows}</div><div class="empty" id="empty" hidden><p>Eşleşen modül yok. Aramayı veya filtreyi değiştir.</p><button class="btn" id="reset" type="button">Filtreleri temizle</button></div></section></div>
 <section class="band" id="nasil"><div class="wrap"><h2>Dört adımda sınıfına getir.</h2><ul class="steps">
 <li><b>Seç</b><span>Yaş grubuna uygun modülü bul.</span></li><li><b>İndir</b><span>Sunumu, kitapçığı veya çizimi indir ya da tarayıcıda göster.</span></li><li><b>Uyarla</b><span>Kendi dilin, malzemelerin ve sürene göre değiştir.</span></li><li><b>Uygula</b><span>Çocuklarla yap, geri bildirimini bize yaz.</span></li></ul></div></section>
 <section class="band team"><div class="wrap"><div class="team-grid"><div class="team-copy"><h2>Robot yapan bir takımdan, herkese açık eğitim.</h2><p>4th Dimension, İzmir'den bir FIRST Robotics takımı. Robotik çalışmalarının yanında okullara, çocuklara ve ailelere yönelik eğitim projeleri yürütüyoruz. Buradaki içerikler bu çalışmalardan çıkıyor ve ücretsiz.</p><div class="btns"><a class="btn" href="https://frc6429.com">Takımı tanı</a><a class="btn" href="mailto:frc4thdimension@gmail.com">Bize yaz</a></div></div>
