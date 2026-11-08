@@ -89,7 +89,7 @@ def module(m):
         b += sec("İki set", BUILDS[i]["drawings_license"] + " Çizimleri üreten kaynak kod: tools/make_sets.py (Python).", sets)
     elif i == "lego-mr":
         d = BUILDS[i]
-        b += sec("Yapım kılavuzu", LEGOG["note"], '<div class="grid2">' + "".join(f'<div class="panel"><h3>{e(x["h"])}</h3><p>{e(x["p"])}</p></div>' for x in LEGOG["phases"]) + '</div><h3 style="margin:26px 0 10px">Bitince kontrol et</h3><div class="panel"><ul style="margin:0;padding-left:20px;color:var(--muted)">' + "".join(f"<li>{e(t)}</li>" for t in LEGOG["tests"]) + '</ul></div><div style="height:16px"></div>' + (f'<div class="btns"><a class="btn p" href="../{d["booklet"]}" download>Adım adım talimatı indir (PDF)</a></div>' if has(d["booklet"]) else slot("Fotoğraflı adım adım talimat (PDF)", "assets/docs/lego-mr/yapim-talimati.pdf")))
+        b += sec("Yapım kılavuzu", LEGOG["note"], '<div class="grid2">' + "".join(f'<div class="panel"><h3>{e(x["h"])}</h3><p>{e(x["p"])}</p></div>' for x in LEGOG["phases"]) + '</div><h3 style="margin:26px 0 10px">Bitince kontrol et</h3><div class="panel"><ul style="margin:0;padding-left:20px;color:var(--muted)">' + "".join(f"<li>{e(t)}</li>" for t in LEGOG["tests"]) + '</ul></div><div style="height:16px"></div>' + vtag("assets/video/lego-mr.mp4", "LEGO MR yapım kılavuzu") + (f'<div class="btns"><a class="btn p" href="../{d["booklet"]}" download>Adım adım talimatı indir (PDF)</a></div>' if has(d["booklet"]) else slot("Fotoğraflı adım adım talimat (PDF)", "assets/docs/lego-mr/yapim-talimati.pdf")))
         b += sec("Çocuğa MR'ı nasıl anlatırız?", "Çocuk ne bekleyeceğini bilirse kaygısı azalır. Modeli kurarken bu dört cümleyi kullanın.", panels([(x["h"], x["p"]) for x in d["prep"]]))
         b += sec("Aileye not", "", '<div class="panel"><ul style="margin:0;padding-left:20px;color:var(--muted)">' + "".join(f"<li>{e(x)}</li>" for x in d["family"]) + '</ul></div>')
     elif i == "neurobridge":
@@ -97,7 +97,7 @@ def module(m):
         b += sec("Oyunu oyna", "Tarayıcıda çalışır, kurulum gerekmez.", f'<div class="frame"><iframe src="{d["live"]}" title="NeuroBridge oyunu" loading="lazy" allow="fullscreen"></iframe></div><div class="btns"><a class="btn p" href="{d["live"]}" rel="noopener">Tam ekran aç</a><a class="btn" href="{d["repo"]}" rel="noopener">Kaynak kod (GitHub)</a></div>')
         b += sec("Eğitmen ve aile rehberi", "", panels([(x["h"], x["p"]) for x in d["guide"]]))
     elif i == "sense-of-science":
-        b += sec("Deneyler", "Her kitapçık yazdırılabilir; videosu eklendiğinde aynı sayfada oynar.", '<div class="grid2">' + "".join(f'<a class="ex" href="../deney/{x["id"]}.html"><span class="em" aria-hidden="true">{x["emoji"]}</span><div><b>{e(x["title"])}</b><span>{x["minutes"]} dk · {len(x["materials"])} malzeme</span></div></a>' for x in EXPS) + '</div>')
+        b += sec("Deneyler", "Her deney için yazdırılabilir kitapçık ve sesli anlatım videosu.", '<div class="grid2">' + "".join(f'<a class="ex" href="../deney/{x["id"]}.html"><span class="em" aria-hidden="true">{x["emoji"]}</span><div><b>{e(x["title"])}</b><span>{x["minutes"]} dk · {len(x["materials"])} malzeme</span></div></a>' for x in EXPS) + '</div>')
         b += sec("Genel güvenlik", "", panels([("Yetişkin gözetimi", "Tüm deneyler bir yetişkinle yapılır."), ("Gözlük ve önlük", "Gözleri ve kıyafeti koruyun, sıvıları içmeyin."), ("Temizlik", "Bitince çalışma alanını silin, elleri yıkayın.")]))
     elif i == "cad-elektronik-yazilim":
         courses = COURSES[:1] + [{"id":"elektronik","title":"Elektronik: Arduino ile devre","tools":"Arduino Uno, breadboard, LED, direnç, sensörler","goal":"Basit LED'den küçük robota 19 deneyle fiziksel programlama.","ard":True,"lessons":[]}] + COURSES[1:]
@@ -107,14 +107,19 @@ def module(m):
             if c.get("ard"):
                 ls = '<div class="grid2">' + "".join(f'<a class="ex" href="../elektronik/{a["id"]:02d}.html"><span class="em" style="font-family:var(--display);font-weight:800;color:var(--red)">{a["id"]:02d}</span><div><b>{e(a["title"])}</b><span>{e(a["level"])} · {e(a["time"])}</span></div></a>' for a in ARD) + '</div>'
             else:
-                ls = "".join(f'<details class="les"><summary><span>{n+1}. {e(l["t"])}</span><span style="color:var(--muted);font-weight:600">{"Video + ders" if l["yt"] else "Yazılı ders"}</span></summary><p>{e(l["d"])}</p><ol style="color:var(--muted)">{"".join(f"<li>{e(x)}</li>" for x in l["steps"])}</ol><p><b style="color:var(--ink)">Görev:</b> {e(l["task"])}</p>' + (f'<div class="video" style="margin-top:12px"><iframe src="https://www.youtube-nocookie.com/embed/{l["yt"]}" title="{e(l["t"])}" loading="lazy" allowfullscreen></iframe></div>' if l["yt"] else '') + '</details>' for n, l in enumerate(c["lessons"]))
+                ls = "".join(f'<details class="les"><summary><span>{n+1}. {e(l["t"])}</span><span style="color:var(--muted);font-weight:600">{"Video + ders" if (l["yt"] or (S / f'assets/video/ders/{c["id"]}-{n+1:02d}.mp4').exists()) else "Yazılı ders"}</span></summary><p>{e(l["d"])}</p><ol style="color:var(--muted)">{"".join(f"<li>{e(x)}</li>" for x in l["steps"])}</ol><p><b style="color:var(--ink)">Görev:</b> {e(l["task"])}</p>' + (f'<div class="video" style="margin-top:12px"><iframe src="https://www.youtube-nocookie.com/embed/{l["yt"]}" title="{e(l["t"])}" loading="lazy" allowfullscreen></iframe></div>' if l["yt"] else vtag(f'assets/video/ders/{c["id"]}-{n+1:02d}.mp4', l["t"]).replace('<figure style="margin:0">','<figure style="margin:12px 0 0">')) + '</details>' for n, l in enumerate(c["lessons"]))
             ps += f'<div data-panel="{c["id"]}" {"" if k==0 else "hidden"}><div class="panel" style="margin-bottom:16px"><h3>{e(c["title"])}</h3><p>{e(c["goal"])} Gerekenler: {e(c["tools"])}.</p></div>{ls}</div>'
-        b += sec("Müfredatlar", "Üç yolu da sırayla ya da istediğin dersten başlayarak izle. Video eklenen derslerde video, ders sayfasında oynar.", f'<div class="tabs" role="tablist" data-tabs>{tb}</div>{ps}')
+        b += sec("Müfredatlar", "Üç yolu da sırayla ya da istediğin dersten başlayarak izle. Her dersin altında sesli anlatım videosu var.", f'<div class="tabs" role="tablist" data-tabs>{tb}</div>{ps}')
     head = f'''<div class="wrap"><div class="mhead" style="--a:{m["accent"]}"><a class="crumb" href="../index.html">← Kütüphane</a><h1>{e(m["title"])}</h1><p>{e(m["summary"])}</p><div class="meta">{chips(m)}<span class="chip">{e(m["minutes"])}</span></div></div>{b}</div><div style="height:48px"></div>'''
     return page(f'{m["title"]} · 4D Learning', head, 1, m["tagline"])
 
+def vtag(rel, title):
+    p = S / rel
+    if not p.exists(): return ""
+    return f'<figure style="margin:0"><video class="video" controls preload="none" poster="../{rel[:-4]}.jpg" title="{e(title)}"><source src="../{rel}" type="video/mp4"></video><figcaption style="color:var(--muted);font-size:14px;margin-top:6px">Sesli anlatım videosu (Türkçe, sentetik ses). Çekim videosu eklenince yerini alır.</figcaption></figure>'
+
 def booklet(x):
-    vid = f'<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/{x["youtube"]}" title="{e(x["title"])}" loading="lazy" allowfullscreen></iframe></div>' if x["youtube"] else '<div class="vslot">Deney videosu hazırlanıyor</div>'
+    vid = f'<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/{x["youtube"]}" title="{e(x["title"])}" loading="lazy" allowfullscreen></iframe></div>' if x["youtube"] else (vtag(f'assets/video/deney/{x["id"]}.mp4', x["title"]) or '<div class="vslot">Deney videosu hazırlanıyor</div>')
     li = lambda a: "".join(f"<li>{e(i)}</li>" for i in a)
     body = f'''<div class="toolbar"><a class="crumb" href="../m/sense-of-science.html">← Sense of Science</a><button class="btn p" id="print">Yazdır / PDF</button></div>
 <article class="book"><div style="font-size:3rem" aria-hidden="true">{x["emoji"]}</div><h1>{e(x["title"])}</h1><p style="color:var(--muted)">Süre: {x["minutes"]} dakika · FRC 6429 Sense of Science</p>
@@ -139,7 +144,7 @@ def setpage(x):
     body = f'''<div class="wrap"><div class="toolbar"><a class="crumb" href="../m/uretim-ve-montaj.html">← Endüstriyel Üretim ve Montaj</a><button class="btn p" id="print">Yazdır / PDF</button></div>
 <article class="book"><h1>{e(x["title"])}</h1><p style="color:var(--muted)">{e(x["kind"])} · {e(x["time"])} · {e(x["level"])}</p><p>{e(x["intro"])}</p>
 <img src="../{x["preview"]}" alt="{e(x["title"])} çizim önizlemesi" style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff">
-<h2>Gerekenler</h2><ul>{li(x["tools"])}</ul><h2>Parça listesi</h2><ul>{li(x["parts"])}</ul><h2>Yapım adımları</h2><ol>{steps}</ol>
+{vtag(f"assets/video/set/{x['id']}.mp4", x['title'])}<h2>Gerekenler</h2><ul>{li(x["tools"])}</ul><h2>Parça listesi</h2><ul>{li(x["parts"])}</ul><h2>Yapım adımları</h2><ol>{steps}</ol>
 <h2>Düşün ve dene</h2><ul>{li(x["questions"])}</ul><h2>Sorun giderme</h2><ul>{tr}</ul><h2>Dosyalar (açık kaynak, CC BY-SA 4.0)</h2><ul>{fl}</ul>
 <p style="color:var(--muted);font-size:14px">Kaynak göstererek kullanın, değiştirin ve paylaşın: FRC 6429 4th Dimension.</p></article><div style="height:48px"></div></div>'''
     return page(f'{x["title"]} · yapım kitapçığı', body, 1)
@@ -149,7 +154,7 @@ def lesson(a, prev, nxt):
     nav = (f'<a href="{prev:02d}.html">← Önceki</a>' if prev else "<span></span>") + (f'<a href="{nxt:02d}.html">Sonraki →</a>' if nxt else "<span></span>")
     body = f'''<div class="wrap"><div class="toolbar"><a class="crumb" href="../m/cad-elektronik-yazilim.html">← CAD, Elektronik, Yazılım</a><button class="btn p" id="print">Yazdır / PDF</button></div>
 <article class="book"><p style="color:var(--red-d);font-weight:800;margin:0">Arduino deneyi {a["id"]:02d}</p><h1>{e(a["title"])}</h1><p style="color:var(--muted)">{e(a["level"])} · {e(a["time"])} · {e(a["concept"])}</p><p>{e(a["summary"])}</p>
-<h2>Malzemeler</h2><ul>{li(a["materials"])}</ul><h2>Bağlantı</h2><ol>{li(a["wiring"])}</ol><h2>Kod</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>{e(a["code"])}</code></pre>
+{vtag(f"assets/video/elektronik/{a['id']:02d}.mp4", a['title']).replace("Sesli anlatım videosu (Türkçe, sentetik ses)","Sesli anlatım videosu (İngilizce, sentetik ses)")}<h2>Malzemeler</h2><ul>{li(a["materials"])}</ul><h2>Bağlantı</h2><ol>{li(a["wiring"])}</ol><h2>Kod</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>{e(a["code"])}</code></pre>
 <h2>Ne olmalı?</h2><p class="why">{e(a["result"])}</p><h2>Meydan okuma</h2><p>{e(a["challenge"])}</p>
 <h2>Güvenlik ve sorun giderme</h2><ul><li>Bağlantıyı değiştirmeden önce gücü kes.</li><li>Her LED ile direnç kullan.</li><li>Kart ve port seçimini Arduino IDE'de kontrol et.</li><li>Her kablonun koddaki pin numarasıyla eşleştiğini doğrula.</li></ul>
 <p style="color:var(--muted);font-size:14px">Not: Ders metinleri İngilizcedir. Orijinal Türkçe çalışma kâğıdı PDF olarak indirilebilir.</p>
