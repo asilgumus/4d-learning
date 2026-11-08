@@ -1,14 +1,14 @@
 (function(){
 "use strict";
-// audience picker
-var sel=document.getElementById("who");
-if(sel){
+// audience filter
+var fb=[].slice.call(document.querySelectorAll("[data-who]"));
+if(fb.length){
   var rows=[].slice.call(document.querySelectorAll(".row[data-levels]")),empty=document.getElementById("empty"),cnt=document.getElementById("count");
-  var apply=function(){var v=sel.value,n=0;rows.forEach(function(r){var ok=v==="all"||r.dataset.levels.split(" ").indexOf(v)>-1;r.hidden=!ok;if(ok)n++});
-    if(empty)empty.hidden=n>0;if(cnt)cnt.textContent=n;
+  var apply=function(v){var n=0;rows.forEach(function(r){var ok=v==="all"||r.dataset.levels.split(" ").indexOf(v)>-1;r.hidden=!ok;if(ok)n++});
+    fb.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.who===v)});if(empty)empty.hidden=n>0;if(cnt)cnt.textContent=n;
     try{history.replaceState(null,"",v==="all"?location.pathname:"#"+v)}catch(e){}};
-  var h=location.hash.slice(1);if(h&&[].some.call(sel.options,function(o){return o.value===h}))sel.value=h;
-  sel.addEventListener("change",apply);apply();
+  fb.forEach(function(b){b.addEventListener("click",function(){apply(b.dataset.who)})});
+  var h=location.hash.slice(1);apply(fb.some(function(b){return b.dataset.who===h})?h:"all");
 }
 // decks
 [].forEach.call(document.querySelectorAll(".deck"),function(d){

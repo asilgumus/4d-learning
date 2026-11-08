@@ -1,13 +1,13 @@
 <!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blink an LED · Arduino deneyi</title><meta name="description" content="FRC 6429 4th Dimension takımının, okulların ve kurumların ücretsiz kullanabileceği açık eğitim içerikleri."><meta name="theme-color" content="#e31b2f">
 <link rel="icon" href="../assets/img/4d-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/app.css"></head><body>
 <a class="skip" href="#main">İçeriğe geç</a>
 <header class="top"><div class="wrap"><a class="brand" href="../index.html"><img src="../assets/img/4d-logo.png" alt=""><span><b>4D Learning</b><small>FRC 6429 4th Dimension</small></span></a>
 <nav class="main" aria-label="Ana menü"><a href="../index.html#kutuphane">Kütüphane</a><a href="../index.html#nasil">Nasıl kullanılır</a><a href="https://frc6429.com" rel="noopener">Takım</a></nav></div></header>
 <main id="main"><div class="wrap"><div class="toolbar"><a class="crumb" href="../m/cad-elektronik-yazilim.html">← CAD, Elektronik, Yazılım</a><button class="btn p" id="print">Yazdır / PDF</button></div>
-<article class="book"><p style="color:var(--red-d);font-weight:800;margin:0">Arduino deneyi 01</p><h1>Blink an LED</h1><p style="color:var(--muted)">Beginner · 30 min · Digital output</p><p>Build your first Arduino circuit and make an LED blink once per second.</p>
+<article class="book"><p style="color:var(--muted);font-weight:500;margin:0;font-size:14px">Arduino deneyi 01</p><h1>Blink an LED</h1><p style="color:var(--muted)">Beginner · 30 min · Digital output</p><p>Build your first Arduino circuit and make an LED blink once per second.</p>
 <figure style="margin:0"><video class="video" controls preload="none" poster="../assets/video/elektronik/01.jpg" title="Blink an LED"><source src="../assets/video/elektronik/01.mp4" type="video/mp4"></video><figcaption style="color:var(--muted);font-size:14px;margin-top:6px">Sesli anlatım videosu (İngilizce, sentetik ses). Çekim videosu eklenince yerini alır.</figcaption></figure><h2>Malzemeler</h2><ul><li>Arduino Uno</li><li>1 LED</li><li>220 Ω resistor</li><li>Breadboard</li><li>Jumper wires</li><li>USB data cable</li></ul><h2>Bağlantı</h2><ol><li>Disconnect USB power before wiring.</li><li>Connect digital pin 13 to a 220 Ω resistor.</li><li>Connect the resistor to the LED’s long leg (anode).</li><li>Connect the LED’s short leg (cathode) to GND.</li></ol><h2>Kod</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>const int ledPin = 13;
 
 void setup() {
@@ -25,6 +25,6 @@ void loop() {
 <p style="color:var(--muted);font-size:14px">Not: Ders metinleri İngilizcedir. Orijinal Türkçe çalışma kâğıdı PDF olarak indirilebilir.</p>
 <div class="btns"><a class="btn p" href="../assets/docs/arduino/experiment-01.pdf" download>Türkçe çalışma kâğıdı (PDF)</a></div>
 <nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700"><span></span><a href="02.html">Sonraki →</a></nav></article><div style="height:48px"></div></div></main>
-<footer><div class="wrap"><div><b style="font-family:var(--display);font-size:1.3rem;color:#fff">4D Learning</b><p>FRC 6429 4th Dimension, İzmir. İçerikler okullar, STK'lar ve takımlar için ücretsizdir. Kaynak göstererek kullanın, uyarlayın, paylaşın.</p></div>
+<footer><div class="wrap"><div><b>4D Learning</b><p>FRC 6429 4th Dimension, İzmir. İçerikler okullar, STK'lar ve takımlar için ücretsizdir. Kaynak göstererek kullanın, uyarlayın, paylaşın.</p></div>
 <div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
 <script src="../assets/app.js"></script></body></html>
