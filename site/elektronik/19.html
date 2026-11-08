@@ -1,0 +1,35 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Light-Following Robot · Arduino deneyi</title><meta name="description" content="FRC 6429 4th Dimension takımının, okulların ve kurumların ücretsiz kullanabileceği açık eğitim içerikleri."><meta name="theme-color" content="#e31b2f">
+<link rel="icon" href="../assets/img/4d-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/app.css"></head><body>
+<a class="skip" href="#main">İçeriğe geç</a>
+<header class="top"><div class="wrap"><a class="brand" href="../index.html"><img src="../assets/img/4d-logo.png" alt=""><span><b>4D Learning</b><small>FRC 6429 4th Dimension</small></span></a>
+<nav class="main" aria-label="Ana menü"><a href="../index.html#kutuphane">Kütüphane</a><a href="../index.html#nasil">Nasıl kullanılır</a><a href="https://frc6429.com" rel="noopener">Takım</a></nav></div></header>
+<main id="main"><div class="wrap"><div class="toolbar"><a class="crumb" href="../m/cad-elektronik-yazilim.html">← CAD, Elektronik, Yazılım</a><button class="btn p" id="print">Yazdır / PDF</button></div>
+<article class="book"><p style="color:var(--red-d);font-weight:800;margin:0">Arduino deneyi 19</p><h1>Light-Following Robot</h1><p style="color:var(--muted)">Intermediate · 90 min · Differential control</p><p>Compare two light sensors and steer a two-motor robot toward the brighter side.</p>
+<h2>Malzemeler</h2><ul><li>Arduino Uno</li><li>2 LDRs</li><li>2 × 10 kΩ resistors</li><li>L298N motor driver</li><li>2 DC gear motors and chassis</li><li>Motor battery pack</li></ul><h2>Bağlantı</h2><ol><li>Build two 5V LDR voltage dividers and connect their centres to A0 and A1.</li><li>Connect L298N IN1–IN4 to pins 4–7; keep ENA/ENB jumpers installed.</li><li>Power motors externally and join driver and Arduino grounds.</li></ol><h2>Kod</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>const int leftLdr=A0, rightLdr=A1;
+const int in1=4, in2=5, in3=6, in4=7;
+
+void motors(bool lf, bool lb, bool rf, bool rb) {
+  digitalWrite(in1,lf); digitalWrite(in2,lb);
+  digitalWrite(in3,rf); digitalWrite(in4,rb);
+}
+void setup() {
+  pinMode(in1,OUTPUT); pinMode(in2,OUTPUT); pinMode(in3,OUTPUT); pinMode(in4,OUTPUT);
+}
+void loop() {
+  int left=analogRead(leftLdr), right=analogRead(rightLdr);
+  int difference=left-right;
+  if (abs(difference)&lt;50) motors(HIGH,LOW,HIGH,LOW);
+  else if (difference&gt;0) motors(LOW,LOW,HIGH,LOW);
+  else motors(HIGH,LOW,LOW,LOW);
+}</code></pre>
+<h2>Ne olmalı?</h2><p class="why">The robot moves forward under balanced light and turns toward the brighter sensor.</p><h2>Meydan okuma</h2><p>Calibrate the dead-band and shield the two LDRs from each other.</p>
+<h2>Güvenlik ve sorun giderme</h2><ul><li>Bağlantıyı değiştirmeden önce gücü kes.</li><li>Her LED ile direnç kullan.</li><li>Kart ve port seçimini Arduino IDE'de kontrol et.</li><li>Her kablonun koddaki pin numarasıyla eşleştiğini doğrula.</li></ul>
+<p style="color:var(--muted);font-size:14px">Not: Ders metinleri İngilizcedir. Orijinal Türkçe çalışma kâğıdı PDF olarak indirilebilir.</p>
+<div class="btns"><a class="btn p" href="../assets/docs/arduino/experiment-19.pdf" download>Türkçe çalışma kâğıdı (PDF)</a></div>
+<nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700"><a href="18.html">← Önceki</a><a href="20.html">Sonraki →</a></nav></article><div style="height:48px"></div></div></main>
+<footer><div class="wrap"><div><b style="font-family:var(--display);font-size:1.3rem;color:#fff">4D Learning</b><p>FRC 6429 4th Dimension, İzmir. İçerikler okullar, STK'lar ve takımlar için ücretsizdir. Kaynak göstererek kullanın, uyarlayın, paylaşın.</p></div>
+<div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
+<script src="../assets/app.js"></script></body></html>

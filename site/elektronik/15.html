@@ -1,0 +1,30 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Single-Digit 7-Segment Display · Arduino deneyi</title><meta name="description" content="FRC 6429 4th Dimension takımının, okulların ve kurumların ücretsiz kullanabileceği açık eğitim içerikleri."><meta name="theme-color" content="#e31b2f">
+<link rel="icon" href="../assets/img/4d-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/app.css"></head><body>
+<a class="skip" href="#main">İçeriğe geç</a>
+<header class="top"><div class="wrap"><a class="brand" href="../index.html"><img src="../assets/img/4d-logo.png" alt=""><span><b>4D Learning</b><small>FRC 6429 4th Dimension</small></span></a>
+<nav class="main" aria-label="Ana menü"><a href="../index.html#kutuphane">Kütüphane</a><a href="../index.html#nasil">Nasıl kullanılır</a><a href="https://frc6429.com" rel="noopener">Takım</a></nav></div></header>
+<main id="main"><div class="wrap"><div class="toolbar"><a class="crumb" href="../m/cad-elektronik-yazilim.html">← CAD, Elektronik, Yazılım</a><button class="btn p" id="print">Yazdır / PDF</button></div>
+<article class="book"><p style="color:var(--red-d);font-weight:800;margin:0">Arduino deneyi 15</p><h1>Single-Digit 7-Segment Display</h1><p style="color:var(--muted)">Intermediate · 60 min · Output arrays</p><p>Display the digits 0–9 on a common-cathode 7-segment display.</p>
+<h2>Malzemeler</h2><ul><li>Arduino Uno</li><li>Common-cathode 7-segment display</li><li>7 × 220 Ω resistors</li><li>Breadboard and jumper wires</li></ul><h2>Bağlantı</h2><ol><li>Use the display datasheet to identify segments a–g and the common cathodes.</li><li>Connect segments a–g through individual 220 Ω resistors to pins 2–8.</li><li>Connect both common cathode pins to GND.</li></ol><h2>Kod</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>const int segPins[7] = {2,3,4,5,6,7,8};
+const byte digits[10][7] = {
+  {1,1,1,1,1,1,0},{0,1,1,0,0,0,0},{1,1,0,1,1,0,1},{1,1,1,1,0,0,1},
+  {0,1,1,0,0,1,1},{1,0,1,1,0,1,1},{1,0,1,1,1,1,1},{1,1,1,0,0,0,0},
+  {1,1,1,1,1,1,1},{1,1,1,1,0,1,1}
+};
+
+void showDigit(int n) {
+  for (int i=0; i&lt;7; i++) digitalWrite(segPins[i], digits[n][i]);
+}
+void setup() { for (int p : segPins) pinMode(p, OUTPUT); }
+void loop() { for (int n=0; n&lt;10; n++) { showDigit(n); delay(1000); } }</code></pre>
+<h2>Ne olmalı?</h2><p class="why">The display counts from 0 to 9 and repeats.</p><h2>Meydan okuma</h2><p>Add two buttons to move the number up and down.</p>
+<h2>Güvenlik ve sorun giderme</h2><ul><li>Bağlantıyı değiştirmeden önce gücü kes.</li><li>Her LED ile direnç kullan.</li><li>Kart ve port seçimini Arduino IDE'de kontrol et.</li><li>Her kablonun koddaki pin numarasıyla eşleştiğini doğrula.</li></ul>
+<p style="color:var(--muted);font-size:14px">Not: Ders metinleri İngilizcedir. Orijinal Türkçe çalışma kâğıdı PDF olarak indirilebilir.</p>
+<div class="btns"><a class="btn p" href="../assets/docs/arduino/experiment-15.pdf" download>Türkçe çalışma kâğıdı (PDF)</a></div>
+<nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700"><a href="14.html">← Önceki</a><a href="16.html">Sonraki →</a></nav></article><div style="height:48px"></div></div></main>
+<footer><div class="wrap"><div><b style="font-family:var(--display);font-size:1.3rem;color:#fff">4D Learning</b><p>FRC 6429 4th Dimension, İzmir. İçerikler okullar, STK'lar ve takımlar için ücretsizdir. Kaynak göstererek kullanın, uyarlayın, paylaşın.</p></div>
+<div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
+<script src="../assets/app.js"></script></body></html>

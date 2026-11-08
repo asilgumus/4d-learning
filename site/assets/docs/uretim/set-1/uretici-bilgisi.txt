@@ -1,0 +1,3 @@
+Modül 2.0 mm, basınç açısı 20°, kalınlık 6.0 mm, delik 6.3 mm.
+Dişliler: 12T, 24T, 36T. Eksen mesafeleri: 36 mm ve 60 mm.
+Pimler taban plakaya basılıdır (Ø5.6). Dişli deliği 6.3 mm: yazıcınıza göre 'BORE' değerini değiştirip tools/make_sets.py çalıştırın.

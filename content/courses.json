@@ -1,23 +1,163 @@
 [
-{"id":"cad","title":"CAD: 3B tasarım","tools":"Onshape (ücretsiz, tarayıcıda)","levels":["ortaokul","lise"],"goal":"Hayalindeki parçayı bilgisayarda tasarla ve 3B yazıcıdan çıkar.","lessons":[
- {"t":"Arayüz ve ilk eskiz","d":"Düzlem, eskiz, ölçülendirme","yt":""},
- {"t":"Extrude ve kesme","d":"2B eskizden 3B gövdeye","yt":""},
- {"t":"Delikler ve pah","d":"Vida deliği, fillet, chamfer","yt":""},
- {"t":"Montaj (assembly)","d":"Parçaları birleştirme ve kısıtlar","yt":""},
- {"t":"Teknik resim","d":"Üç görünüş ve ölçü verme","yt":""},
- {"t":"3B yazıcıya hazırlık","d":"STL dışa aktarma, dilimleme ayarları","yt":""}]},
-{"id":"elektronik","title":"Elektronik: Arduino ile devre","tools":"Arduino Uno, breadboard, LED, direnç","levels":["ortaokul","lise"],"goal":"Devre kur, sensör oku, motor sür.","lessons":[
- {"t":"Elektrik temelleri","d":"Gerilim, akım, direnç, Ohm yasası","yt":""},
- {"t":"İlk devre: LED","d":"Breadboard ve direnç seçimi","yt":""},
- {"t":"Butonla kontrol","d":"Dijital giriş","yt":""},
- {"t":"Analog sensörler","d":"Potansiyometre ve ışık sensörü","yt":""},
- {"t":"Servo ve DC motor","d":"Hareket ve sürücü","yt":""},
- {"t":"Mini proje: otomatik lamba","d":"Sensör + LED + eşik değeri","yt":""}]},
-{"id":"yazilim","title":"Yazılım: Python'dan robota","tools":"Python 3, Thonny, Arduino IDE","levels":["ortaokul","lise"],"goal":"Algoritmik düşün, programı robota taşı.","lessons":[
- {"t":"Değişkenler ve ekrana yazdırma","d":"print, input, veri tipleri","yt":""},
- {"t":"Karar verme","d":"if / else ve karşılaştırma","yt":""},
- {"t":"Döngüler","d":"for, while ve desenler","yt":""},
- {"t":"Fonksiyonlar","d":"Kodu parçalara bölmek","yt":""},
- {"t":"Listeler ve sözlükler","d":"Veri toplama","yt":""},
- {"t":"Robota giriş","d":"Python'dan Arduino ve robot kodlamaya köprü","yt":""}]}
+ {
+  "id": "cad",
+  "title": "CAD: 3B tasarım",
+  "tools": "Onshape (ücretsiz, tarayıcıda)",
+  "levels": [
+   "ortaokul",
+   "lise"
+  ],
+  "goal": "Hayalindeki parçayı bilgisayarda tasarla ve 3B yazıcıdan çıkar.",
+  "lessons": [
+   {
+    "t": "Arayüz ve ilk eskiz",
+    "d": "Düzlem, eskiz, ölçülendirme",
+    "yt": "",
+    "steps": [
+     "onshape.com'da ücretsiz (eğitim) hesap aç.",
+     "Yeni Document oluştur, Part Studio'yu aç.",
+     "Front düzlemini seç, Sketch aracını başlat.",
+     "Dikdörtgen çiz, Dimension ile 40×20 mm ölçü ver."
+    ],
+    "task": "Kendi adının baş harfini eskiz olarak çiz ve ölçülendir."
+   },
+   {
+    "t": "Extrude ve kesme",
+    "d": "2B eskizden 3B gövdeye",
+    "yt": "",
+    "steps": [
+     "Eskizi bitir (yeşil tik).",
+     "Extrude aracıyla 10 mm yüksekliğe çıkar.",
+     "Başka bir yüzeyde eskiz çiz, Extrude'da Remove seçeneğiyle oyuk aç."
+    ],
+    "task": "Bir anahtarlık gövdesi tasarla: 60×30×5 mm, ortasında delik."
+   },
+   {
+    "t": "Delikler ve pah",
+    "d": "Vida deliği, fillet, chamfer",
+    "yt": "",
+    "steps": [
+     "Silindirik delik için daire eskizi çiz.",
+     "Extrude Remove ile M3 vida deliği (3.2 mm) aç.",
+     "Keskin köşelere Fillet (2 mm) uygula, kenara Chamfer ver."
+    ],
+    "task": "Parçana 4 köşe deliği ve yuvarlatılmış köşeler ekle."
+   },
+   {
+    "t": "Montaj (assembly)",
+    "d": "Parçaları birleştirme ve kısıtlar",
+    "yt": "",
+    "steps": [
+     "Yeni bir Assembly aç.",
+     "Parçaları içe aktar.",
+     "Fastened ve Revolute kısıtlarıyla bağla.",
+     "Hareketi test et."
+    ],
+    "task": "İki parçalı bir menteşe tasarla ve kısıtlarla döndür."
+   },
+   {
+    "t": "Teknik resim",
+    "d": "Üç görünüş ve ölçü verme",
+    "yt": "",
+    "steps": [
+     "Part'tan Drawing oluştur.",
+     "Ön, üst ve yan görünüş ekle.",
+     "Ölçü ver, ölçek ve başlık bloğunu doldur.",
+     "PDF olarak dışa aktar."
+    ],
+    "task": "Anahtarlığının teknik resmini çıkar ve yazdır."
+   },
+   {
+    "t": "3B yazıcıya hazırlık",
+    "d": "STL dışa aktarma, dilimleme ayarları",
+    "yt": "",
+    "steps": [
+     "Part'a sağ tık, Export, format STL, birim milimetre.",
+     "Dilimleme programında (Cura/PrusaSlicer) aç.",
+     "Katman 0.2 mm, dolgu %20, destek gerekirse aç.",
+     "Baskı süresini ve ağırlığını oku."
+    ],
+    "task": "Parçanı bas ve ölçüleri kumpasla tasarımla karşılaştır."
+   }
+  ]
+ },
+ {
+  "id": "yazilim",
+  "title": "Yazılım: Python'dan robota",
+  "tools": "Python 3, Thonny, Arduino IDE",
+  "levels": [
+   "ortaokul",
+   "lise"
+  ],
+  "goal": "Algoritmik düşün, programı robota taşı.",
+  "lessons": [
+   {
+    "t": "Değişkenler ve ekrana yazdırma",
+    "d": "print, input, veri tipleri",
+    "yt": "",
+    "steps": [
+     "Thonny'yi kur ve aç.",
+     "print(\"Merhaba\") yaz ve çalıştır.",
+     "name = input(\"Adın? \") ile kullanıcıdan veri al.",
+     "Değişken ve veri tiplerini (int, str, float) dene."
+    ],
+    "task": "Adını ve yaşını soran, 'X, gelecek yıl Y yaşında olacaksın' diyen program yaz."
+   },
+   {
+    "t": "Karar verme",
+    "d": "if / else ve karşılaştırma",
+    "yt": "",
+    "steps": [
+     "if / elif / else yapısını yaz.",
+     "Karşılaştırma işleçleri: ==, !=, <, >.",
+     "Sayı tahmin oyununda 'büyük/küçük' ipucu ver."
+    ],
+    "task": "Bir notu harf notuna çeviren program yaz."
+   },
+   {
+    "t": "Döngüler",
+    "d": "for, while ve desenler",
+    "yt": "",
+    "steps": [
+     "for i in range(5): ile say.",
+     "while ile 'doğru cevap gelene kadar sor' döngüsü kur.",
+     "İç içe döngüyle yıldız üçgeni çiz."
+    ],
+    "task": "1'den 100'e kadar 3'e bölünen sayıları yazdır."
+   },
+   {
+    "t": "Fonksiyonlar",
+    "d": "Kodu parçalara bölmek",
+    "yt": "",
+    "steps": [
+     "def ile fonksiyon tanımla.",
+     "Parametre ve return kullan.",
+     "Tekrar eden kodu fonksiyona taşı."
+    ],
+    "task": "Dairenin alanını hesaplayan ve sonucu döndüren fonksiyon yaz."
+   },
+   {
+    "t": "Listeler ve sözlükler",
+    "d": "Veri toplama",
+    "yt": "",
+    "steps": [
+     "Liste oluştur, append ve len kullan.",
+     "Sözlükle (dict) anahtar-değer sakla.",
+     "Listede for ile gez."
+    ],
+    "task": "Sınıf arkadaşlarının boy listesinden ortalama ve en uzunu bul."
+   },
+   {
+    "t": "Robota giriş",
+    "d": "Python'dan Arduino ve robot kodlamaya köprü",
+    "yt": "",
+    "steps": [
+     "Python ile seri port üzerinden Arduino'ya komut gönder (pyserial).",
+     "Arduino tarafında Serial.read() ile komutu al.",
+     "'1' gelince LED yansın, '0' gelince sönsün."
+    ],
+    "task": "Klavyeden gönderdiğin harfe göre farklı LED'leri yak."
+   }
+  ]
+ }
 ]

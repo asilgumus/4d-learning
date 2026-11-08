@@ -1,9 +1,133 @@
 [
- {"id":"siber-guvenlik","no":1,"title":"Siber Güvenlik","tagline":"Parola, oltalama ve zararlı yazılımlara karşı günlük refleksler.","levels":["ilkokul","ortaokul"],"minutes":"40–50 dk","accent":"#2870c7","kind":"Sunum","summary":"17 slaytlık Türkçe sunum: parola güvenliği, sosyal medya ve gizlilik, tehlikeli bağlantılar, oltalama (phishing), truva atı, casus yazılım ve ortadaki adam saldırısı.","contents":["Sunum (17 slayt)","PDF indir","Tartışma soruları"]},
- {"id":"teknoloji-bagimliligi","no":2,"title":"Teknoloji Bağımlılığı","tagline":"Ekranla ilişkimizi fark etmek ve dengelemek için tartışma temelli atölye.","levels":["ilkokul","ortaokul"],"minutes":"45 dk","accent":"#e07a1f","kind":"Sunum","summary":"Dikkat, uyku, ilişkiler ve öğrenme üzerindeki etkiyi konuşan 14 slaytlık sunum; aileyle yapılacak 'dijital denge anlaşması' etkinliği içerir.","contents":["Sunum (14 slayt)","Aile etkinliği","Yazdırılabilir anlaşma"]},
- {"id":"uretim-ve-montaj","no":3,"title":"Endüstriyel Üretim ve Montaj","tagline":"Bir fikir nasıl parça olur, parçalar nasıl ürüne dönüşür? Sonra iki set kendi ellerinle.","levels":["ilkokul","ortaokul"],"minutes":"15 dk sunum + set başına 2–3 saat","accent":"#e31b2f","kind":"Sunum + set","summary":"Kısa giriş sunumu, ardından iki ayrı setin adım adım yapım kitapçıkları ve herkesin kendi üretebileceği açık kaynak çizimler.","contents":["Giriş sunumu (10 slayt)","2 set kitapçığı","Açık kaynak çizimler"]},
- {"id":"lego-mr","no":4,"title":"LEGO MR","tagline":"MR cihazını tanıyan çocuk, MR odasında daha az korkar.","levels":["mr"],"minutes":"Yapım 2–4 saat","accent":"#0f9d8a","kind":"Yapım talimatı","summary":"LEGO'nun kendi MR setinin SPIKE Prime parçalarıyla yeniden inşa edilmiş hali; yapım talimatları ve çocuğa MR'ı anlatmak için hazırlık rehberi.","contents":["Yapım talimatı","MR'a hazırlık rehberi","Aileye not"]},
- {"id":"neurobridge","no":5,"title":"NeuroBridge","tagline":"Öğrenme güçlüğü yaşayan ve nöroçeşitli çocuklar için, oyunla algoritma ve kodlama mantığı.","levels":["noro"],"minutes":"Çocuğun temposunda","accent":"#7a4dd8","kind":"Oyun platformu","summary":"15 seviyeli, dikkat dağıtmayan, tek komutla hareket eden açık kaynak bulmaca oyunu. Tarayıcıda çalışır, kurulum gerekmez.","contents":["Oyunu oyna","Eğitmen rehberi","Açık kaynak kod"]},
- {"id":"sense-of-science","no":6,"title":"Sense of Science","tagline":"Mutfaktaki malzemelerle bilim: her deney için video ve basılabilir kitapçık.","levels":["ilkokul","ortaokul"],"minutes":"Deney başına 20–30 dk","accent":"#d6a400","kind":"Deney + video","summary":"Sekiz deney; her birinin malzeme listesi, adımları, 'neden oldu?' açıklaması, güvenlik notu ve soru kartları yazdırılabilir kitapçıkta.","contents":["8 deney kitapçığı","Deney videoları","Soru kartları"]},
- {"id":"cad-elektronik-yazilim","no":7,"title":"CAD, Elektronik, Yazılım","tagline":"Üç yoldan video video: tasarla, devre kur, kod yaz.","levels":["ortaokul","lise"],"minutes":"Ders başına 15–25 dk","accent":"#1c2a4a","kind":"Video eğitim","summary":"Üç ayrı müfredat: CAD ile 3B tasarım, Arduino ile elektronik, Python ile yazılım. Her ders kısa bir video ve uygulama görevi.","contents":["3 müfredat","18 ders","Uygulama görevleri"]}
+ {
+  "id": "siber-guvenlik",
+  "no": 1,
+  "title": "Siber Güvenlik",
+  "tagline": "Parola, oltalama ve zararlı yazılımlara karşı günlük refleksler.",
+  "levels": [
+   "ilkokul",
+   "ortaokul"
+  ],
+  "minutes": "40–50 dk",
+  "accent": "#2870c7",
+  "kind": "Sunum",
+  "summary": "17 slaytlık Türkçe sunum: parola güvenliği, sosyal medya ve gizlilik, tehlikeli bağlantılar, oltalama (phishing), truva atı, casus yazılım ve ortadaki adam saldırısı.",
+  "contents": [
+   "Sunum (17 slayt)",
+   "PDF indir",
+   "Tartışma soruları"
+  ]
+ },
+ {
+  "id": "teknoloji-bagimliligi",
+  "no": 2,
+  "title": "Teknoloji Bağımlılığı",
+  "tagline": "Ekranla ilişkimizi fark etmek ve dengelemek için tartışma temelli atölye.",
+  "levels": [
+   "ilkokul",
+   "ortaokul"
+  ],
+  "minutes": "45 dk",
+  "accent": "#e07a1f",
+  "kind": "Sunum",
+  "summary": "Dikkat, uyku, ilişkiler ve öğrenme üzerindeki etkiyi konuşan 14 slaytlık sunum; aileyle yapılacak 'dijital denge anlaşması' etkinliği içerir.",
+  "contents": [
+   "Sunum (14 slayt)",
+   "Aile etkinliği",
+   "Yazdırılabilir anlaşma"
+  ]
+ },
+ {
+  "id": "uretim-ve-montaj",
+  "no": 3,
+  "title": "Endüstriyel Üretim ve Montaj",
+  "tagline": "Bir fikir nasıl parça olur, parçalar nasıl ürüne dönüşür? Sonra iki set kendi ellerinle.",
+  "levels": [
+   "ilkokul",
+   "ortaokul"
+  ],
+  "minutes": "15 dk sunum + set başına 2–3 saat",
+  "accent": "#e31b2f",
+  "kind": "Sunum + set",
+  "summary": "Kısa giriş sunumu, ardından iki set: 3B yazıcıyla dişli zinciri ve lazer kesimle geçmeli dayanak. Her set için yapım kitapçığı ve herkesin kendi üretebileceği açık kaynak çizimler (STL, SVG, DXF) hazır.",
+  "contents": [
+   "Giriş sunumu (10 slayt)",
+   "2 set kitapçığı",
+   "STL, SVG, DXF çizimler"
+  ]
+ },
+ {
+  "id": "lego-mr",
+  "no": 4,
+  "title": "LEGO MR",
+  "tagline": "MR cihazını tanıyan çocuk, MR odasında daha az korkar.",
+  "levels": [
+   "mr"
+  ],
+  "minutes": "Yapım 2–4 saat",
+  "accent": "#0f9d8a",
+  "kind": "Yapım talimatı",
+  "summary": "LEGO'nun kendi MR setinin SPIKE Prime parçalarıyla yeniden inşa edilmiş hali için aşama aşama yapım kılavuzu ve çocuğa MR'ı anlatmak için hazırlık rehberi.",
+  "contents": [
+   "Yapım talimatı",
+   "MR'a hazırlık rehberi",
+   "Aileye not"
+  ]
+ },
+ {
+  "id": "neurobridge",
+  "no": 5,
+  "title": "NeuroBridge",
+  "tagline": "Öğrenme güçlüğü yaşayan ve nöroçeşitli çocuklar için, oyunla algoritma ve kodlama mantığı.",
+  "levels": [
+   "noro"
+  ],
+  "minutes": "Çocuğun temposunda",
+  "accent": "#7a4dd8",
+  "kind": "Oyun platformu",
+  "summary": "15 seviyeli, dikkat dağıtmayan, tek komutla hareket eden açık kaynak bulmaca oyunu. Tarayıcıda çalışır, kurulum gerekmez.",
+  "contents": [
+   "Oyunu oyna",
+   "Eğitmen rehberi",
+   "Açık kaynak kod"
+  ]
+ },
+ {
+  "id": "sense-of-science",
+  "no": 6,
+  "title": "Sense of Science",
+  "tagline": "Mutfaktaki malzemelerle bilim: her deney için video ve basılabilir kitapçık.",
+  "levels": [
+   "ilkokul",
+   "ortaokul"
+  ],
+  "minutes": "Deney başına 20–30 dk",
+  "accent": "#d6a400",
+  "kind": "Deney + video",
+  "summary": "Sekiz deney; her birinin malzeme listesi, adımları, 'neden oldu?' açıklaması, güvenlik notu ve soru kartları yazdırılabilir kitapçıkta.",
+  "contents": [
+   "8 deney kitapçığı",
+   "Deney videoları",
+   "Soru kartları"
+  ]
+ },
+ {
+  "id": "cad-elektronik-yazilim",
+  "no": 7,
+  "title": "CAD, Elektronik, Yazılım",
+  "tagline": "Üç yoldan video video: tasarla, devre kur, kod yaz.",
+  "levels": [
+   "ortaokul",
+   "lise"
+  ],
+  "minutes": "Ders başına 15–25 dk",
+  "accent": "#1c2a4a",
+  "kind": "Video eğitim",
+  "summary": "Üç müfredat: CAD ile 3B tasarım (6 ders), Arduino ile elektronik (19 deney, kod ve Türkçe çalışma kâğıdı) ve Python ile yazılım (6 ders). Her derste adımlar ve uygulama görevi var.",
+  "contents": [
+   "3 müfredat",
+   "31 ders ve deney",
+   "Uygulama görevleri"
+  ]
+ }
 ]

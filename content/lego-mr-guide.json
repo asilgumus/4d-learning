@@ -1,0 +1,8 @@
+{"title":"LEGO MR: yapım kılavuzu","note":"Bu kılavuz yapının aşamalarını ve test listesini verir. Parça parça fotoğraflı talimat takımın yapımını çekmesiyle eklenir (yuva aşağıda).","phases":[
+{"h":"1. Çerçeve ve taban","p":"Uzun bir taban (en az 16×32 studluk), cihazın iki yan kolonu ve üst kirişi. MR makinesi 'halka' görünümünde olmalı: tünel çapı minifigürün sığacağı kadar (en az 6 stud)."},
+{"h":"2. Tünel halkası","p":"Yuvarlak halkayı yatay yarım daireler ve plakalarla örün. İçini açık bırakın. Halkanın önüne makine adını yazan düz bir panel koyun."},
+{"h":"3. Kayar yatak","p":"Taban üzerinde, tünelin içinden geçen bir ray yapın. Hasta yatağı rayda kayacak; SPIKE Prime motoruyla ya da elle ittirilebilir."},
+{"h":"4. SPIKE Prime hareket","p":"Büyük motor ve dişli ile yatağı tünele yavaşça sokup çıkaran bir mekanizma kurun. Hub'ı kontrol odasına gizleyin. Düğme basınca yatak girsin, tekrar basınca çıksın."},
+{"h":"5. Kontrol odası","p":"Teknisyen minifigürü ve ekran (cam veya çıkartma) olan küçük bir oda ekleyin. Çocuk, 'teknisyen beni görüyor' mesajını modelden görsün."},
+{"h":"6. Ses ve ışık (isteğe bağlı)","p":"Hub hoparlörüyle yumuşak 'tak tak' sesi; ışık matrisiyle 'çekim sürüyor' yanıp sönmesi programlanabilir. Sesi çocuğun rahat edeceği kadar kısık tutun."}],
+"tests":["Minifigür yatakta rahatça yatabiliyor mu?","Yatak tünele takılmadan giriyor ve çıkıyor mu?","Motor çok hızlı değil mi? (çocuk korkmasın)","Tüm kenarlar ve küçük parçalar çocuk için güvenli mi?"]}

@@ -1,0 +1,31 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PIR Motion Alarm · Arduino deneyi</title><meta name="description" content="FRC 6429 4th Dimension takımının, okulların ve kurumların ücretsiz kullanabileceği açık eğitim içerikleri."><meta name="theme-color" content="#e31b2f">
+<link rel="icon" href="../assets/img/4d-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/app.css"></head><body>
+<a class="skip" href="#main">İçeriğe geç</a>
+<header class="top"><div class="wrap"><a class="brand" href="../index.html"><img src="../assets/img/4d-logo.png" alt=""><span><b>4D Learning</b><small>FRC 6429 4th Dimension</small></span></a>
+<nav class="main" aria-label="Ana menü"><a href="../index.html#kutuphane">Kütüphane</a><a href="../index.html#nasil">Nasıl kullanılır</a><a href="https://frc6429.com" rel="noopener">Takım</a></nav></div></header>
+<main id="main"><div class="wrap"><div class="toolbar"><a class="crumb" href="../m/cad-elektronik-yazilim.html">← CAD, Elektronik, Yazılım</a><button class="btn p" id="print">Yazdır / PDF</button></div>
+<article class="book"><p style="color:var(--red-d);font-weight:800;margin:0">Arduino deneyi 18</p><h1>PIR Motion Alarm</h1><p style="color:var(--muted)">Intermediate · 45 min · Motion sensing</p><p>Detect movement with a PIR sensor and trigger a small buzzer or LED.</p>
+<h2>Malzemeler</h2><ul><li>Arduino Uno</li><li>PIR motion sensor</li><li>Active 5V buzzer or LED with 220 Ω resistor</li><li>Jumper wires</li></ul><h2>Bağlantı</h2><ol><li>Connect PIR VCC to 5V, GND to GND and OUT to pin 2.</li><li>Connect a low-current active buzzer to pin 8 and GND, or use an LED with a resistor.</li></ol><h2>Kod</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>const int pirPin = 2, alarmPin = 8;
+
+void setup() {
+  pinMode(pirPin, INPUT); pinMode(alarmPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  bool motion = digitalRead(pirPin);
+  digitalWrite(alarmPin, motion);
+  if (motion) Serial.println(&quot;Motion detected&quot;);
+  delay(100);
+}</code></pre>
+<h2>Ne olmalı?</h2><p class="why">After its warm-up period, the PIR activates the output when movement is detected.</p><h2>Meydan okuma</h2><p>Keep the alarm active for five seconds after the last movement.</p>
+<h2>Güvenlik ve sorun giderme</h2><ul><li>Bağlantıyı değiştirmeden önce gücü kes.</li><li>Her LED ile direnç kullan.</li><li>Kart ve port seçimini Arduino IDE'de kontrol et.</li><li>Her kablonun koddaki pin numarasıyla eşleştiğini doğrula.</li></ul>
+<p style="color:var(--muted);font-size:14px">Not: Ders metinleri İngilizcedir. Orijinal Türkçe çalışma kâğıdı PDF olarak indirilebilir.</p>
+<div class="btns"><a class="btn p" href="../assets/docs/arduino/experiment-18.pdf" download>Türkçe çalışma kâğıdı (PDF)</a></div>
+<nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700"><a href="17.html">← Önceki</a><a href="19.html">Sonraki →</a></nav></article><div style="height:48px"></div></div></main>
+<footer><div class="wrap"><div><b style="font-family:var(--display);font-size:1.3rem;color:#fff">4D Learning</b><p>FRC 6429 4th Dimension, İzmir. İçerikler okullar, STK'lar ve takımlar için ücretsizdir. Kaynak göstererek kullanın, uyarlayın, paylaşın.</p></div>
+<div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
+<script src="../assets/app.js"></script></body></html>

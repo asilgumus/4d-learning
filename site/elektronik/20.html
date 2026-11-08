@@ -1,0 +1,41 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mini Digital Clock · Arduino deneyi</title><meta name="description" content="FRC 6429 4th Dimension takımının, okulların ve kurumların ücretsiz kullanabileceği açık eğitim içerikleri."><meta name="theme-color" content="#e31b2f">
+<link rel="icon" href="../assets/img/4d-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/app.css"></head><body>
+<a class="skip" href="#main">İçeriğe geç</a>
+<header class="top"><div class="wrap"><a class="brand" href="../index.html"><img src="../assets/img/4d-logo.png" alt=""><span><b>4D Learning</b><small>FRC 6429 4th Dimension</small></span></a>
+<nav class="main" aria-label="Ana menü"><a href="../index.html#kutuphane">Kütüphane</a><a href="../index.html#nasil">Nasıl kullanılır</a><a href="https://frc6429.com" rel="noopener">Takım</a></nav></div></header>
+<main id="main"><div class="wrap"><div class="toolbar"><a class="crumb" href="../m/cad-elektronik-yazilim.html">← CAD, Elektronik, Yazılım</a><button class="btn p" id="print">Yazdır / PDF</button></div>
+<article class="book"><p style="color:var(--red-d);font-weight:800;margin:0">Arduino deneyi 20</p><h1>Mini Digital Clock</h1><p style="color:var(--muted)">Intermediate · 75 min · I²C and timekeeping</p><p>Read time from a DS3231 real-time clock and show it on an I²C LCD.</p>
+<h2>Malzemeler</h2><ul><li>Arduino Uno</li><li>DS3231 RTC module</li><li>16×2 I²C LCD</li><li>Jumper wires</li><li>RTClib and LiquidCrystal_I2C libraries</li></ul><h2>Bağlantı</h2><ol><li>Connect both modules to 5V and GND.</li><li>Connect both SDA pins to A4 and both SCL pins to A5 on the Uno.</li><li>Check the LCD address with an I²C scanner; 0x27 is common.</li></ol><h2>Kod</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>#include &lt;Wire.h&gt;
+#include &lt;RTClib.h&gt;
+#include &lt;LiquidCrystal_I2C.h&gt;
+RTC_DS3231 rtc;
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void setup() {
+  lcd.init(); lcd.backlight();
+  if (!rtc.begin()) { lcd.print(&quot;RTC not found&quot;); while (true) {} }
+  // Run once if needed, then comment out and upload again:
+  // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+}
+
+void loop() {
+  DateTime now = rtc.now();
+  lcd.setCursor(0,0);
+  if (now.hour()&lt;10) lcd.print(&#x27;0&#x27;); lcd.print(now.hour()); lcd.print(&#x27;:&#x27;);
+  if (now.minute()&lt;10) lcd.print(&#x27;0&#x27;); lcd.print(now.minute()); lcd.print(&#x27;:&#x27;);
+  if (now.second()&lt;10) lcd.print(&#x27;0&#x27;); lcd.print(now.second());
+  lcd.setCursor(0,1);
+  lcd.print(now.day()); lcd.print(&#x27;/&#x27;); lcd.print(now.month()); lcd.print(&#x27;/&#x27;); lcd.print(now.year());
+  delay(500);
+}</code></pre>
+<h2>Ne olmalı?</h2><p class="why">The LCD displays the current time and date while the RTC keeps time when unplugged.</p><h2>Meydan okuma</h2><p>Add two buttons to choose between clock and temperature views.</p>
+<h2>Güvenlik ve sorun giderme</h2><ul><li>Bağlantıyı değiştirmeden önce gücü kes.</li><li>Her LED ile direnç kullan.</li><li>Kart ve port seçimini Arduino IDE'de kontrol et.</li><li>Her kablonun koddaki pin numarasıyla eşleştiğini doğrula.</li></ul>
+<p style="color:var(--muted);font-size:14px">Not: Ders metinleri İngilizcedir. Orijinal Türkçe çalışma kâğıdı PDF olarak indirilebilir.</p>
+<div class="btns"><a class="btn p" href="../assets/docs/arduino/experiment-20.pdf" download>Türkçe çalışma kâğıdı (PDF)</a></div>
+<nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700"><a href="19.html">← Önceki</a><span></span></nav></article><div style="height:48px"></div></div></main>
+<footer><div class="wrap"><div><b style="font-family:var(--display);font-size:1.3rem;color:#fff">4D Learning</b><p>FRC 6429 4th Dimension, İzmir. İçerikler okullar, STK'lar ve takımlar için ücretsizdir. Kaynak göstererek kullanın, uyarlayın, paylaşın.</p></div>
+<div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
+<script src="../assets/app.js"></script></body></html>

@@ -1,0 +1,43 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Obstacle-Avoiding Robot · Arduino deneyi</title><meta name="description" content="FRC 6429 4th Dimension takımının, okulların ve kurumların ücretsiz kullanabileceği açık eğitim içerikleri."><meta name="theme-color" content="#e31b2f">
+<link rel="icon" href="../assets/img/4d-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/app.css"></head><body>
+<a class="skip" href="#main">İçeriğe geç</a>
+<header class="top"><div class="wrap"><a class="brand" href="../index.html"><img src="../assets/img/4d-logo.png" alt=""><span><b>4D Learning</b><small>FRC 6429 4th Dimension</small></span></a>
+<nav class="main" aria-label="Ana menü"><a href="../index.html#kutuphane">Kütüphane</a><a href="../index.html#nasil">Nasıl kullanılır</a><a href="https://frc6429.com" rel="noopener">Takım</a></nav></div></header>
+<main id="main"><div class="wrap"><div class="toolbar"><a class="crumb" href="../m/cad-elektronik-yazilim.html">← CAD, Elektronik, Yazılım</a><button class="btn p" id="print">Yazdır / PDF</button></div>
+<article class="book"><p style="color:var(--red-d);font-weight:800;margin:0">Arduino deneyi 13</p><h1>Obstacle-Avoiding Robot</h1><p style="color:var(--muted)">Intermediate · 90 min · Robot decisions</p><p>Combine a distance sensor and motor driver to make a simple robot avoid obstacles.</p>
+<h2>Malzemeler</h2><ul><li>Arduino Uno</li><li>HC-SR04</li><li>L298N motor driver</li><li>2 DC gear motors and chassis</li><li>Motor battery pack</li><li>Jumper wires</li></ul><h2>Bağlantı</h2><ol><li>Connect Trig to pin 7 and Echo to pin 6.</li><li>Connect L298N IN1–IN4 to pins 4, 5, 8 and 9; keep ENA/ENB jumpers installed.</li><li>Power motors from the battery through the driver. Join driver and Arduino grounds.</li></ol><h2>Kod</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>const int trigPin=7, echoPin=6;
+const int in1=4, in2=5, in3=8, in4=9;
+
+void drive(int a, int b, int c, int d) {
+  digitalWrite(in1,a); digitalWrite(in2,b); digitalWrite(in3,c); digitalWrite(in4,d);
+}
+
+float distanceCm() {
+  digitalWrite(trigPin,LOW); delayMicroseconds(2);
+  digitalWrite(trigPin,HIGH); delayMicroseconds(10); digitalWrite(trigPin,LOW);
+  return pulseIn(echoPin,HIGH,30000) * 0.0343 / 2.0;
+}
+
+void setup() {
+  pinMode(trigPin,OUTPUT); pinMode(echoPin,INPUT);
+  pinMode(in1,OUTPUT); pinMode(in2,OUTPUT); pinMode(in3,OUTPUT); pinMode(in4,OUTPUT);
+}
+
+void loop() {
+  float d=distanceCm();
+  if (d &gt; 0 &amp;&amp; d &lt; 20) {
+    drive(LOW,HIGH,LOW,HIGH); delay(350);
+    drive(HIGH,LOW,LOW,HIGH); delay(450);
+  } else { drive(HIGH,LOW,HIGH,LOW); }
+}</code></pre>
+<h2>Ne olmalı?</h2><p class="why">The robot reverses and turns when it detects an object closer than 20 cm.</p><h2>Meydan okuma</h2><p>Test three thresholds and record which produces the most reliable movement.</p>
+<h2>Güvenlik ve sorun giderme</h2><ul><li>Bağlantıyı değiştirmeden önce gücü kes.</li><li>Her LED ile direnç kullan.</li><li>Kart ve port seçimini Arduino IDE'de kontrol et.</li><li>Her kablonun koddaki pin numarasıyla eşleştiğini doğrula.</li></ul>
+<p style="color:var(--muted);font-size:14px">Not: Ders metinleri İngilizcedir. Orijinal Türkçe çalışma kâğıdı PDF olarak indirilebilir.</p>
+<div class="btns"><a class="btn p" href="../assets/docs/arduino/experiment-13.pdf" download>Türkçe çalışma kâğıdı (PDF)</a></div>
+<nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700"><a href="12.html">← Önceki</a><a href="14.html">Sonraki →</a></nav></article><div style="height:48px"></div></div></main>
+<footer><div class="wrap"><div><b style="font-family:var(--display);font-size:1.3rem;color:#fff">4D Learning</b><p>FRC 6429 4th Dimension, İzmir. İçerikler okullar, STK'lar ve takımlar için ücretsizdir. Kaynak göstererek kullanın, uyarlayın, paylaşın.</p></div>
+<div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
+<script src="../assets/app.js"></script></body></html>
