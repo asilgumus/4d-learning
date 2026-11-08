@@ -27,7 +27,7 @@ def page(title, body, depth=0, desc="", extra_head=""):
 <div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
 <script src="{p}assets/app.js"></script></body></html>'''
 
-TINT = [("#eaf1f7", "#1e5b8c")]
+TINT = [("#eef1f6", "#0b2a43")]
 def tint(m): t = TINT[(m["no"] - 1) % len(TINT)]; return f'--t:{t[0]};--tf:{t[1]}'
 def chips(m): return "".join(f'<span class="chip lv">{LV[l]}</span>' for l in m["levels"])
 
@@ -37,13 +37,16 @@ def index():
     FL = [("all", "Tümü"), ("ilkokul", "İlkokul"), ("ortaokul", "Ortaokul"), ("lise", "Lise"), ("noro", "Nöroçeşitli çocuklar"), ("mr", "MR'a girecek çocuklar")]
     btns = "".join(f'<button type="button" data-who="{k}" aria-pressed="{str(k=="all").lower()}">{e(v)}</button>' for k, v in FL)
     tiles = "".join(f'<a href="m/{m["id"]}.html" style="{tint(m)}" aria-label="{e(m["title"])}" title="{e(m["title"])}">{m["no"]}</a>' for m in MODS)
-    body = f'''<section class="hero"><div class="wrap hero-in"><div><h1>Okulların ve kurumların doğrudan kullanabileceği eğitim içerikleri.</h1>
+    body = f'''<section class="hero"><div class="wrap hero-in"><div class="hero-copy"><h1>Okulların ve kurumların doğrudan kullanabileceği eğitim içerikleri.</h1>
 <p class="lede">FRC 6429 4th Dimension takımı tarafından hazırlanan sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler. İndir, sınıfında veya kurumunda kullan.</p>
-<div class="filter" role="group" aria-label="Kimin için"><span>Kimin için?</span>{btns}</div></div></div></section>
+<div class="filter" role="group" aria-label="Kimin için"><span>Kimin için?</span>{btns}</div></div>
+<figure class="hero-photo"><img src="assets/img/hero.jpg" alt="4th Dimension takımının atölyesinde 6429 numaralı robot" width="1400" height="664" fetchpriority="high"><figcaption>FRC 6429 4th Dimension · İzmir</figcaption></figure></div></section>
 <div class="wrap">
 <section id="kutuphane" aria-label="Kütüphane"><div class="shelf">{rows}</div><p class="empty" id="empty" hidden>Bu grup için henüz içerik yok. Önerin varsa bize yaz.</p><p class="count"><span id="count">7</span> modül listeleniyor</p></section></div>
 <section class="band" id="nasil"><div class="wrap"><h2>Dört adımda sınıfına getir.</h2><ul class="steps">
-<li><b>Seç</b><span>Yaş grubuna uygun modülü bul.</span></li><li><b>İndir</b><span>Sunumu, kitapçığı veya çizimi indir ya da tarayıcıda göster.</span></li><li><b>Uyarla</b><span>Kendi dilin, malzemelerin ve sürene göre değiştir.</span></li><li><b>Uygula</b><span>Çocuklarla yap, geri bildirimini bize yaz.</span></li></ul></div></section>'''
+<li><b>Seç</b><span>Yaş grubuna uygun modülü bul.</span></li><li><b>İndir</b><span>Sunumu, kitapçığı veya çizimi indir ya da tarayıcıda göster.</span></li><li><b>Uyarla</b><span>Kendi dilin, malzemelerin ve sürene göre değiştir.</span></li><li><b>Uygula</b><span>Çocuklarla yap, geri bildirimini bize yaz.</span></li></ul></div></section>
+<section class="band team"><div class="wrap"><div class="team-grid"><div class="team-copy"><h2>Robot yapan bir takımdan, herkese açık eğitim.</h2><p>4th Dimension, İzmir'den bir FIRST Robotics takımı. Robotik çalışmalarının yanında okullara, çocuklara ve ailelere yönelik eğitim projeleri yürütüyoruz. Buradaki içerikler bu çalışmalardan çıkıyor ve ücretsiz.</p><div class="btns"><a class="btn" href="https://frc6429.com">Takımı tanı</a><a class="btn" href="mailto:frc4thdimension@gmail.com">Bize yaz</a></div></div>
+<div class="team-photos"><img src="assets/img/takim.jpg" alt="4th Dimension takım üyeleri" loading="lazy"><img src="assets/img/etkinlik-1.jpg" alt="Takım üyeleri bir etkinlikte" loading="lazy"><img src="assets/img/etkinlik-2.jpg" alt="Çocuklara yönelik bir etkinlik" loading="lazy"></div></div></div></section>'''
     return page("4D Learning: açık eğitim kütüphanesi", body)
 
 def deck_html(slides, imgs=None, label="Sunum"):
