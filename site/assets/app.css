@@ -18,7 +18,7 @@ nav.main{display:flex;gap:28px}nav.main a{text-decoration:none;font-size:14.5px;
 .hero-in{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,72px);align-items:center;padding:clamp(48px,7vw,88px) 0}
 .hero-copy::before{content:"";display:block;width:56px;height:4px;background:var(--blue);margin-bottom:28px}
 .hero-photo{margin:0;position:relative}
-.hero-photo img{display:block;width:100%;height:auto;aspect-ratio:1.45;object-fit:cover;object-position:100% 50%;border-radius:18px}
+.hero-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:100% 50%;border-radius:18px}
 .hero-photo figcaption{position:absolute;left:16px;bottom:16px;background:rgba(11,42,67,.88);color:#fff;font-size:13px;font-weight:500;padding:6px 12px;border-radius:999px}
 .hero h1{color:var(--ink);font-size:clamp(2.1rem,4.2vw,3.35rem);max-width:17ch;letter-spacing:-.035em;line-height:1.07}
 .hero p.lede{max-width:56ch;font-size:1.12rem;color:var(--muted);margin:22px 0 0}
@@ -31,9 +31,10 @@ nav.main{display:flex;gap:28px}nav.main a{text-decoration:none;font-size:14.5px;
 /* shelf */
 .shelf{border-top:0;margin-top:8px}
 .row{display:grid;grid-template-columns:52px 1fr auto;gap:6px 22px;align-items:center;padding:26px 14px;margin:0 -14px;border-bottom:1px solid var(--line);text-decoration:none;transition:background .15s}
-.row:hover{background:var(--soft)}.row:hover h2{color:var(--blue)}
+.row{position:relative}.row::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:2px;background:var(--blue);transform:scaleY(0);transition:transform .2s}.row:hover::before{transform:scaleY(1)}
+.row:hover{background:var(--soft)}.row:hover h2{color:var(--blue)}.row:hover .no{background:var(--blue)}
 .row[hidden]{display:none}
-.row .no{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--tint);color:var(--ink);font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;align-self:start;margin-top:2px}
+.row .no{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:var(--ink);color:#fff;font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;align-self:start;margin-top:2px}
 .row h2{font-size:clamp(1.3rem,2.3vw,1.65rem)}
 .row p{margin:6px 0 0;color:var(--muted);max-width:60ch;font-size:15.5px}
 .meta{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:14px}

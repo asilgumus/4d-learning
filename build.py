@@ -40,7 +40,7 @@ def index():
     body = f'''<section class="hero"><div class="wrap hero-in"><div class="hero-copy"><h1>Okulların ve kurumların doğrudan kullanabileceği eğitim içerikleri.</h1>
 <p class="lede">FRC 6429 4th Dimension takımı tarafından hazırlanan sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler. İndir, sınıfında veya kurumunda kullan.</p>
 <div class="filter" role="group" aria-label="Kimin için"><span>Kimin için?</span>{btns}</div></div>
-<figure class="hero-photo"><img src="assets/img/hero.jpg" alt="4th Dimension takımının atölyesinde 6429 numaralı robot" width="1400" height="664" fetchpriority="high"><figcaption>FRC 6429 4th Dimension · İzmir</figcaption></figure></div></section>
+<figure class="hero-photo"><img src="assets/img/hero.jpg" alt="4D bayrağı, bir FIRST Robotics etkinliğinde" width="1400" height="788" fetchpriority="high"><figcaption>FIRST etkinliğinden · FRC 6429 4th Dimension</figcaption></figure></div></section>
 <div class="wrap">
 <section id="kutuphane" aria-label="Kütüphane"><div class="shelf">{rows}</div><p class="empty" id="empty" hidden>Bu grup için henüz içerik yok. Önerin varsa bize yaz.</p><p class="count"><span id="count">7</span> modül listeleniyor</p></section></div>
 <section class="band" id="nasil"><div class="wrap"><h2>Dört adımda sınıfına getir.</h2><ul class="steps">
