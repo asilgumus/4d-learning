@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 R = pathlib.Path(__file__).resolve().parent.parent; C = R / "content"; V = R / "site/assets/video"
 FB = "/usr/share/fonts/google-noto/NotoSans-Bold.ttf"
 FR = "/usr/share/fonts/google-noto/NotoSans-Regular.ttf"
-W, H = 1280, 720; RED = (227, 27, 47); INK = (21, 23, 29); PAPER = (251, 250, 248); MUTED = (93, 99, 112)
+W, H = 1280, 720; RED = (30, 91, 140); INK = (11, 42, 67); PAPER = (255, 255, 255); MUTED = (95, 113, 134)
 logo = Image.open(R / "site/assets/img/4d-logo.png").convert("RGBA").resize((64, 62))
 def wrap(d, text, font, maxw):
     lines, cur = [], ""
