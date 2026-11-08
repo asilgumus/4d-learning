@@ -1,0 +1,23 @@
+[
+{"id":"cad","title":"CAD: 3B tasarım","tools":"Onshape (ücretsiz, tarayıcıda)","levels":["ortaokul","lise"],"goal":"Hayalindeki parçayı bilgisayarda tasarla ve 3B yazıcıdan çıkar.","lessons":[
+ {"t":"Arayüz ve ilk eskiz","d":"Düzlem, eskiz, ölçülendirme","yt":""},
+ {"t":"Extrude ve kesme","d":"2B eskizden 3B gövdeye","yt":""},
+ {"t":"Delikler ve pah","d":"Vida deliği, fillet, chamfer","yt":""},
+ {"t":"Montaj (assembly)","d":"Parçaları birleştirme ve kısıtlar","yt":""},
+ {"t":"Teknik resim","d":"Üç görünüş ve ölçü verme","yt":""},
+ {"t":"3B yazıcıya hazırlık","d":"STL dışa aktarma, dilimleme ayarları","yt":""}]},
+{"id":"elektronik","title":"Elektronik: Arduino ile devre","tools":"Arduino Uno, breadboard, LED, direnç","levels":["ortaokul","lise"],"goal":"Devre kur, sensör oku, motor sür.","lessons":[
+ {"t":"Elektrik temelleri","d":"Gerilim, akım, direnç, Ohm yasası","yt":""},
+ {"t":"İlk devre: LED","d":"Breadboard ve direnç seçimi","yt":""},
+ {"t":"Butonla kontrol","d":"Dijital giriş","yt":""},
+ {"t":"Analog sensörler","d":"Potansiyometre ve ışık sensörü","yt":""},
+ {"t":"Servo ve DC motor","d":"Hareket ve sürücü","yt":""},
+ {"t":"Mini proje: otomatik lamba","d":"Sensör + LED + eşik değeri","yt":""}]},
+{"id":"yazilim","title":"Yazılım: Python'dan robota","tools":"Python 3, Thonny, Arduino IDE","levels":["ortaokul","lise"],"goal":"Algoritmik düşün, programı robota taşı.","lessons":[
+ {"t":"Değişkenler ve ekrana yazdırma","d":"print, input, veri tipleri","yt":""},
+ {"t":"Karar verme","d":"if / else ve karşılaştırma","yt":""},
+ {"t":"Döngüler","d":"for, while ve desenler","yt":""},
+ {"t":"Fonksiyonlar","d":"Kodu parçalara bölmek","yt":""},
+ {"t":"Listeler ve sözlükler","d":"Veri toplama","yt":""},
+ {"t":"Robota giriş","d":"Python'dan Arduino ve robot kodlamaya köprü","yt":""}]}
+]

@@ -1,0 +1,12 @@
+{"title":"Endüstriyel Üretim ve Montaj","slides":[
+{"t":"cover","h":"Fikirden ürüne","sub":"Endüstriyel üretim ve montaja giriş · 4th Dimension 6429"},
+{"t":"statement","h":"Etrafındaki her şey bir yerde üretildi.","text":"Kalemin, sandalyen, bisikletin, telefonun: önce bir tasarım, sonra parçalar, sonra montaj."},
+{"t":"points","h":"Üretimin yolculuğu","items":["Fikir ve ihtiyaç","Tasarım ve çizim (CAD)","Malzeme seçimi","Parça üretimi (kesme, şekil verme, baskı)","Montaj","Kontrol ve test"]},
+{"t":"compare","h":"Tek tek mi, seri mi?","left":{"title":"El yapımı / tekil üretim","items":["Her parça biraz farklıdır","Yavaştır ama esnektir","Prototip için idealdir"]},"right":{"title":"Seri üretim","items":["Parçalar birbirinin aynısıdır","Hızlıdır, maliyet düşer","Standart ölçü gerektirir"]}},
+{"t":"points","h":"Parçalar nasıl üretilir?","items":["Talaşlı imalat: bir bloktan malzeme kazıyarak (torna, freze, CNC)","Kesme: lazer, plazma, testere","Şekillendirme: bükme, döküm, kalıp","Eklemeli imalat: 3B yazıcıyla katman katman"]},
+{"t":"statement","h":"Tolerans: 'yaklaşık' yetmez.","text":"İki parçanın birbirine geçmesi için ölçülerin çok hassas olması gerekir. Bir milimetrenin onda biri bile fark yaratır."},
+{"t":"points","h":"Montajın kuralları","items":["Önce parçaları say ve kontrol et","Talimat sırasını takip et","Bağlantı elemanlarını (vida, somun) sırayla ve aşırı sıkmadan tak","Her aşamadan sonra hareketi kontrol et","Hata varsa bir adım geri dön"]},
+{"t":"points","h":"Güvenli çalışma","items":["Koruyucu gözlük, gerekirse eldiven","Keskin ve sıcak aletleri bir yetişkinle kullan","Çalışma masası düzenli ve aydınlık olsun","Saçlar toplu, kolalar kıvrık"]},
+{"t":"activity","h":"Montaj hattı oyunu","text":"4 kişilik gruplar kurun. Her kişi tek bir işi yapar: kes, ölç, birleştir, kontrol et. 10 dakikada kaç ürün çıktı? Sonra herkes ürünü baştan sona tek başına yapsın. Hangisi daha hızlı, hangisi daha düzgün?"},
+{"t":"statement","h":"Şimdi sıra sende.","text":"İki set hazır: kitapçıktan adım adım yap, çizimleri indirip kendin üret."}
+]}

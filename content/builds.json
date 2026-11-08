@@ -1,0 +1,18 @@
+{
+"uretim-ve-montaj":{"sets":[
+ {"id":"set-1","title":"Üretim Seti 1","desc":"Birinci set: parçaların hazırlanması ve montajı.","booklet":"","drawings":[]},
+ {"id":"set-2","title":"Üretim Seti 2","desc":"İkinci set: daha ileri bir montaj projesi.","booklet":"","drawings":[]}
+],"drawings_license":"Çizimler CC BY-SA 4.0 lisansıyla paylaşılacaktır: indirin, değiştirin, kendi takımınızda üretin, kaynak gösterin."},
+"lego-mr":{"booklet":"","parts":"","steps_count":0,"prep":[
+ {"h":"MR nedir?","p":"MR, vücudun içini fotoğraflamak için güçlü bir mıknatıs ve radyo dalgaları kullanan bir makinedir. Ağrısı yoktur, ışın vermez. Çocuk yalnızca yatar."},
+ {"h":"Ne duyacaksın?","p":"Makine yüksek sesli 'tak tak', 'vızz' sesleri çıkarır. Kulaklık veya kulak tıkacı verilir. Sesler makinenin çalıştığını gösterir."},
+ {"h":"Ne yapman gerekiyor?","p":"Hiç kıpırdamadan yatmak. Çekim sırasında oyuncak figürümüz de kıpırdamaz, 'heykel oyunu' oynayın."},
+ {"h":"Yalnız mısın?","p":"Hayır. Teknisyen seni görür ve duyar. Çoğu zaman bir yetişkin yanında bekleyebilir."}],
+"family":["Bu içerik hastanenin yönergelerinin yerini tutmaz. Sedasyon, aç kalma ve metal eşya kuralları için hastanenizin talimatına uyun.","Modeli çekimden birkaç gün önce çocukla birlikte kurun, rolleri değiştirerek oynayın (çocuk hasta, siz teknisyen).","Hastane izin veriyorsa önceden MR odasını görmeyi isteyin."]},
+"neurobridge":{"live":"https://neurobridge-eta.vercel.app/","repo":"https://github.com/asilgumus/neurobridge","guide":[
+ {"h":"Başlamadan önce","p":"Çocuğa oyunu dayatmayın. Birlikte bir seviye oynayın, sonra çocuk karar versin. Sessiz bir ortam ve yeterli ışık yeterlidir."},
+ {"h":"Seviyeler","p":"15 seviye; yön komutları, tekrar (döngü), zıplama ve sıralı düşünme kavramlarını tek komutla hareket mantığıyla öğretir."},
+ {"h":"Takıldığında","p":"Çözümü söylemeyin. 'Önce ne yapmalı? Sonra?' diye sorun. Çocuğun kendi adımlarını yüksek sesle söylemesini isteyin."},
+ {"h":"Tempoyu ayarlayın","p":"Yorulma belirtisinde mola verin. Her seansta 10–15 dakika yeterlidir. Küçük başarıları kutlayın."},
+ {"h":"Erişilebilirlik","p":"Minimal arayüz dikkat dağıtıcıları azaltmak için tasarlandı. Geri bildirim ve öneri için GitHub'dan bize ulaşabilirsiniz."}]}
+}

@@ -1,0 +1,16 @@
+{"title":"Teknoloji Bağımlılığı","slides":[
+{"t":"cover","h":"Ekran bizi mi yönetiyor, biz mi ekranı?","sub":"Teknoloji bağımlılığı atölyesi · 4th Dimension 6429"},
+{"t":"statement","h":"Teknoloji kötü değil.","text":"Sorun, ne zaman ve neden kullandığımızı fark etmeden kullanmak."},
+{"t":"points","h":"Bugünkü plan","items":["Kendi alışkanlıklarımıza bakacağız","Beynimiz ekrana neden kapılıyor, öğreneceğiz","Sağlıklı sınırlar için küçük kararlar alacağız","Ailemizle bir anlaşma hazırlayacağız"]},
+{"t":"activity","h":"Isınma: ayağa kalk","text":"Bugün telefonuna ilk bakışın uyandıktan kaç dakika sonra oldu? Cevabını elinle göster: 0–5 dk, 5–30 dk, 30 dk'dan fazla. Kimse yargılanmıyor, sadece fark ediyoruz."},
+{"t":"points","h":"Bilerek mi, otomatik mi?","items":["Bilerek: bir amacım var, işim bitince bırakırım","Otomatik: elim kendiliğinden telefona gider","Bildirim sesi gelince 'bakmam lazım' hissi otomatiktir","Fark etmek, değiştirmenin ilk adımıdır"]},
+{"t":"compare","h":"Uygulamalar seni nasıl tutar?","left":{"title":"Tasarım hileleri","items":["Sonsuz kaydırma: sayfa hiç bitmez","Otomatik oynatma: bir sonraki video kendiliğinden başlar","Bildirimler: dikkatini geri çağırır","Beğeni sayısı: onay ihtiyacını besler"]},"right":{"title":"Senin karşılığın","items":["Kaydırmaya başlamadan önce süre koy","Otomatik oynatmayı kapat","Gereksiz bildirimleri sustur","Beğeniyi değil, keyif aldığını ölç"]}},
+{"t":"points","h":"Beynimizde ne oluyor?","items":["Yeni ve sürpriz şeyler beynimizde keyif sinyali üretir","Ekran bunu saniyeler içinde, tekrar tekrar sunar","Sürekli hızlı uyarana alışan beyin, yavaş işlerde (kitap, ders) sıkılabilir","İyi haber: alışkanlıklar yeniden şekillenebilir"]},
+{"t":"points","h":"Uyku ve ekran","items":["Yatmadan önceki ekran ışığı uykuya dalmayı geciktirebilir","Uykusuz beyin dikkat etmekte ve duygularını yönetmekte zorlanır","Kural: yatmadan en az 1 saat önce ekranlar kapalı","Telefon yatak odasında değil, salonda şarj olsun"]},
+{"t":"points","h":"Dikkat, ders ve ilişkiler","items":["Telefon masada duruyorsa, sessizde bile dikkatimizi böler","Aynı anda iki iş yapmak, ikisini de yavaşlatır","Yemekte ve sohbette ekran, karşımızdakine 'sen önemli değilsin' mesajı verebilir","Birlikte geçirilen ekransız zaman bağları güçlendirir"]},
+{"t":"statement","h":"Uyarı işaretleri","text":"Kullanmadığında huzursuzluk, süreyi saklamak, uykudan ve sorumluluklardan kısmak, sevdiğin şeylere ilgi kaybı. Bunlardan birkaçını yaşıyorsan bir büyüğünle konuş."},
+{"t":"points","h":"Denge için 5 küçük karar","items":["Ekran süresi sınırı belirle","Yemek ve ders saatlerini ekransız yap","Yatmadan 1 saat önce ekranları kapat","Haftada bir ekransız aktivite planla (spor, oyun, doğa)","Sıkılınca telefona değil, 'yapacaklar listesi'ne bak"]},
+{"t":"activity","h":"Dijital denge anlaşması","text":"Ailenle birlikte oturun. Yazdırılabilir anlaşmayı doldurun: ekransız saatler, ekransız mekânlar, herkesin uyacağı bir kural. Anne ve babalar da imzalar."},
+{"t":"statement","h":"Unutma","text":"Amaç ekrandan kaçmak değil. Ekranı amaçlarımız için kullanmak."},
+{"t":"cover","h":"Teşekkürler","sub":"Sorular ve tartışma · frc4thdimension@gmail.com"}
+]}
