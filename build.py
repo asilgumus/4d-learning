@@ -27,7 +27,7 @@ def page(title, body, depth=0, desc="", extra_head=""):
 <div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
 <script src="{p}assets/app.js"></script></body></html>'''
 
-TINT = [("#e3ecfd", "#1f4fb0"), ("#fdeed9", "#a85a06"), ("#fde3e6", "#b5122b"), ("#d9f3ee", "#0b7a68"), ("#ebe5fb", "#5a37b8"), ("#fbf1c7", "#7d6200"), ("#e1e7f3", "#14213d")]
+TINT = [("#e8effc", "#1f4fb0")]
 def tint(m): t = TINT[(m["no"] - 1) % len(TINT)]; return f'--t:{t[0]};--tf:{t[1]}'
 def chips(m): return "".join(f'<span class="chip lv">{LV[l]}</span>' for l in m["levels"])
 

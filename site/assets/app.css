@@ -1,4 +1,4 @@
-:root{--bg:#fff;--soft:#f3f6fc;--ink:#14213d;--navy:#0f1a33;--text:#33415c;--muted:#64708a;--line:#e1e7f2;--line-2:#cdd6e6;--red:#e31b2f;--red-d:#bf1223;--r:12px;--t:#e1e7f3;--tf:#14213d;
+:root{--bg:#fff;--soft:#f3f6fc;--ink:#14213d;--navy:#0f1a33;--text:#33415c;--muted:#64708a;--line:#e1e7f2;--line-2:#cdd6e6;--red:#e31b2f;--red-d:#bf1223;--r:12px;--t:#e8effc;--tf:#1f4fb0;
 --font:"Instrument Sans","Segoe UI",system-ui,-apple-system,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font:400 16.5px/1.65 var(--font);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
@@ -15,7 +15,7 @@ header.top .wrap{display:flex;align-items:center;justify-content:space-between;h
 nav.main{display:flex;gap:28px}nav.main a{text-decoration:none;font-size:14.5px;font-weight:500;color:var(--muted)}nav.main a:hover{color:var(--ink)}
 /* hero */
 .hero{background:var(--navy);color:#fff;position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--red) 0 25%,#f2a93b 25% 45%,#2f6fe0 45% 70%,#17a38d 70% 100%)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--red)}
 .hero-in{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:48px;align-items:center;padding:clamp(52px,8vw,104px) 0 clamp(56px,7vw,88px)}
 .hero h1{color:#fff;font-size:clamp(2.2rem,4.8vw,3.7rem);max-width:17ch;letter-spacing:-.035em;line-height:1.07}
 .hero p.lede{max-width:52ch;font-size:1.12rem;color:#b9c4dc;margin:22px 0 0}
@@ -88,8 +88,8 @@ details.les summary span+span{color:var(--muted);font-weight:400;font-size:14px}
 .sl li{padding-left:2.6cqw;position:relative;font-size:2.4cqw;line-height:1.4}.sl li::before{content:"";position:absolute;left:0;top:1.1cqw;width:.9cqw;height:.9cqw;border-radius:50%;background:var(--red)}
 .sl.cover{background:var(--navy);color:#fff;position:relative}.sl.cover h3{font-size:6cqw;max-width:16ch;color:#fff;font-weight:600}.sl.cover p{color:#a9b0bd;font-size:2.3cqw;margin:0}
 .sl.cover::before{content:"";position:absolute;left:8cqw;top:6cqw;width:6cqw;height:.45cqw;background:var(--red)}
-.sl.stmt{background:#e3ecfd}.sl.stmt h3{font-size:5.4cqw;max-width:18ch;color:var(--ink)}.sl.stmt p{font-size:2.9cqw;margin:0;max-width:32ch;line-height:1.4;color:var(--text)}
-.sl.act{background:#fdf1dc;border-left:1.1cqw solid var(--red)}.sl.act h3{color:var(--ink)}.sl.act p{font-size:2.7cqw;margin:0;max-width:34ch;line-height:1.5;color:var(--text)}
+.sl.stmt{background:#e8effc}.sl.stmt h3{font-size:5.4cqw;max-width:18ch;color:var(--ink)}.sl.stmt p{font-size:2.9cqw;margin:0;max-width:32ch;line-height:1.4;color:var(--text)}
+.sl.act{background:#f3f6fc;border-left:1.1cqw solid var(--red)}.sl.act h3{color:var(--ink)}.sl.act p{font-size:2.7cqw;margin:0;max-width:34ch;line-height:1.5;color:var(--text)}
 .sl .cmp{display:grid;grid-template-columns:1fr 1fr;gap:4cqw}.sl .cmp h4{font:600 2.6cqw var(--font);margin:0 0 1.6cqw;border-bottom:2px solid var(--red);padding-bottom:1cqw}
 .sl .cmp li{font-size:2cqw}
 .dctl{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
@@ -102,7 +102,7 @@ details.les summary span+span{color:var(--muted);font-weight:400;font-size:14px}
 /* booklet */
 .book{max-width:800px;margin:0 auto;background:#fff;padding:52px 60px;border:1px solid var(--line);border-radius:var(--r)}
 .book h1{font-size:2.3rem;margin:8px 0 8px;letter-spacing:-.03em}.book h2{font-size:1.1rem;margin:30px 0 8px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink)}
-.book ul,.book ol{padding-left:22px}.book li{margin:5px 0}.book .why{background:#e3ecfd;border-radius:8px;padding:14px 18px}
+.book ul,.book ol{padding-left:22px}.book li{margin:5px 0}.book .why{background:#e8effc;border-radius:8px;padding:14px 18px}
 .book .safe{border-left:4px solid var(--red);padding:10px 16px;background:#fde8ea;margin:0;border-radius:0 8px 8px 0}
 .toolbar{max-width:800px;margin:28px auto 14px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .write{border-bottom:1px solid var(--line-2);height:34px}
