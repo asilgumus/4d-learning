@@ -1,1 +1,121 @@
-{"cleanUrls":true,"outputDirectory":"site","headers":[{"source":"/assets/(.*)","headers":[{"key":"Cache-Control","value":"public, max-age=86400"}]}]}
+{
+ "cleanUrls": true,
+ "outputDirectory": "site",
+ "redirects": [
+  {
+   "source": "/project.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "cybersecurity"
+    }
+   ],
+   "destination": "/m/siber-guvenlik",
+   "permanent": false
+  },
+  {
+   "source": "/project.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "technology-addiction"
+    }
+   ],
+   "destination": "/m/teknoloji-bagimliligi",
+   "permanent": false
+  },
+  {
+   "source": "/project.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "lego-mri"
+    }
+   ],
+   "destination": "/m/lego-mr",
+   "permanent": false
+  },
+  {
+   "source": "/project.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "neurobridge"
+    }
+   ],
+   "destination": "/m/neurobridge",
+   "permanent": false
+  },
+  {
+   "source": "/project.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "arduino-experiments"
+    }
+   ],
+   "destination": "/m/cad-elektronik-yazilim",
+   "permanent": false
+  },
+  {
+   "source": "/project.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "e-parenting-4-stem"
+    }
+   ],
+   "destination": "/",
+   "permanent": false
+  },
+  {
+   "source": "/project.html",
+   "destination": "/",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "(?<n>\\d+)"
+    }
+   ],
+   "destination": "/elektronik/:n",
+   "permanent": false
+  },
+  {
+   "source": "/assets/resources/cybersecurity/cybersecurity-presentation-tr.pdf",
+   "destination": "/assets/docs/siber-guvenlik-sunum-tr.pdf",
+   "permanent": false
+  },
+  {
+   "source": "/assets/resources/arduino/:file",
+   "destination": "/assets/docs/arduino/:file",
+   "permanent": false
+  },
+  {
+   "source": "/assets/images/4d-logo.png",
+   "destination": "/assets/img/4d-logo.png",
+   "permanent": false
+  }
+ ],
+ "headers": [
+  {
+   "source": "/assets/(.*)",
+   "headers": [
+    {
+     "key": "Cache-Control",
+     "value": "public, max-age=86400"
+    }
+   ]
+  }
+ ]
+}
