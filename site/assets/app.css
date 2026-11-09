@@ -62,8 +62,8 @@ ul.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));g
 .steps li{list-style:none;counter-increment:s;border-top:2px solid var(--ink);padding-top:16px}
 .steps li::before{content:counter(s,decimal-leading-zero);display:block;font-size:13px;font-weight:600;color:var(--blue);margin-bottom:14px;font-variant-numeric:tabular-nums}
 .steps b{display:block;font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:4px}.steps span{color:var(--muted);font-size:15px}
-footer{background:var(--ink);padding:48px 0;margin-top:56px;color:#a9bbcd;font-size:14.5px}
-footer .wrap{display:flex;gap:32px;flex-wrap:wrap;justify-content:space-between}footer b{color:#fff;font-weight:600;font-size:15px}footer p{margin:6px 0;max-width:46ch}footer a{color:#fff;text-decoration-color:#4b6a85;text-underline-offset:3px}
+footer{background:#1b1c20;padding:48px 0;margin-top:56px;color:#a5a8ae;font-size:14.5px}
+footer .wrap{display:flex;gap:32px;flex-wrap:wrap;justify-content:space-between}footer b{color:#fff;font-weight:600;font-size:15px}footer p{margin:6px 0;max-width:46ch}footer a{color:#fff;text-decoration-color:#55585e;text-underline-offset:3px}
 /* team band */
 section.band.team{background:var(--soft);border-top:1px solid var(--line);padding:clamp(48px,7vw,88px) 0;margin-top:24px}
 .team-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,72px);align-items:center}
