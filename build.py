@@ -11,14 +11,14 @@ LV = {"ilkokul": "İlkokul", "ortaokul": "Ortaokul", "lise": "Lise", "noro": "N�
 PICK = [("all", "herkes için içerik arıyorum"), ("ilkokul", "ilkokul öğretmeniyim"), ("ortaokul", "ortaokul öğretmeniyim"), ("lise", "lise öğretmeniyim"),
         ("noro", "nöroçeşitli çocuklarla çalışıyorum"), ("mr", "MR'a girecek bir çocuğun yakınıyım")]
 
-def page(title, body, depth=0, desc="", extra_head=""):
+def page(title, body, depth=0, desc="", extra_head="", cls=""):
     p = "../" * depth
     d = desc or "FRC 6429 4th Dimension takımının, okulların ve kurumların ücretsiz kullanabileceği açık eğitim içerikleri."
     return f'''<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)}</title><meta name="description" content="{e(d)}"><meta name="theme-color" content="#e31b2f">
 <link rel="icon" href="{p}assets/img/4d-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{p}assets/app.css">{extra_head}</head><body>
+<link rel="stylesheet" href="{p}assets/app.css">{extra_head}</head><body class="{cls}">
 <a class="skip" href="#main">İçeriğe geç</a>
 <header class="top"><div class="wrap"><a class="brand" href="{p}index.html"><img src="{p}assets/img/4d-logo.png" alt=""><span><b>4D Learning</b><small>FRC 6429 4th Dimension</small></span></a>
 <nav class="main" aria-label="Ana menü"><a href="{p}index.html#kutuphane">Kütüphane</a><a href="https://frc6429.com" rel="noopener">Takım</a></nav></div></header>
@@ -40,13 +40,13 @@ def index():
     body = f'''<section class="hero"><img class="hero-img" src="assets/img/hero.jpg" alt="4D bayrağı, bir FIRST Robotics yarışma salonunun üzerinde" width="1672" height="941" fetchpriority="high"><div class="wrap hero-in"><div class="hero-copy"><h1>Okulların ve kurumların doğrudan kullanabileceği eğitim içerikleri.</h1>
 <p class="lede">FRC 6429 4th Dimension takımı tarafından hazırlanan sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler. İndir, sınıfında veya kurumunda kullan.</p>
 <div class="btns"><a class="btn p" href="#kutuphane">Kütüphaneye git</a></div></div></div></section>
-<div class="wrap"><section id="kutuphane" class="lib" aria-label="Kütüphane"><div class="lib-head"><h2>Kütüphane</h2><p class="count"><span id="count">7</span> modül</p></div>
+<div class="wrap"><section id="kutuphane" class="lib" aria-label="Kütüphane"><div class="lib-card"><div class="lib-head"><h2>Kütüphane</h2><p class="count"><span id="count">7</span> modül</p></div>
 <div class="fbar"><label class="search"><span class="sr">Kütüphanede ara</span><input id="q" type="search" placeholder="Modül, konu veya içerik ara" autocomplete="off"></label>
-<div class="filter" role="group" aria-label="Kimin için"><span>Kimin için</span>{btns}</div></div>
+<div class="filter" role="group" aria-label="Kimin için"><span>Kimin için</span>{btns}</div></div></div>
 <div class="shelf">{rows}</div><div class="empty" id="empty" hidden><p>Eşleşen modül yok. Aramayı veya filtreyi değiştir.</p><button class="btn" id="reset" type="button">Filtreleri temizle</button></div></section></div>
 <section class="band team"><div class="wrap"><div class="team-grid"><div class="team-copy"><h2>Robot yapan bir takımdan, herkese açık eğitim.</h2><p>4th Dimension, İzmir'den bir FIRST Robotics takımı. Robotik çalışmalarının yanında okullara, çocuklara ve ailelere yönelik eğitim projeleri yürütüyoruz. Buradaki içerikler bu çalışmalardan çıkıyor ve ücretsiz.</p><div class="btns"><a class="btn" href="https://frc6429.com">Takımı tanı</a><a class="btn" href="mailto:frc4thdimension@gmail.com">Bize yaz</a></div></div>
 <div class="team-photos"><img src="assets/img/takim.jpg" alt="4th Dimension takım üyeleri" loading="lazy"><img src="assets/img/etkinlik-1.jpg" alt="Takım üyeleri bir etkinlikte" loading="lazy"><img src="assets/img/etkinlik-2.jpg" alt="Çocuklara yönelik bir etkinlik" loading="lazy"></div></div></div></section>'''
-    return page("4D Learning: açık eğitim kütüphanesi", body)
+    return page("4D Learning: açık eğitim kütüphanesi", body, cls="landing")
 
 def deck_html(slides, imgs=None, label="Sunum"):
     out = []
