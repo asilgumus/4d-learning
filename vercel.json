@@ -15,7 +15,31 @@
    "permanent": false
   },
   {
+   "source": "/project",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "cybersecurity"
+    }
+   ],
+   "destination": "/m/siber-guvenlik",
+   "permanent": false
+  },
+  {
    "source": "/project.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "technology-addiction"
+    }
+   ],
+   "destination": "/m/teknoloji-bagimliligi",
+   "permanent": false
+  },
+  {
+   "source": "/project",
    "has": [
     {
      "type": "query",
@@ -39,7 +63,31 @@
    "permanent": false
   },
   {
+   "source": "/project",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "lego-mri"
+    }
+   ],
+   "destination": "/m/lego-mr",
+   "permanent": false
+  },
+  {
    "source": "/project.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "neurobridge"
+    }
+   ],
+   "destination": "/m/neurobridge",
+   "permanent": false
+  },
+  {
+   "source": "/project",
    "has": [
     {
      "type": "query",
@@ -63,7 +111,31 @@
    "permanent": false
   },
   {
+   "source": "/project",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "arduino-experiments"
+    }
+   ],
+   "destination": "/m/cad-elektronik-yazilim",
+   "permanent": false
+  },
+  {
    "source": "/project.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "e-parenting-4-stem"
+    }
+   ],
+   "destination": "/",
+   "permanent": false
+  },
+  {
+   "source": "/project",
    "has": [
     {
      "type": "query",
@@ -80,15 +152,8 @@
    "permanent": false
   },
   {
-   "source": "/lesson.html",
-   "has": [
-    {
-     "type": "query",
-     "key": "id",
-     "value": "(?<n>\\d+)"
-    }
-   ],
-   "destination": "/elektronik/:n",
+   "source": "/project",
+   "destination": "/",
    "permanent": false
   },
   {
@@ -104,6 +169,462 @@
   {
    "source": "/assets/images/4d-logo.png",
    "destination": "/assets/img/4d-logo.png",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "1"
+    }
+   ],
+   "destination": "/elektronik/01",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "1"
+    }
+   ],
+   "destination": "/elektronik/01",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "2"
+    }
+   ],
+   "destination": "/elektronik/02",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "2"
+    }
+   ],
+   "destination": "/elektronik/02",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "3"
+    }
+   ],
+   "destination": "/elektronik/03",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "3"
+    }
+   ],
+   "destination": "/elektronik/03",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "4"
+    }
+   ],
+   "destination": "/elektronik/04",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "4"
+    }
+   ],
+   "destination": "/elektronik/04",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "5"
+    }
+   ],
+   "destination": "/elektronik/05",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "5"
+    }
+   ],
+   "destination": "/elektronik/05",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "6"
+    }
+   ],
+   "destination": "/elektronik/06",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "6"
+    }
+   ],
+   "destination": "/elektronik/06",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "7"
+    }
+   ],
+   "destination": "/elektronik/07",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "7"
+    }
+   ],
+   "destination": "/elektronik/07",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "8"
+    }
+   ],
+   "destination": "/elektronik/08",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "8"
+    }
+   ],
+   "destination": "/elektronik/08",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "9"
+    }
+   ],
+   "destination": "/elektronik/09",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "9"
+    }
+   ],
+   "destination": "/elektronik/09",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "11"
+    }
+   ],
+   "destination": "/elektronik/11",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "11"
+    }
+   ],
+   "destination": "/elektronik/11",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "12"
+    }
+   ],
+   "destination": "/elektronik/12",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "12"
+    }
+   ],
+   "destination": "/elektronik/12",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "13"
+    }
+   ],
+   "destination": "/elektronik/13",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "13"
+    }
+   ],
+   "destination": "/elektronik/13",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "14"
+    }
+   ],
+   "destination": "/elektronik/14",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "14"
+    }
+   ],
+   "destination": "/elektronik/14",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "15"
+    }
+   ],
+   "destination": "/elektronik/15",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "15"
+    }
+   ],
+   "destination": "/elektronik/15",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "16"
+    }
+   ],
+   "destination": "/elektronik/16",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "16"
+    }
+   ],
+   "destination": "/elektronik/16",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "17"
+    }
+   ],
+   "destination": "/elektronik/17",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "17"
+    }
+   ],
+   "destination": "/elektronik/17",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "18"
+    }
+   ],
+   "destination": "/elektronik/18",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "18"
+    }
+   ],
+   "destination": "/elektronik/18",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "19"
+    }
+   ],
+   "destination": "/elektronik/19",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "19"
+    }
+   ],
+   "destination": "/elektronik/19",
+   "permanent": false
+  },
+  {
+   "source": "/lesson",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "20"
+    }
+   ],
+   "destination": "/elektronik/20",
+   "permanent": false
+  },
+  {
+   "source": "/lesson.html",
+   "has": [
+    {
+     "type": "query",
+     "key": "id",
+     "value": "20"
+    }
+   ],
+   "destination": "/elektronik/20",
    "permanent": false
   }
  ],
