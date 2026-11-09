@@ -37,7 +37,7 @@ def index():
 <span class="no">{m["no"]}</span><div><h2>{e(m["title"])}</h2><p>{e(m["tagline"])}</p><div class="meta">{chips(m)}<span class="chip">{e(m["kind"])}</span><span class="chip">{e(m["minutes"])}</span></div></div><span class="go">Aç</span></a>''' for m in MODS)
     FL = [("all", "Tümü"), ("ilkokul", "İlkokul"), ("ortaokul", "Ortaokul"), ("lise", "Lise"), ("noro", "Nöroçeşitli çocuklar"), ("mr", "MR'a girecek çocuklar")]
     btns = "".join(f'<button type="button" data-who="{k}" aria-pressed="{str(k=="all").lower()}">{e(v)}</button>' for k, v in FL)
-    body = f'''<section class="hero"><div class="wrap hero-in"><div class="hero-copy"><h1>Okulların ve kurumların doğrudan kullanabileceği eğitim içerikleri.</h1>
+    body = f'''<section class="hero"><img class="hero-img" src="assets/img/hero.jpg" alt="4D bayrağı, bir FIRST Robotics yarışma salonunun üzerinde" width="1672" height="941" fetchpriority="high"><div class="wrap hero-in"><div class="hero-copy"><h1>Okulların ve kurumların doğrudan kullanabileceği eğitim içerikleri.</h1>
 <p class="lede">FRC 6429 4th Dimension takımı tarafından hazırlanan sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler. İndir, sınıfında veya kurumunda kullan.</p>
 <div class="btns"><a class="btn p" href="#kutuphane">Kütüphaneye git</a></div></div></div></section>
 <div class="wrap"><section id="kutuphane" class="lib" aria-label="Kütüphane"><div class="lib-head"><h2>Kütüphane</h2><p class="count"><span id="count">7</span> modül</p></div>
