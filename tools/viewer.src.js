@@ -10,7 +10,8 @@ function init(root) {
   const files = JSON.parse(root.dataset.files);
   const box = root.querySelector(".v-canvas"), status = root.querySelector(".v-status"), dim = root.querySelector(".v-dim");
   const btns = [...root.querySelectorAll(".v-part")];
-  const renderer = new WebGLRenderer({ antialias: true, alpha: true });
+  let renderer;
+  try { renderer = new WebGLRenderer({ antialias: true, alpha: true }); } catch (e) { status.textContent = "Tarayıcın 3B gösterimi desteklemiyor. Parçaları indirme bölümünden alabilirsin."; return; }
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   box.appendChild(renderer.domElement);
   const scene = new Scene(), camera = new PerspectiveCamera(35, 1, 0.1, 5000);

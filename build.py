@@ -168,7 +168,8 @@ def setpage(x):
 <div class="btns" style="margin:0 0 12px"><a class="btn p" href="../assets/docs/uretim/{x["cad"]}" download>{e(x["cad_name"])} (ZIP)</a>{stlbtn}</div>
 <p><b>Pakette olanlar:</b></p><ul>{li(x["parts"])}</ul>
 <p style="color:var(--muted);font-size:14px">Adet, parça adındaki sayıdır (ör. spacer x12 = 12 adet). Kaynak göstererek kullanın: FRC 6429 4th Dimension.</p></article><div style="height:48px"></div></div>'''
-    lazy = '''<script>(function(){var v=document.querySelector(".viewer");if(!v)return;function go(){var s=document.createElement("script");s.src="../assets/viewer.js";document.body.appendChild(s)}if("IntersectionObserver"in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){o.disconnect();go()}},{rootMargin:"300px"});o.observe(v)}else go()})()</script>'''
+    import hashlib; vv = hashlib.md5((S / 'assets/viewer.js').read_bytes()).hexdigest()[:8]
+    lazy = '''<script>(function(){var v=document.querySelector(".viewer");if(!v)return;function go(){var s=document.createElement("script");s.src="../assets/viewer.js?v=''' + vv + '''";s.onerror=function(){document.querySelector(".v-status").textContent="3B önizleme yüklenemedi. Sayfayı yenile (Ctrl+Shift+R)."};document.body.appendChild(s)}if("IntersectionObserver"in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){o.disconnect();go()}},{rootMargin:"300px"});o.observe(v)}else go()})()</script>'''
     return page(f'{x["title"]} · yapım kitapçığı', body + (lazy if stls else ""), 1)
 
 def lesson(a, prev, nxt):
