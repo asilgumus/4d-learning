@@ -151,15 +151,15 @@ def setpage(x):
     stls = sorted((q for q in (S / f"assets/models/{x['id']}").glob("*.stl")), key=lambda q: (not re.match(r"(montaj|assembly)", q.stem.lower()), q.stem.lower())) if (S / f"assets/models/{x['id']}").exists() else []
     if stls:
         fj = e(json.dumps([{"name": q.stem, "url": f"../assets/models/{x['id']}/{quote(q.name)}"} for q in stls], ensure_ascii=False))
-        opts = "".join(f'<option value="{n}">{e(q.stem)}</option>' for n, q in enumerate(stls))
-        viewer = f'''<div class="viewer" data-files="{fj}"><div class="v-bar"><label>Parça <select aria-label="Parça seç">{opts}</select></label><button class="btn v-reset" type="button">Görünümü sıfırla</button><span class="v-dim"></span></div><div class="v-canvas" role="img" aria-label="{e(x["title"])} 3B önizleme"><div class="v-status">Yükleniyor…</div></div><div class="v-hint">Sürükle: döndür · Tekerlek veya iki parmak: yakınlaştır · Sağ tuş: kaydır</div></div>'''
+        btns = "".join(f'<button type="button" class="v-part" aria-pressed="false">{e(q.stem)}</button>' for q in stls)
+        viewer = f'''<div class="viewer" data-files="{fj}"><div class="v-canvas" role="img" aria-label="{e(x["title"])} 3B önizleme"><div class="v-status">3B model hazırlanıyor…</div><span class="v-dim"></span></div><div class="v-side"><div class="v-list" role="group" aria-label="Parça seç">{btns}</div><div class="v-foot"><button class="btn v-reset" type="button">Sıfırla</button><span>Sürükle: döndür · Tekerlek: yakınlaştır</span></div></div></div>'''
     else:
         viewer = f'<div class="todo"><b>3B önizleme</b> için STL dosyaları yüklenecek. SolidWorks\'te <i>Dosya, Farklı kaydet, STL</i> ile dışa aktarıp <code>site/assets/models/{x["id"]}/</code> klasörüne koy (montaj dosyası <code>Montaj.stl</code> adıyla), sonra <code>python3 build.py</code> çalıştır.</div>'
     stlz = f"assets/docs/uretim/cizim/{x['id']}-stl.zip"
     stlbtn = f'<a class="btn" href="../{stlz}" download>STL dosyaları (ZIP)</a>' if (S / stlz).exists() else ""
     body = f'''<div class="wrap"><div class="toolbar"><a class="crumb" href="../m/uretim-ve-montaj.html">← Endüstriyel Üretim ve Montaj</a><button class="btn p" id="print">Yazdır / PDF</button></div>
 <article class="book"><h1>{e(x["title"])}</h1><p style="color:var(--muted)">{e(x["kind"])} · {e(x["level"])}</p><p>{e(x["intro"])}</p>
-<h2>3B önizleme</h2>{viewer}
+<h2>Önizleme (3B)</h2>{viewer}
 <h2>Adımlar bir bakışta</h2><ol>{steps}</ol>
 <h2>Yapım kitapçığı</h2><p>Resimli adımlar aşağıda. Yazdırmak için PDF'i indir.</p><div class="btns" style="margin:0 0 16px"><a class="btn p" href="../assets/docs/uretim/{x["booklet_tr"]}" download>Kitapçık PDF (Türkçe)</a><a class="btn" href="../assets/docs/uretim/{x["booklet_en"]}" download>Booklet PDF (English)</a></div>
 {pg(x["img_tr"])}
@@ -168,8 +168,8 @@ def setpage(x):
 <div class="btns" style="margin:0 0 12px"><a class="btn p" href="../assets/docs/uretim/{x["cad"]}" download>{e(x["cad_name"])} (ZIP)</a>{stlbtn}</div>
 <p><b>Pakette olanlar:</b></p><ul>{li(x["parts"])}</ul>
 <p style="color:var(--muted);font-size:14px">Adet, parça adındaki sayıdır (ör. spacer x12 = 12 adet). Kaynak göstererek kullanın: FRC 6429 4th Dimension.</p></article><div style="height:48px"></div></div>'''
-    imp = '''<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>'''
-    return page(f'{x["title"]} · yapım kitapçığı', body + ('<script type="module" src="../assets/viewer.js"></script>' if stls else ""), 1, extra_head=imp if stls else "")
+    lazy = '''<script>(function(){var v=document.querySelector(".viewer");if(!v)return;function go(){var s=document.createElement("script");s.src="../assets/viewer.js";document.body.appendChild(s)}if("IntersectionObserver"in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){o.disconnect();go()}},{rootMargin:"300px"});o.observe(v)}else go()})()</script>'''
+    return page(f'{x["title"]} · yapım kitapçığı', body + (lazy if stls else ""), 1)
 
 def lesson(a, prev, nxt):
     li = lambda t: "".join(f"<li>{e(i)}</li>" for i in t)

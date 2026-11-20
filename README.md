@@ -13,3 +13,7 @@ FRC 6429 4th Dimension'ın açık eğitim kütüphanesi (Türkçe). Statik site,
 - Siber güvenlik slaytları `site/assets/slides/cybersecurity/` (PDF'ten üretildi).
 
 Sonra `python3 build.py`.
+
+## 3B önizleme
+- STL dosyalarını `site/assets/models/<model>/` altına koy (montaj için `Montaj.stl`), `python3 build.py`. Görüntüleyici ekrana gelince yüklenir.
+- Görüntüleyici kaynağı `tools/viewer.src.js`; değiştirirsen `sh tools/build_viewer.sh` ile `site/assets/viewer.js` yeniden üretilir.
