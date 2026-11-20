@@ -94,7 +94,7 @@ def module(m):
         b += sec("Bu sayfada ne var?", "Üç parça var, bu sırayla ilerle.", panels([("1. Giriş sunumu", "Konuya giriş: bir ürün fabrikaya gelmeden önce neler olur, üretim ve montaj nasıl işler, robotlar ne yapar, sürdürülebilirlik. Türkçe ve İngilizce."), ("2. Yapım kitapçığı", "Her modelin inşa aşamaları: hangi parça önce takılır, nereye oturur. Adım adım resimli, Türkçe ve İngilizce."), ("3. Teknik çizim", "Modeli kendin üretmek için SolidWorks (CAD) dosyaları: her parça ayrı dosya, tüm parçaların birleşimi de montaj dosyası olarak var.")]))
         imgs = lambda d: sorted((str(q.relative_to(S)) for q in (S / f"assets/slides/{d}").glob("*.jpg")), key=lambda s: int(re.findall(r"(\d+)\.jpg", s)[0]))
         pdf = lambda href, txt: f'<div class="btns"><a class="btn p" href="../assets/docs/uretim/sunum/{href}" download>{txt}</a></div>'
-        b += sec("1. Giriş sunumu", "Dili seç, tam ekranda göster ya da PDF indir.", langtabs(deck_html(None, imgs("uretim-tr"), "Endüstriyel üretim ve montaj sunumu") + pdf("endustriyel-uretim-ve-montaj-tr.pdf", "Sunumu indir (PDF, Türkçe)"), deck_html(None, imgs("uretim-en"), "Industrial production and assembly presentation").replace("Ok tuşları veya kaydırma ile ilerle.", "Use arrow keys or swipe.").replace("Önceki slayt", "Previous slide").replace("Sonraki slayt", "Next slide").replace(">Geri<", ">Back<").replace(">İleri<", ">Next<").replace(">Tam ekran<", ">Full screen<") + pdf("industrial-manufacturing-and-assembly-en.pdf", "Download presentation (PDF, English)")))
+        b += sec("1. Giriş sunumu", "Dili seç, tam ekranda göster ya da PDF indir.", langtabs(deck_html(None, imgs("uretim-tr"), "Endüstriyel üretim ve montaj sunumu") + pdf("endustriyel-uretim-ve-montaj-tr.pdf", "Sunumu indir (PDF, Türkçe)"), deck_html(None, imgs("uretim-en"), "Industrial production and assembly presentation") + pdf("industrial-manufacturing-and-assembly-en.pdf", "Sunumu indir (PDF, İngilizce)")))
         cards = ""
         for x in SETS:
             cards += f'''<div class="panel" style="margin-bottom:20px"><div style="display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:24px;align-items:start"><img src="../assets/img/uretim/{x["img_tr"]}/p-01.jpg" alt="{e(x["title"])} kitapçığı kapağı" style="width:100%;border:1px solid var(--line);border-radius:8px" loading="lazy"><div><h3>{e(x["title"])}</h3><p>{e(x["intro"])}</p>
@@ -169,7 +169,7 @@ def setpage(x):
 <h2>Önizleme (3B)</h2>{viewer}
 <h2>Adımlar bir bakışta</h2><ol>{steps}</ol>
 <h2>Yapım kitapçığı</h2><p>Dili seç, resimli adımlara bak, altından PDF'ini indir.</p>
-{langtabs(pg(x["img_tr"]) + dl(x["booklet_tr"], "Kitapçığı indir (PDF, Türkçe)"), pg(x["img_en"]) + dl(x["booklet_en"], "Download booklet (PDF, English)"))}
+{langtabs(pg(x["img_tr"]) + dl(x["booklet_tr"], "Kitapçığı indir (PDF, Türkçe)"), pg(x["img_en"]) + dl(x["booklet_en"], "Kitapçığı indir (PDF, İngilizce)"))}
 <h2>Teknik çizimler (SolidWorks)</h2><p>Bu modelin her parçası ayrı <code>.SLDPRT</code> dosyası, hepsinin birleşimi <code>.SLDASM</code> montaj dosyasıdır. Parçaları açmak için SolidWorks gerekir; yalnızca bakmak istersen ücretsiz eDrawings görüntüleyici yeterli. Lazer kesim ya da 3B baskı için SolidWorks'ten STEP, DXF veya STL olarak dışa aktar.</p>
 <div class="btns" style="margin:0 0 12px"><a class="btn p" href="../assets/docs/uretim/{x["cad"]}" download>{e(x["cad_name"])} (ZIP)</a>{stlbtn}</div>
 <p><b>Pakette olanlar:</b></p><ul>{li(x["parts"])}</ul>
