@@ -626,6 +626,26 @@
    ],
    "destination": "/elektronik/20",
    "permanent": false
+  },
+  {
+   "source": "/set/set-1",
+   "destination": "/set/hidrolik-kol",
+   "permanent": true
+  },
+  {
+   "source": "/set/set-1.html",
+   "destination": "/set/hidrolik-kol",
+   "permanent": true
+  },
+  {
+   "source": "/set/set-2",
+   "destination": "/set/elevator",
+   "permanent": true
+  },
+  {
+   "source": "/set/set-2.html",
+   "destination": "/set/elevator",
+   "permanent": true
   }
  ],
  "headers": [

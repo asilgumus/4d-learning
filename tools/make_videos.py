@@ -68,10 +68,6 @@ def les_scenes(c, l):
     sc += [(f"{n}. adım", [s], f"{n}. adım. {s}", False) for n, s in enumerate(l["steps"], 1)]
     sc += [("Görev", [l["task"]], "Şimdi sıra sende. Görev: " + l["task"], True)]
     return sc
-def set_scenes(x):
-    sc = [(x["title"], [x["kind"], x["time"]], f"{x['title']}. {x['intro']}", True), ("Gerekenler", x["tools"], "Gerekenler. " + ". ".join(x["tools"]), False), ("Parçalar", x["parts"], "Parça listesi. " + ". ".join(x["parts"]), False)]
-    sc += [(f"{n}. {h}", [t], f"{n}. adım. {h}. {t}", False) for n, (h, t) in enumerate(x["steps"], 1)]
-    return sc
 def lego_scenes(g):
     sc = [("LEGO MR yapım kılavuzu", ["SPIKE Prime ile MR cihazı"], "LEGO M R yapım kılavuzu. Spike Prime ile M R cihazı modeli, altı aşamada.", True)]
     sc += [(p["h"], [p["p"]], p["h"] + ". " + p["p"], False) for p in g["phases"]]
@@ -82,9 +78,6 @@ if __name__ == "__main__":
     for x in json.load(open(C / "experiments.json")):
         o = V / "deney" / f"{x['id']}.mp4"
         if not o.exists() and (not only or x["id"] in only): make(o, x["title"], exp_scenes(x), "Sense of Science · " + x["title"]); print("deney", x["id"], flush=True)
-    for x in json.load(open(C / "sets.json")):
-        o = V / "set" / f"{x['id']}.mp4"
-        if not o.exists() and (not only or x["id"] in only): make(o, x["title"], set_scenes(x), x["title"]); print("set", x["id"], flush=True)
     o = V / "lego-mr.mp4"
     if not o.exists() and (not only or "lego-mr" in only): make(o, "LEGO MR", lego_scenes(json.load(open(C / "lego-mr-guide.json"))), "LEGO MR"); print("lego", flush=True)
     VOICE[0] = "en-us"

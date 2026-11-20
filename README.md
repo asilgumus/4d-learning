@@ -7,7 +7,7 @@ FRC 6429 4th Dimension'ın açık eğitim kütüphanesi (Türkçe). Statik site,
 - Yayın: Vercel (`vercel.json`, çıktı klasörü `site`)
 
 ## Dosya ekleme (boş yuvalar)
-- Üretim setleri: PDF ve çizimleri `site/assets/docs/uretim/` altına koy, yolları `content/builds.json` içine yaz.
+- Üretim modeli (hidrolik kol, elevatör): kitapçık PDF'leri `docs/uretim/kitapcik/`, SolidWorks ZIP'leri `docs/uretim/cizim/`, sayfa görselleri `img/uretim/`; metinler `content/sets.json`. Giriş sunumu slaytları `assets/slides/uretim-tr|en/` (PDF'ten üretildi).
 - LEGO MR talimatı: `site/assets/docs/lego-mr/yapim-talimati.pdf`, yolu `builds.json > lego-mr > booklet`.
 - Deney / ders videoları: YouTube ID'sini `experiments.json` (`youtube`) veya `courses.json` (`yt`) içine yaz.
 - Siber güvenlik slaytları `site/assets/slides/cybersecurity/` (PDF'ten üretildi).

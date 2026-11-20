@@ -41,19 +41,19 @@
   "id": "uretim-ve-montaj",
   "no": 3,
   "title": "Endüstriyel Üretim ve Montaj",
-  "tagline": "Bir fikir nasıl parça olur, parçalar nasıl ürüne dönüşür? Sonra iki set kendi ellerinle.",
+  "tagline": "Bir fikir nasıl parça olur, parçalar nasıl ürüne dönüşür? Sonra iki modeli kendin kur.",
   "levels": [
    "ilkokul",
    "ortaokul"
   ],
-  "minutes": "15 dk sunum + set başına 2–3 saat",
+  "minutes": "15 dk sunum + model başına 1–2 saat",
   "accent": "#e31b2f",
   "kind": "Sunum + set",
-  "summary": "Kısa giriş sunumu, ardından iki set: 3B yazıcıyla dişli zinciri ve lazer kesimle geçmeli dayanak. Her set için yapım kitapçığı ve herkesin kendi üretebileceği açık kaynak çizimler (STL, SVG, DXF) hazır.",
+  "summary": "Önce konuya giriş sunumu (Türkçe ve İngilizce), sonra iki modelin adım adım yapım kitapçıkları (hidrolik kol ve elevatör), en sonda modelleri kendi okulunda üretebilmen için SolidWorks teknik çizimleri.",
   "contents": [
-   "Giriş sunumu (10 slayt)",
-   "2 set kitapçığı",
-   "STL, SVG, DXF çizimler"
+   "Giriş sunumu (TR/EN)",
+   "2 yapım kitapçığı (TR/EN)",
+   "SolidWorks çizimleri"
   ]
  },
  {

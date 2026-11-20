@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Statik siteyi content/*.json dosyalarından üretir:  python3 build.py"""
-import json, html, os, pathlib
+import json, html, os, pathlib, re
 R = pathlib.Path(__file__).parent
 C = R / "content"; S = R / "site"
 J = lambda p: json.load(open(C / p, encoding="utf-8"))
@@ -85,15 +85,15 @@ def module(m):
         b += sec("Sunum", "14 slayt. Tartışma temelli: slaytlar arasında durup sınıfa soru sor.", deck_html(d["slides"], label="Teknoloji bağımlılığı sunumu"))
         b += sec("Aile etkinliği", "Anlaşmayı yazdır, evde birlikte doldurun.", '<div class="btns"><a class="btn p" href="../anlasma.html">Dijital denge anlaşması</a></div>')
     elif i == "uretim-ve-montaj":
-        d = J("decks/uretim-ve-montaj.json")
-        b += sec("Giriş sunumu", "10 slayt: üretim yolculuğu, tolerans, montaj, güvenlik ve bir montaj hattı oyunu.", deck_html(d["slides"], label="Üretim sunumu"))
-        sets = ""
+        b += sec("Bu sayfada ne var?", "Üç parça var, bu sırayla ilerle.", panels([("1. Giriş sunumu", "Konuya giriş: bir ürün fabrikaya gelmeden önce neler olur, üretim ve montaj nasıl işler, robotlar ne yapar, sürdürülebilirlik. Türkçe ve İngilizce."), ("2. Yapım kitapçığı", "Her modelin inşa aşamaları: hangi parça önce takılır, nereye oturur. Adım adım resimli, Türkçe ve İngilizce."), ("3. Teknik çizim", "Modeli kendin üretmek için SolidWorks (CAD) dosyaları: her parça ayrı dosya, tüm parçaların birleşimi de montaj dosyası olarak var.")]))
+        imgs = lambda d: sorted((str(q.relative_to(S)) for q in (S / f"assets/slides/{d}").glob("*.jpg")), key=lambda s: int(re.findall(r"(\d+)\.jpg", s)[0]))
+        b += sec("1. Giriş sunumu", "Türkçe sunum; tam ekranda göster ya da PDF indir.", deck_html(None, imgs("uretim-tr"), "Endüstriyel üretim ve montaj sunumu") + '<div class="btns"><a class="btn p" href="../assets/docs/uretim/sunum/endustriyel-uretim-ve-montaj-tr.pdf" download>PDF indir (Türkçe)</a><a class="btn" href="../assets/docs/uretim/sunum/industrial-manufacturing-and-assembly-en.pdf" download>PDF (English)</a></div><details class="les" style="margin-top:18px"><summary><span>English version of the presentation</span><span>9 slides</span></summary><div style="padding-top:12px">' + deck_html(None, imgs("uretim-en"), "Industrial production and assembly presentation").replace("Ok tuşları veya kaydırma ile ilerle.", "Use arrow keys or swipe.") + '</div></details>')
+        cards = ""
         for x in SETS:
-            fl = "".join(f'<a class="btn" href="../assets/docs/uretim/{x["id"]}/{f}" download>{e(f)}</a> ' for f in x["files"])
-            sets += f'''<div class="panel" style="margin-bottom:20px"><h3>{e(x["title"])}</h3><p>{e(x["intro"])}</p><div class="meta"><span class="chip">{e(x["kind"])}</span><span class="chip">{e(x["time"])}</span></div>
-<h4 style="margin:18px 0 8px;font-weight:600">Yapım kitapçığı</h4><div class="btns" style="margin-top:0"><a class="btn p" href="../set/{x["id"]}.html">Kitapçığı aç</a></div>
-<h4 style="margin:18px 0 8px;font-weight:600">Açık kaynak çizimler</h4><div class="btns" style="margin-top:0">{fl}</div></div>'''
-        b += sec("İki set", BUILDS[i]["drawings_license"] + " Çizimleri üreten kaynak kod: tools/make_sets.py (Python).", sets)
+            cards += f'''<div class="panel" style="margin-bottom:20px"><div style="display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:24px;align-items:start"><img src="../assets/img/uretim/{x["img_tr"]}/p-01.jpg" alt="{e(x["title"])} kitapçığı kapağı" style="width:100%;border:1px solid var(--line);border-radius:8px" loading="lazy"><div><h3>{e(x["title"])}</h3><p>{e(x["intro"])}</p>
+<div class="btns" style="margin-top:14px"><a class="btn p" href="../set/{x["id"]}.html">Kitapçığı ve çizimleri aç</a></div>
+<p style="font-size:14px;color:var(--muted);margin:14px 0 0">Doğrudan indir: <a href="../assets/docs/uretim/{x["booklet_tr"]}" download>kitapçık (TR)</a> · <a href="../assets/docs/uretim/{x["booklet_en"]}" download>booklet (EN)</a> · <a href="../assets/docs/uretim/{x["cad"]}" download>SolidWorks çizimleri (ZIP)</a></p></div></div></div>'''
+        b += sec("2. Yapım kitapçıkları ve 3. teknik çizimler", BUILDS[i]["drawings_license"], cards)
     elif i == "lego-mr":
         d = BUILDS[i]
         b += sec("Yapım kılavuzu", LEGOG["note"], '<div class="grid2">' + "".join(f'<div class="panel"><h3>{e(x["h"])}</h3><p>{e(x["p"])}</p></div>' for x in LEGOG["phases"]) + '</div><h3 style="margin:26px 0 10px">Bitince kontrol et</h3><div class="panel"><ul style="margin:0;padding-left:20px;color:var(--muted)">' + "".join(f"<li>{e(t)}</li>" for t in LEGOG["tests"]) + '</ul></div><div style="height:16px"></div>' + vtag("assets/video/lego-mr.mp4", "LEGO MR yapım kılavuzu") + (f'<div class="btns"><a class="btn p" href="../{d["booklet"]}" download>Adım adım talimatı indir (PDF)</a></div>' if has(d["booklet"]) else slot("Fotoğraflı adım adım talimat (PDF)", "assets/docs/lego-mr/yapim-talimati.pdf")))
@@ -145,15 +145,18 @@ def agreement():
 
 def setpage(x):
     li = lambda a: "".join(f"<li>{e(i)}</li>" for i in a)
-    steps = "".join(f'<li><b>{e(h)}.</b> {e(t)}</li>' for h, t in x["steps"])
-    tr = "".join(f'<li><b>{e(h)}:</b> {e(t)}</li>' for h, t in x["troubleshoot"])
-    fl = "".join(f'<li><a href="../assets/docs/uretim/{x["id"]}/{f}" download>{e(f)}</a></li>' for f in x["files"])
+    steps = "".join(f"<li>{e(s)}</li>" for s in x["steps"])
+    pg = lambda d: "".join(f'<img src="../assets/img/uretim/{d}/p-{n:02d}.jpg" alt="{e(x["title"])} kitapçığı, sayfa {n}" loading="lazy" style="width:100%;border:1px solid var(--line);border-radius:8px;margin:0 0 14px;background:#fff">' for n in range(1, x["pages"] + 1))
     body = f'''<div class="wrap"><div class="toolbar"><a class="crumb" href="../m/uretim-ve-montaj.html">← Endüstriyel Üretim ve Montaj</a><button class="btn p" id="print">Yazdır / PDF</button></div>
-<article class="book"><h1>{e(x["title"])}</h1><p style="color:var(--muted)">{e(x["kind"])} · {e(x["time"])} · {e(x["level"])}</p><p>{e(x["intro"])}</p>
-<img src="../{x["preview"]}" alt="{e(x["title"])} çizim önizlemesi" style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff">
-{vtag(f"assets/video/set/{x['id']}.mp4", x['title'])}<h2>Gerekenler</h2><ul>{li(x["tools"])}</ul><h2>Parça listesi</h2><ul>{li(x["parts"])}</ul><h2>Yapım adımları</h2><ol>{steps}</ol>
-<h2>Düşün ve dene</h2><ul>{li(x["questions"])}</ul><h2>Sorun giderme</h2><ul>{tr}</ul><h2>Dosyalar (açık kaynak, CC BY-SA 4.0)</h2><ul>{fl}</ul>
-<p style="color:var(--muted);font-size:14px">Kaynak göstererek kullanın, değiştirin ve paylaşın: FRC 6429 4th Dimension.</p></article><div style="height:48px"></div></div>'''
+<article class="book"><h1>{e(x["title"])}</h1><p style="color:var(--muted)">{e(x["kind"])} · {e(x["level"])}</p><p>{e(x["intro"])}</p>
+<h2>Adımlar bir bakışta</h2><ol>{steps}</ol>
+<h2>Yapım kitapçığı</h2><p>Resimli adımlar aşağıda. Yazdırmak için PDF'i indir.</p><div class="btns" style="margin:0 0 16px"><a class="btn p" href="../assets/docs/uretim/{x["booklet_tr"]}" download>Kitapçık PDF (Türkçe)</a><a class="btn" href="../assets/docs/uretim/{x["booklet_en"]}" download>Booklet PDF (English)</a></div>
+{pg(x["img_tr"])}
+<details class="les"><summary><span>English booklet pages</span><span>{x["pages"]} pages</span></summary><div style="padding-top:12px">{pg(x["img_en"])}</div></details>
+<h2>Teknik çizimler (SolidWorks)</h2><p>Bu modelin her parçası ayrı <code>.SLDPRT</code> dosyası, hepsinin birleşimi <code>.SLDASM</code> montaj dosyasıdır. Parçaları açmak için SolidWorks gerekir; yalnızca bakmak istersen ücretsiz eDrawings görüntüleyici yeterli. Lazer kesim ya da 3B baskı için SolidWorks'ten STEP, DXF veya STL olarak dışa aktar.</p>
+<div class="btns" style="margin:0 0 12px"><a class="btn p" href="../assets/docs/uretim/{x["cad"]}" download>{e(x["cad_name"])} (ZIP)</a></div>
+<p><b>Pakette olanlar:</b></p><ul>{li(x["parts"])}</ul>
+<p style="color:var(--muted);font-size:14px">Adet, parça adındaki sayıdır (ör. spacer x12 = 12 adet). Kaynak göstererek kullanın: FRC 6429 4th Dimension.</p></article><div style="height:48px"></div></div>'''
     return page(f'{x["title"]} · yapım kitapçığı', body, 1)
 
 def lesson(a, prev, nxt):

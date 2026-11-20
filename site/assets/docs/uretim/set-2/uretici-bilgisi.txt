@@ -1,3 +1,0 @@
-Malzeme kalınlığı T=3.0 mm (MDF/kontrplak/akrilik). Yuva payı 0.1 mm. Birim: mm.
-Parçalar: 2 yan plaka, 3 çubuk. Kırmızı çizgi = kesim.
-Çubuklar plakalar arasında 60 mm açıklık bırakır. Lazerin kerf'ine göre K değerini değiştirip tools/make_sets.py çalıştırın.
