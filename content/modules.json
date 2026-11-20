@@ -54,6 +54,16 @@
    "Giriş sunumu (TR/EN)",
    "2 yapım kitapçığı (TR/EN)",
    "SolidWorks çizimleri"
+  ],
+  "links": [
+   {
+    "t": "Hidrolik Kol: 3B önizleme",
+    "href": "set/hidrolik-kol.html"
+   },
+   {
+    "t": "Elevatör: 3B önizleme",
+    "href": "set/elevator.html"
+   }
   ]
  },
  {

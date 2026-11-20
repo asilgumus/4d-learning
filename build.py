@@ -34,8 +34,11 @@ def chips(m): return "".join(f'<span class="chip lv">{LV[l]}</span>' for l in m[
 
 def index():
     def srch(m): return " ".join([m["title"], m["tagline"], m["summary"], m["kind"], " ".join(LV[l] for l in m["levels"]), " ".join(m["contents"])])
-    rows = "".join(f'''<a class="row" href="m/{m["id"]}.html" data-levels="{" ".join(m["levels"])}" data-search="{e(srch(m))}" style="{tint(m)}">
-<span class="no">{m["no"]}</span><div><h2>{e(m["title"])}</h2><p>{e(m["tagline"])}</p><div class="meta">{chips(m)}<span class="chip">{e(m["kind"])}</span><span class="chip">{e(m["minutes"])}</span></div></div><span class="go">Aç</span></a>''' for m in MODS)
+    def row(m):
+        ln = "".join(f'<a class="rl" href="{l["href"]}">{e(l["t"])}</a>' for l in m.get("links", []))
+        return f'''<div class="row" data-levels="{" ".join(m["levels"])}" data-search="{e(srch(m))}" style="{tint(m)}">
+<span class="no">{m["no"]}</span><div><h2><a class="stretch" href="m/{m["id"]}.html">{e(m["title"])}</a></h2><p>{e(m["tagline"])}</p><div class="meta">{chips(m)}<span class="chip">{e(m["kind"])}</span><span class="chip">{e(m["minutes"])}</span></div>{('<div class="rlinks">' + ln + '</div>') if ln else ""}</div><span class="go">Aç</span></div>'''
+    rows = "".join(row(m) for m in MODS)
     FL = [("all", "Tümü"), ("ilkokul", "İlkokul"), ("ortaokul", "Ortaokul"), ("lise", "Lise"), ("noro", "Nöroçeşitli çocuklar"), ("mr", "MR'a girecek çocuklar")]
     btns = "".join(f'<button type="button" data-who="{k}" aria-pressed="{str(k=="all").lower()}">{e(v)}</button>' for k, v in FL)
     body = f'''<section class="hero"><img class="hero-img" src="assets/img/hero.jpg" alt="4D bayrağı, bir FIRST Robotics yarışma salonunun üzerinde" width="1672" height="941" fetchpriority="high"><div class="wrap hero-in"><div class="hero-copy"><h1>Okulların ve kurumların doğrudan kullanabileceği eğitim içerikleri.</h1>
