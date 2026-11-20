@@ -92,8 +92,8 @@ def module(m):
         cards = ""
         for x in SETS:
             cards += f'''<div class="panel" style="margin-bottom:20px"><div style="display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:24px;align-items:start"><img src="../assets/img/uretim/{x["img_tr"]}/p-01.jpg" alt="{e(x["title"])} kitapçığı kapağı" style="width:100%;border:1px solid var(--line);border-radius:8px" loading="lazy"><div><h3>{e(x["title"])}</h3><p>{e(x["intro"])}</p>
-<div class="btns" style="margin-top:14px"><a class="btn p" href="../set/{x["id"]}.html">Kitapçığı ve çizimleri aç</a></div>
-<p style="font-size:14px;color:var(--muted);margin:14px 0 0">Doğrudan indir: <a href="../assets/docs/uretim/{x["booklet_tr"]}" download>kitapçık (TR)</a> · <a href="../assets/docs/uretim/{x["booklet_en"]}" download>booklet (EN)</a> · <a href="../assets/docs/uretim/{x["cad"]}" download>SolidWorks çizimleri (ZIP)</a></p></div></div></div>'''
+<div class="btns" style="margin-top:14px"><a class="btn p" href="../set/{x["id"]}.html">Kitapçığı, 3B önizlemeyi ve çizimleri aç</a></div>
+<p style="font-size:14px;color:var(--muted);margin:14px 0 0">Doğrudan indir: <a href="../assets/docs/uretim/{x["booklet_tr"]}" download>kitapçık (TR)</a> · <a href="../assets/docs/uretim/{x["booklet_en"]}" download>booklet (EN)</a> · <a href="../assets/docs/uretim/{x["cad"]}" download>SolidWorks çizimleri (ZIP)</a>{" · <a href=\"../assets/docs/uretim/cizim/" + x["id"] + "-stl.zip\" download>STL dosyaları (ZIP)</a>" if (S / f"assets/docs/uretim/cizim/{x['id']}-stl.zip").exists() else ""}</p></div></div></div>'''
         b += sec("2. Yapım kitapçıkları ve 3. teknik çizimler", BUILDS[i]["drawings_license"], cards)
     elif i == "lego-mr":
         d = BUILDS[i]
