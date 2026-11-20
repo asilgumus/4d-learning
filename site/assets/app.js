@@ -17,6 +17,15 @@ if(fb.length){
   document.addEventListener("keydown",function(e){if(e.key==="/"&&qi&&!/input|textarea|select/i.test(document.activeElement.tagName)){e.preventDefault();qi.focus()}});
   var h=location.hash.slice(1);if(fb.some(function(b){return b.dataset.who===h}))who=h;apply();
 }
+// dil seçici
+[].forEach.call(document.querySelectorAll(".lang"),function(g){
+  var bs=g.querySelectorAll(".seg button"),ps=g.querySelectorAll("[data-pane]");
+  [].forEach.call(bs,function(b){b.addEventListener("click",function(){
+    [].forEach.call(bs,function(x){x.setAttribute("aria-pressed",x===b)});
+    [].forEach.call(ps,function(p){p.hidden=p.getAttribute("data-pane")!==b.getAttribute("data-l")});
+    window.dispatchEvent(new Event("resize"));
+  })});
+});
 // decks
 [].forEach.call(document.querySelectorAll(".deck"),function(d){
   var s=[].slice.call(d.querySelectorAll(".slide")),i=0,c=d.querySelector(".cnt"),b=d.querySelector(".bar i");

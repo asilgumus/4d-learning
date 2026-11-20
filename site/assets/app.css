@@ -161,3 +161,9 @@ body.landing nav.main a{color:rgba(255,255,255,.82)}body.landing nav.main a:hove
 .rlinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .rlinks .rl{position:relative;z-index:2;font-size:13.5px;font-weight:600;color:var(--ink);text-decoration:none;border:1px solid var(--line-2);border-radius:999px;padding:5px 12px;background:#fff}
 .rlinks .rl:hover{border-color:var(--blue);color:var(--blue)}.rlinks .rl::after{content:" →"}
+
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;padding:3px;background:#fff;margin:0 0 16px}
+.seg button{font:inherit;font-size:14px;font-weight:600;border:0;background:none;color:var(--muted);padding:6px 16px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff}
+.lang [data-pane][hidden]{display:none}
+@media print{.seg{display:none}.lang [data-pane][hidden]{display:block}}

@@ -72,6 +72,8 @@ def deck_html(slides, imgs=None, label="Sunum"):
 <div class="dctl"><button data-prev aria-label="Önceki slayt">Geri</button><span class="cnt" aria-live="polite"></span><button data-next aria-label="Sonraki slayt">İleri</button><span class="sp"></span><button data-full>Tam ekran</button></div></div>
 <p style="color:var(--muted);font-size:14px;margin:8px 0 0">Ok tuşları veya kaydırma ile ilerle.</p>'''
 
+def langtabs(tr, en):
+    return f'''<div class="lang"><div class="seg" role="group" aria-label="Dil"><button type="button" data-l="tr" aria-pressed="true">Türkçe</button><button type="button" data-l="en" aria-pressed="false">English</button></div><div data-pane="tr">{tr}</div><div data-pane="en" hidden>{en}</div></div>'''
 def sec(title, sub, inner): return f'<section class="msec"><h2>{e(title)}</h2>' + (f'<p class="sub">{e(sub)}</p>' if sub else "") + inner + '</section>'
 def slot(what, path): return f'<div class="todo"><b>{e(what)}</b> yüklenecek. Dosyayı <code>site/{path}</code> konumuna koyup <code>content/builds.json</code> içindeki yolu yaz, sonra <code>python3 build.py</code> çalıştır.</div>'
 def has(path): return bool(path) and (S / path).exists()
@@ -91,7 +93,8 @@ def module(m):
     elif i == "uretim-ve-montaj":
         b += sec("Bu sayfada ne var?", "Üç parça var, bu sırayla ilerle.", panels([("1. Giriş sunumu", "Konuya giriş: bir ürün fabrikaya gelmeden önce neler olur, üretim ve montaj nasıl işler, robotlar ne yapar, sürdürülebilirlik. Türkçe ve İngilizce."), ("2. Yapım kitapçığı", "Her modelin inşa aşamaları: hangi parça önce takılır, nereye oturur. Adım adım resimli, Türkçe ve İngilizce."), ("3. Teknik çizim", "Modeli kendin üretmek için SolidWorks (CAD) dosyaları: her parça ayrı dosya, tüm parçaların birleşimi de montaj dosyası olarak var.")]))
         imgs = lambda d: sorted((str(q.relative_to(S)) for q in (S / f"assets/slides/{d}").glob("*.jpg")), key=lambda s: int(re.findall(r"(\d+)\.jpg", s)[0]))
-        b += sec("1. Giriş sunumu", "Türkçe sunum; tam ekranda göster ya da PDF indir.", deck_html(None, imgs("uretim-tr"), "Endüstriyel üretim ve montaj sunumu") + '<div class="btns"><a class="btn p" href="../assets/docs/uretim/sunum/endustriyel-uretim-ve-montaj-tr.pdf" download>PDF indir (Türkçe)</a><a class="btn" href="../assets/docs/uretim/sunum/industrial-manufacturing-and-assembly-en.pdf" download>PDF (English)</a></div><details class="les" style="margin-top:18px"><summary><span>English version of the presentation</span><span>9 slides</span></summary><div style="padding-top:12px">' + deck_html(None, imgs("uretim-en"), "Industrial production and assembly presentation").replace("Ok tuşları veya kaydırma ile ilerle.", "Use arrow keys or swipe.") + '</div></details>')
+        pdf = lambda href, txt: f'<div class="btns"><a class="btn p" href="../assets/docs/uretim/sunum/{href}" download>{txt}</a></div>'
+        b += sec("1. Giriş sunumu", "Dili seç, tam ekranda göster ya da PDF indir.", langtabs(deck_html(None, imgs("uretim-tr"), "Endüstriyel üretim ve montaj sunumu") + pdf("endustriyel-uretim-ve-montaj-tr.pdf", "Sunumu indir (PDF, Türkçe)"), deck_html(None, imgs("uretim-en"), "Industrial production and assembly presentation").replace("Ok tuşları veya kaydırma ile ilerle.", "Use arrow keys or swipe.").replace("Önceki slayt", "Previous slide").replace("Sonraki slayt", "Next slide").replace(">Geri<", ">Back<").replace(">İleri<", ">Next<").replace(">Tam ekran<", ">Full screen<") + pdf("industrial-manufacturing-and-assembly-en.pdf", "Download presentation (PDF, English)")))
         cards = ""
         for x in SETS:
             cards += f'''<div class="panel" style="margin-bottom:20px"><div style="display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:24px;align-items:start"><img src="../assets/img/uretim/{x["img_tr"]}/p-01.jpg" alt="{e(x["title"])} kitapçığı kapağı" style="width:100%;border:1px solid var(--line);border-radius:8px" loading="lazy"><div><h3>{e(x["title"])}</h3><p>{e(x["intro"])}</p>
@@ -158,15 +161,15 @@ def setpage(x):
         viewer = f'''<div class="viewer" data-files="{fj}"><div class="v-canvas" role="img" aria-label="{e(x["title"])} 3B önizleme"><div class="v-status">3B model hazırlanıyor…</div><span class="v-dim"></span></div><div class="v-side"><div class="v-list" role="group" aria-label="Parça seç">{btns}</div><div class="v-foot"><button class="btn v-reset" type="button">Sıfırla</button><span>Sürükle: döndür · Tekerlek: yakınlaştır</span></div></div></div>'''
     else:
         viewer = f'<div class="todo"><b>3B önizleme</b> için STL dosyaları yüklenecek. SolidWorks\'te <i>Dosya, Farklı kaydet, STL</i> ile dışa aktarıp <code>site/assets/models/{x["id"]}/</code> klasörüne koy (montaj dosyası <code>Montaj.stl</code> adıyla), sonra <code>python3 build.py</code> çalıştır.</div>'
+    dl = lambda f, txt: f'<div class="btns" style="margin:4px 0 8px"><a class="btn p" href="../assets/docs/uretim/{f}" download>{txt}</a></div>'
     stlz = f"assets/docs/uretim/cizim/{x['id']}-stl.zip"
     stlbtn = f'<a class="btn" href="../{stlz}" download>STL dosyaları (ZIP)</a>' if (S / stlz).exists() else ""
     body = f'''<div class="wrap"><div class="toolbar"><a class="crumb" href="../m/uretim-ve-montaj.html">← Endüstriyel Üretim ve Montaj</a><button class="btn p" id="print">Yazdır / PDF</button></div>
 <article class="book"><h1>{e(x["title"])}</h1><p style="color:var(--muted)">{e(x["kind"])} · {e(x["level"])}</p><p>{e(x["intro"])}</p>
 <h2>Önizleme (3B)</h2>{viewer}
 <h2>Adımlar bir bakışta</h2><ol>{steps}</ol>
-<h2>Yapım kitapçığı</h2><p>Resimli adımlar aşağıda. Yazdırmak için PDF'i indir.</p><div class="btns" style="margin:0 0 16px"><a class="btn p" href="../assets/docs/uretim/{x["booklet_tr"]}" download>Kitapçık PDF (Türkçe)</a><a class="btn" href="../assets/docs/uretim/{x["booklet_en"]}" download>Booklet PDF (English)</a></div>
-{pg(x["img_tr"])}
-<details class="les"><summary><span>English booklet pages</span><span>{x["pages"]} pages</span></summary><div style="padding-top:12px">{pg(x["img_en"])}</div></details>
+<h2>Yapım kitapçığı</h2><p>Dili seç, resimli adımlara bak, altından PDF'ini indir.</p>
+{langtabs(pg(x["img_tr"]) + dl(x["booklet_tr"], "Kitapçığı indir (PDF, Türkçe)"), pg(x["img_en"]) + dl(x["booklet_en"], "Download booklet (PDF, English)"))}
 <h2>Teknik çizimler (SolidWorks)</h2><p>Bu modelin her parçası ayrı <code>.SLDPRT</code> dosyası, hepsinin birleşimi <code>.SLDASM</code> montaj dosyasıdır. Parçaları açmak için SolidWorks gerekir; yalnızca bakmak istersen ücretsiz eDrawings görüntüleyici yeterli. Lazer kesim ya da 3B baskı için SolidWorks'ten STEP, DXF veya STL olarak dışa aktar.</p>
 <div class="btns" style="margin:0 0 12px"><a class="btn p" href="../assets/docs/uretim/{x["cad"]}" download>{e(x["cad_name"])} (ZIP)</a>{stlbtn}</div>
 <p><b>Pakette olanlar:</b></p><ul>{li(x["parts"])}</ul>
