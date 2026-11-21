@@ -21,7 +21,7 @@ def page(title, body, depth=0, desc="", extra_head="", cls=""):
     p = "../" * depth
     d = desc or "FRC 6429 4th Dimension takımının, okulların ve kurumların ücretsiz kullanabileceği açık eğitim içerikleri."
     return f'''<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{e(title)}</title><meta name="description" content="{e(d)}"><meta name="theme-color" content="#e31b2f">
+<title>{e(title)}</title><meta name="description" content="{e(d)}"><meta name="theme-color" content="#9f1d2c">
 <link rel="icon" href="{p}assets/img/4d-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{p}assets/app.css">{extra_head}</head><body class="{cls}">
@@ -55,7 +55,7 @@ def index():
 <div class="shelf">{rows}</div><div class="empty" id="empty" hidden><p>Eşleşen modül yok. Aramayı veya filtreyi değiştir.</p><button class="btn" id="reset" type="button">Filtreleri temizle</button></div></section></div>
 <section class="band team"><div class="wrap"><div class="team-grid"><div class="team-copy"><h2>Robot yapan bir takımdan, herkese açık eğitim.</h2><p>İzmir'den bir FIRST Robotics takımıyız. Robotik çalışmalarımızın yanında okullara ve çocuklara yönelik eğitim projeleri yürütüyoruz. Bu içerikler ücretsiz.</p><div class="btns"><a class="btn" href="https://frc6429.com">Takımı tanı</a><a class="btn" href="mailto:frc4thdimension@gmail.com">Bize yaz</a></div></div>
 <div class="team-photos"><img src="assets/img/takim.jpg" alt="4th Dimension takım üyeleri" loading="lazy"><img src="assets/img/etkinlik-1.jpg" alt="Takım üyeleri bir etkinlikte" loading="lazy"><img src="assets/img/etkinlik-2.jpg" alt="Çocuklara yönelik bir etkinlik" loading="lazy"></div></div></div></section>'''
-    return page("4D Learning: açık eğitim kütüphanesi", body, cls="landing")
+    return page("4D Learning: açık eğitim kütüphanesi", body, cls="landing", desc="FRC 6429 4th Dimension takımından okullar, STK'lar ve takımlar için ücretsiz eğitim içerikleri: sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler.")
 
 def deck_html(slides, imgs=None, label="Sunum"):
     out = []
@@ -129,7 +129,7 @@ def module(m):
             ps += f'<div data-panel="{c["id"]}" {"" if k==0 else "hidden"}><div class="panel" style="margin-bottom:16px"><h3>{e(c["title"])}</h3><p>{e(c["goal"])} Gerekenler: {e(c["tools"])}.</p></div>{ls}</div>'
         b += sec("Müfredatlar", "", f'<div class="tabs" role="tablist" data-tabs>{tb}</div>{ps}')
     head = f'''<div class="mband" style="{tint(m)}"><div class="wrap"><div class="mhead"><a class="crumb" href="../index.html">← Kütüphane</a><h1>{e(m["title"])}</h1><p>{e(m["summary"])}</p><div class="meta">{chips(m)}<span class="chip">{e(m["minutes"])}</span></div></div></div></div><div class="wrap">{b}</div><div style="height:48px"></div>'''
-    return page(f'{m["title"]} · 4D Learning', head, 1, m["tagline"])
+    return page(f'{m["title"]} · 4D Learning', head, 1, m["summary"])
 
 def vtag(rel, title):
     p = S / rel
@@ -144,7 +144,7 @@ def booklet(x):
 <h2>Malzemeler</h2><ul>{li(x["materials"])}</ul><h2>Yapılış</h2><ol>{li(x["steps"])}</ol><h2>Neden oldu?</h2><p class="why">{e(x["why"])}</p>
 <h2>Düşün ve dene</h2><ul>{li(x["questions"])}</ul><h2>Güvenlik</h2><p class="safe">{e(x["safety"])} Deneyi bir yetişkinle birlikte yap.</p>
 <h2>Gözlemlerim</h2><div class="write"></div><div class="write"></div><div class="write"></div><div style="margin:30px 0 0" class="no-print">{vid}</div></article><div style="height:48px"></div>'''
-    return page(f'{x["title"]} · deney kitapçığı', f'<div class="wrap">{body}</div>', 1)
+    return page(f'{x["title"]} · deney kitapçığı', f'<div class="wrap">{body}</div>', 1, x["why"])
 
 def agreement():
     L = lambda t: f'<p style="margin:18px 0 0"><b>{t}</b></p><div class="write"></div><div class="write"></div>'
@@ -152,7 +152,7 @@ def agreement():
 <article class="book"><h1>Dijital denge anlaşması</h1><p style="color:var(--muted)">Ailece birlikte doldurun. Herkes imzalar.</p>
 {L("Ekransız saatlerimiz (ör. yemek, ders, yatmadan 1 saat önce)")}{L("Ekransız mekânlarımız (ör. yemek masası, yatak odası)")}{L("Haftalık ekransız aktivitemiz")}{L("Herkesin uyacağı bir kural")}{L("Kuralı bozarsak ne yaparız?")}
 <p style="margin-top:30px"><b>İmzalar:</b></p><div class="write"></div><div class="write"></div></article><div style="height:48px"></div></div>'''
-    return page("Dijital denge anlaşması · 4D Learning", body)
+    return page("Dijital denge anlaşması · 4D Learning", body, desc="Ailece birlikte doldurun. Herkes imzalar.")
 
 def setpage(x):
     li = lambda a: "".join(f"<li>{e(i)}</li>" for i in a)
@@ -180,7 +180,7 @@ def setpage(x):
 </article><div style="height:48px"></div></div>'''
     import hashlib; vv = hashlib.md5((S / 'assets/viewer.js').read_bytes()).hexdigest()[:8]
     lazy = '''<script>(function(){var v=document.querySelector(".viewer");if(!v)return;function go(){var s=document.createElement("script");s.src="../assets/viewer.js?v=''' + vv + '''";s.onerror=function(){document.querySelector(".v-status").textContent="''' + ("3D preview could not load. Refresh the page (Ctrl+Shift+R)." if LANG == "en" else "3B önizleme yüklenemedi. Sayfayı yenile (Ctrl+Shift+R).") + '''"};document.body.appendChild(s)}if("IntersectionObserver"in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){o.disconnect();go()}},{rootMargin:"300px"});o.observe(v)}else go()})()</script>'''
-    return page(f'{x["title"]} · yapım kitapçığı', body + (lazy if stls else ""), 1)
+    return page(f'{x["title"]} · yapım kitapçığı', body + (lazy if stls else ""), 1, x["intro"])
 
 def lesson(a, prev, nxt):
     li = lambda t: "".join(f"<li>{e(i)}</li>" for i in t)
@@ -193,7 +193,7 @@ def lesson(a, prev, nxt):
 <p style="color:var(--muted);font-size:14px">Not: Ders metinleri İngilizcedir. Orijinal Türkçe çalışma kâğıdı PDF olarak indirilebilir.</p>
 <div class="btns"><a class="btn p" href="../assets/docs/arduino/experiment-{a["id"]:02d}.pdf" download>Türkçe çalışma kâğıdı (PDF)</a></div>
 <nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700">{nav}</nav></article><div style="height:48px"></div></div>'''
-    return page(f'{a["title"]} · Arduino deneyi', body, 1)
+    return page(f'{a["title"]} · Arduino deneyi', body, 1, a["summary"])
 
 TAG = re.compile(r"(<[^>]*>)")
 ATTR = re.compile(r'\b(alt|title|aria-label|placeholder|content)="([^"]*)"')
@@ -227,11 +227,42 @@ def tr_html(txt, where):
         else:
             out.append(tx(tok, where) if skip is None else tok)
     return "".join(out)
+BASE = "https://4d-learning.vercel.app"  # özel alan adı bağlanınca burayı değiştir
+PAGES = []
+def trim(s, n=158):
+    s = " ".join(s.split())
+    return s if len(s) <= n else s[:n].rsplit(" ", 1)[0].rstrip(",;:.") + "…"
+def url_of(lang, path):
+    u = ("/en/" if lang == "en" else "/") + path
+    if u.endswith("index.html"): u = u[:-10]
+    return BASE + (u[:-5] if u.endswith(".html") else u)
+def seo(txt, path):
+    m = re.search(r"<title>(.*?)</title>", txt, re.S); title = html.unescape(m.group(1)) if m else "4D Learning"
+    m = re.search(r'<meta name="description" content="(.*?)">', txt, re.S); desc = trim(html.unescape(m.group(1))) if m else ""
+    txt = re.sub(r'<meta name="description" content=".*?">', lambda _: '<meta name="description" content="%s">' % html.escape(desc), txt, count=1, flags=re.S)
+    en = LANG == "en"; url = url_of(LANG, path); img = BASE + "/assets/img/hero.jpg"; E = lambda s: html.escape(s, quote=True)
+    tags = f'''<link rel="canonical" href="{url}">
+<link rel="alternate" hreflang="tr" href="{url_of("tr", path)}"><link rel="alternate" hreflang="en" href="{url_of("en", path)}"><link rel="alternate" hreflang="x-default" href="{url_of("tr", path)}">
+<meta property="og:type" content="website"><meta property="og:site_name" content="4D Learning"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{img}"><meta property="og:image:width" content="1672"><meta property="og:image:height" content="941"><meta property="og:locale" content="{"en_US" if en else "tr_TR"}"><meta property="og:locale:alternate" content="{"tr_TR" if en else "en_US"}">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{E(title)}"><meta name="twitter:description" content="{E(desc)}"><meta name="twitter:image" content="{img}">'''
+    org = {"@type": "Organization", "@id": BASE + "/#org", "name": "FRC 6429 4th Dimension", "alternateName": "4D Learning", "url": "https://frc6429.com", "logo": BASE + "/assets/img/4d-logo.png",
+           "sameAs": ["https://www.instagram.com/frc4thdimension/", "https://github.com/asilgumus"], "address": {"@type": "PostalAddress", "addressLocality": "İzmir", "addressCountry": "TR"}}
+    if path == "index.html":
+        graph = [org, {"@type": "WebSite", "name": "4D Learning", "url": url_of(LANG, "index.html"), "inLanguage": "en" if en else "tr", "publisher": {"@id": BASE + "/#org"}}]
+    else:
+        home = url_of(LANG, "index.html")
+        graph = [{"@type": "LearningResource", "name": title.split(" · ")[0], "description": desc, "url": url, "inLanguage": "en" if en else "tr", "isAccessibleForFree": True, "publisher": {"@id": BASE + "/#org"}, "image": img},
+                 {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "4D Learning", "item": home}, {"@type": "ListItem", "position": 2, "name": title.split(" · ")[0], "item": url}]}]
+        graph.append(org)
+    tags += '\n<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+    if LANG == "tr": PAGES.append(path)
+    return txt.replace("</head>", tags + "</head>", 1)
 def w(path, txt):
     if LANG == "en":
         txt = tr_html(txt, path)
         txt = re.sub(r'(["\'(;])(?:\.\./)*assets/', r'\1/assets/', txt)
         txt = txt.replace('<html lang="tr">', '<html lang="en">')
+    txt = seo(txt, path)
     alt = ("/" + path) if LANG == "en" else ("/en/" + path)
     if alt.endswith("index.html"): alt = alt[:-10]
     alt = alt[:-5] if alt.endswith(".html") else alt
@@ -248,6 +279,13 @@ def generate():
 
 for LANG in ("tr", "en"):
     generate()
+def sitemap():
+    rows = ""
+    for pth in PAGES:
+        rows += f'<url><loc>{url_of("tr", pth)}</loc><xhtml:link rel="alternate" hreflang="tr" href="{url_of("tr", pth)}"/><xhtml:link rel="alternate" hreflang="en" href="{url_of("en", pth)}"/></url>\n<url><loc>{url_of("en", pth)}</loc><xhtml:link rel="alternate" hreflang="tr" href="{url_of("tr", pth)}"/><xhtml:link rel="alternate" hreflang="en" href="{url_of("en", pth)}"/></url>\n'
+    (S / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + rows + '</urlset>\n', encoding="utf-8")
+    (S / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
+sitemap()
 if MISS:
     mo = os.environ.get("MISSING_OUT")
     if mo: json.dump(MISS, open(mo, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
