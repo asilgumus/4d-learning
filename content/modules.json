@@ -16,7 +16,8 @@
    "Sunum (17 slayt)",
    "PDF indir",
    "Tartışma soruları"
-  ]
+  ],
+  "seo": "Siber güvenlik sunumu ve tartışma soruları"
  },
  {
   "id": "teknoloji-bagimliligi",
@@ -35,7 +36,8 @@
    "Sunum (14 slayt)",
    "Aile etkinliği",
    "Yazdırılabilir anlaşma"
-  ]
+  ],
+  "seo": "Teknoloji bağımlılığı atölyesi ve sunumu"
  },
  {
   "id": "uretim-ve-montaj",
@@ -64,7 +66,8 @@
     "t": "Elevatör: 3B önizleme",
     "href": "set/elevator.html"
    }
-  ]
+  ],
+  "seo": "Üretim ve montaj: sunum, kitapçık ve CAD çizimleri"
  },
  {
   "id": "lego-mr",
@@ -82,7 +85,8 @@
    "Yapım talimatı",
    "MR'a hazırlık rehberi",
    "Aileye not"
-  ]
+  ],
+  "seo": "LEGO MR: çocuklar için MR hazırlık ve yapım kılavuzu"
  },
  {
   "id": "neurobridge",
@@ -100,7 +104,8 @@
    "Oyunu oyna",
    "Eğitmen rehberi",
    "Açık kaynak kod"
-  ]
+  ],
+  "seo": "NeuroBridge: nöroçeşitli çocuklar için kodlama oyunu"
  },
  {
   "id": "sense-of-science",
@@ -119,7 +124,8 @@
    "8 deney kitapçığı",
    "Deney videoları",
    "Soru kartları"
-  ]
+  ],
+  "seo": "Sense of Science: evde yapılan 8 bilim deneyi"
  },
  {
   "id": "cad-elektronik-yazilim",
@@ -138,6 +144,7 @@
    "3 müfredat",
    "31 ders ve deney",
    "Uygulama görevleri"
-  ]
+  ],
+  "seo": "CAD, Arduino ve Python video dersleri"
  }
 ]

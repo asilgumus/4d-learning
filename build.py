@@ -55,7 +55,7 @@ def index():
 <div class="shelf">{rows}</div><div class="empty" id="empty" hidden><p>Eşleşen modül yok. Aramayı veya filtreyi değiştir.</p><button class="btn" id="reset" type="button">Filtreleri temizle</button></div></section></div>
 <section class="band team"><div class="wrap"><div class="team-grid"><div class="team-copy"><h2>Robot yapan bir takımdan, herkese açık eğitim.</h2><p>İzmir'den bir FIRST Robotics takımıyız. Robotik çalışmalarımızın yanında okullara ve çocuklara yönelik eğitim projeleri yürütüyoruz. Bu içerikler ücretsiz.</p><div class="btns"><a class="btn" href="https://frc6429.com">Takımı tanı</a><a class="btn" href="mailto:frc4thdimension@gmail.com">Bize yaz</a></div></div>
 <div class="team-photos"><img src="assets/img/takim.jpg" alt="4th Dimension takım üyeleri" loading="lazy"><img src="assets/img/etkinlik-1.jpg" alt="Takım üyeleri bir etkinlikte" loading="lazy"><img src="assets/img/etkinlik-2.jpg" alt="Çocuklara yönelik bir etkinlik" loading="lazy"></div></div></div></section>'''
-    return page("4D Learning: açık eğitim kütüphanesi", body, cls="landing", desc="FRC 6429 4th Dimension takımından okullar, STK'lar ve takımlar için ücretsiz eğitim içerikleri: sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler.")
+    return page("Ücretsiz eğitim içerikleri: sunum, kitapçık, deney", body, cls="landing", desc="FRC 6429 4th Dimension takımından okullar, STK'lar ve takımlar için ücretsiz eğitim içerikleri: sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler.")
 
 def deck_html(slides, imgs=None, label="Sunum"):
     out = []
@@ -129,7 +129,7 @@ def module(m):
             ps += f'<div data-panel="{c["id"]}" {"" if k==0 else "hidden"}><div class="panel" style="margin-bottom:16px"><h3>{e(c["title"])}</h3><p>{e(c["goal"])} Gerekenler: {e(c["tools"])}.</p></div>{ls}</div>'
         b += sec("Müfredatlar", "", f'<div class="tabs" role="tablist" data-tabs>{tb}</div>{ps}')
     head = f'''<div class="mband" style="{tint(m)}"><div class="wrap"><div class="mhead"><a class="crumb" href="../index.html">← Kütüphane</a><h1>{e(m["title"])}</h1><p>{e(m["summary"])}</p><div class="meta">{chips(m)}<span class="chip">{e(m["minutes"])}</span></div></div></div></div><div class="wrap">{b}</div><div style="height:48px"></div>'''
-    return page(f'{m["title"]} · 4D Learning', head, 1, m["summary"])
+    return page(m["seo"], head, 1, m["summary"])
 
 def vtag(rel, title):
     p = S / rel
@@ -144,7 +144,7 @@ def booklet(x):
 <h2>Malzemeler</h2><ul>{li(x["materials"])}</ul><h2>Yapılış</h2><ol>{li(x["steps"])}</ol><h2>Neden oldu?</h2><p class="why">{e(x["why"])}</p>
 <h2>Düşün ve dene</h2><ul>{li(x["questions"])}</ul><h2>Güvenlik</h2><p class="safe">{e(x["safety"])} Deneyi bir yetişkinle birlikte yap.</p>
 <h2>Gözlemlerim</h2><div class="write"></div><div class="write"></div><div class="write"></div><div style="margin:30px 0 0" class="no-print">{vid}</div></article><div style="height:48px"></div>'''
-    return page(f'{x["title"]} · deney kitapçığı', f'<div class="wrap">{body}</div>', 1, x["why"])
+    return page(f'{x["title"]}: deney malzemeleri ve adımları', f'<div class="wrap">{body}</div>', 1, x["why"])
 
 def agreement():
     L = lambda t: f'<p style="margin:18px 0 0"><b>{t}</b></p><div class="write"></div><div class="write"></div>'
@@ -152,7 +152,7 @@ def agreement():
 <article class="book"><h1>Dijital denge anlaşması</h1><p style="color:var(--muted)">Ailece birlikte doldurun. Herkes imzalar.</p>
 {L("Ekransız saatlerimiz (ör. yemek, ders, yatmadan 1 saat önce)")}{L("Ekransız mekânlarımız (ör. yemek masası, yatak odası)")}{L("Haftalık ekransız aktivitemiz")}{L("Herkesin uyacağı bir kural")}{L("Kuralı bozarsak ne yaparız?")}
 <p style="margin-top:30px"><b>İmzalar:</b></p><div class="write"></div><div class="write"></div></article><div style="height:48px"></div></div>'''
-    return page("Dijital denge anlaşması · 4D Learning", body, desc="Ailece birlikte doldurun. Herkes imzalar.")
+    return page("Dijital denge anlaşması (yazdırılabilir)", body, desc="Ailece birlikte doldurun. Herkes imzalar.")
 
 def setpage(x):
     li = lambda a: "".join(f"<li>{e(i)}</li>" for i in a)
@@ -180,7 +180,7 @@ def setpage(x):
 </article><div style="height:48px"></div></div>'''
     import hashlib; vv = hashlib.md5((S / 'assets/viewer.js').read_bytes()).hexdigest()[:8]
     lazy = '''<script>(function(){var v=document.querySelector(".viewer");if(!v)return;function go(){var s=document.createElement("script");s.src="../assets/viewer.js?v=''' + vv + '''";s.onerror=function(){document.querySelector(".v-status").textContent="''' + ("3D preview could not load. Refresh the page (Ctrl+Shift+R)." if LANG == "en" else "3B önizleme yüklenemedi. Sayfayı yenile (Ctrl+Shift+R).") + '''"};document.body.appendChild(s)}if("IntersectionObserver"in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){o.disconnect();go()}},{rootMargin:"300px"});o.observe(v)}else go()})()</script>'''
-    return page(f'{x["title"]} · yapım kitapçığı', body + (lazy if stls else ""), 1, x["intro"])
+    return page(f'{x["title"]}: yapım kitapçığı ve 3B model', body + (lazy if stls else ""), 1, x["intro"])
 
 def lesson(a, prev, nxt):
     li = lambda t: "".join(f"<li>{e(i)}</li>" for i in t)
@@ -193,7 +193,7 @@ def lesson(a, prev, nxt):
 <p style="color:var(--muted);font-size:14px">Not: Ders metinleri İngilizcedir. Orijinal Türkçe çalışma kâğıdı PDF olarak indirilebilir.</p>
 <div class="btns"><a class="btn p" href="../assets/docs/arduino/experiment-{a["id"]:02d}.pdf" download>Türkçe çalışma kâğıdı (PDF)</a></div>
 <nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700">{nav}</nav></article><div style="height:48px"></div></div>'''
-    return page(f'{a["title"]} · Arduino deneyi', body, 1, a["summary"])
+    return page(f'Arduino ile {a["title"]}: bağlantı ve kod', body, 1, a["summary"])
 
 TAG = re.compile(r"(<[^>]*>)")
 ATTR = re.compile(r'\b(alt|title|aria-label|placeholder|content)="([^"]*)"')
@@ -205,7 +205,9 @@ def tx(s, where=""):
     if v is None:
         for rx, r in PAT:
             m = rx.fullmatch(k)
-            if m: v = m.expand(r); break
+            if m:
+                g = [TX.get(x, x) for x in m.groups()]
+                v = re.sub(r"\\(\d)", lambda n: g[int(n.group(1)) - 1], r); break
     if v is None:
         if where.startswith("elektronik/") and not re.search(r"[çğıöşüÇĞİÖŞÜ]", k): return s  # ders içeriği zaten İngilizce
         MISS.setdefault(k, where); return s
@@ -237,7 +239,9 @@ def url_of(lang, path):
     if u.endswith("index.html"): u = u[:-10]
     return BASE + (u[:-5] if u.endswith(".html") else u)
 def seo(txt, path):
-    m = re.search(r"<title>(.*?)</title>", txt, re.S); title = html.unescape(m.group(1)) if m else "4D Learning"
+    m = re.search(r"<title>(.*?)</title>", txt, re.S); core = html.unescape(m.group(1)) if m else "4D Learning"
+    title = core if "4D Learning" in core else core + " | 4D Learning"
+    txt = re.sub(r"<title>.*?</title>", lambda _: "<title>%s</title>" % html.escape(title, quote=False), txt, count=1, flags=re.S)
     m = re.search(r'<meta name="description" content="(.*?)">', txt, re.S); desc = trim(html.unescape(m.group(1))) if m else ""
     txt = re.sub(r'<meta name="description" content=".*?">', lambda _: '<meta name="description" content="%s">' % html.escape(desc), txt, count=1, flags=re.S)
     en = LANG == "en"; url = url_of(LANG, path); img = BASE + "/assets/img/hero.jpg"; E = lambda s: html.escape(s, quote=True)
@@ -251,8 +255,8 @@ def seo(txt, path):
         graph = [org, {"@type": "WebSite", "name": "4D Learning", "url": url_of(LANG, "index.html"), "inLanguage": "en" if en else "tr", "publisher": {"@id": BASE + "/#org"}}]
     else:
         home = url_of(LANG, "index.html")
-        graph = [{"@type": "LearningResource", "name": title.split(" · ")[0], "description": desc, "url": url, "inLanguage": "en" if en else "tr", "isAccessibleForFree": True, "publisher": {"@id": BASE + "/#org"}, "image": img},
-                 {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "4D Learning", "item": home}, {"@type": "ListItem", "position": 2, "name": title.split(" · ")[0], "item": url}]}]
+        graph = [{"@type": "LearningResource", "name": core, "description": desc, "url": url, "inLanguage": "en" if en else "tr", "isAccessibleForFree": True, "publisher": {"@id": BASE + "/#org"}, "image": img},
+                 {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "4D Learning", "item": home}, {"@type": "ListItem", "position": 2, "name": core, "item": url}]}]
         graph.append(org)
     tags += '\n<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False).replace("</", "<\\/") + "</script>"
     if LANG == "tr": PAGES.append(path)

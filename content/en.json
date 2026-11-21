@@ -653,6 +653,18 @@
 [
 "Arduino deneyi (\\d+)",
 "Arduino experiment \\1"
+],
+[
+"(.+): deney malzemeleri ve adımları",
+"\\1: experiment materials and steps"
+],
+[
+"(.+): yapım kitapçığı ve 3B model",
+"\\1: build booklet and 3D model"
+],
+[
+"Arduino ile (.+): bağlantı ve kod",
+"Arduino \\1: wiring and code"
 ]
 ],
 "Sunum (17 slayt)": "Presentation (17 slides)",
@@ -670,5 +682,14 @@
 "3 müfredat": "3 curricula",
 "31 ders ve deney": "31 lessons and experiments",
 "Uygulama görevleri": "Hands-on tasks",
-"FRC 6429 4th Dimension takımından okullar, STK'lar ve takımlar için ücretsiz eğitim içerikleri: sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler.": "Free educational content from FRC team 6429 4th Dimension for schools, NGOs and teams: presentations, build booklets, experiment videos and open-source drawings."
+"FRC 6429 4th Dimension takımından okullar, STK'lar ve takımlar için ücretsiz eğitim içerikleri: sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler.": "Free educational content from FRC team 6429 4th Dimension for schools, NGOs and teams: presentations, build booklets, experiment videos and open-source drawings.",
+"Ücretsiz eğitim içerikleri: sunum, kitapçık, deney": "Free educational content: slides, booklets, experiments",
+"Dijital denge anlaşması (yazdırılabilir)": "Digital balance agreement (printable)",
+"Siber güvenlik sunumu ve tartışma soruları": "Cybersecurity presentation and discussion questions",
+"Teknoloji bağımlılığı atölyesi ve sunumu": "Technology addiction workshop and slides",
+"Üretim ve montaj: sunum, kitapçık ve CAD çizimleri": "Production and assembly: slides, booklets and CAD drawings",
+"LEGO MR: çocuklar için MR hazırlık ve yapım kılavuzu": "LEGO MRI: build guide to prepare children for an MRI",
+"NeuroBridge: nöroçeşitli çocuklar için kodlama oyunu": "NeuroBridge: a coding game for neurodiverse children",
+"Sense of Science: evde yapılan 8 bilim deneyi": "Sense of Science: 8 science experiments to do at home",
+"CAD, Arduino ve Python video dersleri": "CAD, Arduino and Python video lessons"
 }
