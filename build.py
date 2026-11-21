@@ -90,16 +90,15 @@ def module(m):
         b += sec("Sunum", "", deck_html(d["slides"], label="Teknoloji bağımlılığı sunumu"))
         b += sec("Aile etkinliği", "", '<div class="btns"><a class="btn p" href="../anlasma.html">Dijital denge anlaşması</a></div>')
     elif i == "uretim-ve-montaj":
-        b += sec("Bu sayfada ne var?", "", panels([("1. Giriş sunumu", "Üretim ve montaj nasıl işler, robotlar fabrikada ne yapar. Türkçe ve İngilizce."), ("2. Yapım kitapçığı", "Her modelin adım adım resimli inşa aşamaları. Türkçe ve İngilizce."), ("3. Teknik çizim", "Modeli kendin üretmek için SolidWorks ve STL dosyaları, 3B önizlemeyle.")]))
         imgs = lambda d: sorted((str(q.relative_to(S)) for q in (S / f"assets/slides/{d}").glob("*.jpg")), key=lambda s: int(re.findall(r"(\d+)\.jpg", s)[0]))
         pdf = lambda href, txt: f'<div class="btns"><a class="btn p" href="../assets/docs/uretim/sunum/{href}" download>{txt}</a></div>'
         b += sec("1. Giriş sunumu", "", langtabs(deck_html(None, imgs("uretim-tr"), "Endüstriyel üretim ve montaj sunumu") + pdf("endustriyel-uretim-ve-montaj-tr.pdf", "Sunumu indir (PDF, Türkçe)"), deck_html(None, imgs("uretim-en"), "Industrial production and assembly presentation") + pdf("industrial-manufacturing-and-assembly-en.pdf", "Sunumu indir (PDF, İngilizce)")))
         cards = ""
         for x in SETS:
             cards += f'''<div class="panel" style="margin-bottom:20px"><div style="display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:24px;align-items:start"><img src="../assets/img/uretim/{x["img_tr"]}/p-01.jpg" alt="{e(x["title"])} kitapçığı kapağı" style="width:100%;border:1px solid var(--line);border-radius:8px" loading="lazy"><div><h3>{e(x["title"])}</h3><p>{e(x["intro"])}</p>
-<div class="btns" style="margin-top:14px"><a class="btn p" href="../set/{x["id"]}.html">Kitapçığı, 3B önizlemeyi ve çizimleri aç</a></div>
-<p style="font-size:14px;color:var(--muted);margin:14px 0 0">Doğrudan indir: <a href="../assets/docs/uretim/{x["booklet_tr"]}" download>kitapçık (TR)</a> · <a href="../assets/docs/uretim/{x["booklet_en"]}" download>booklet (EN)</a> · <a href="../assets/docs/uretim/{x["cad"]}" download>SolidWorks çizimleri (ZIP)</a>{" · <a href=\"../assets/docs/uretim/cizim/" + x["id"] + "-stl.zip\" download>STL dosyaları (ZIP)</a>" if (S / f"assets/docs/uretim/cizim/{x['id']}-stl.zip").exists() else ""}</p></div></div></div>'''
-        b += sec("2. Yapım kitapçıkları ve 3. teknik çizimler", BUILDS[i]["drawings_license"], cards)
+<div class="btns" style="margin-top:14px"><a class="btn p" href="../set/{x["id"]}.html">Aç</a></div>
+<p style="font-size:14px;color:var(--muted);margin:14px 0 0">İndir: <a href="../assets/docs/uretim/{x["booklet_tr"]}" download>kitapçık (TR)</a> · <a href="../assets/docs/uretim/{x["booklet_en"]}" download>booklet (EN)</a> · <a href="../assets/docs/uretim/{x["cad"]}" download>SolidWorks çizimleri (ZIP)</a>{" · <a href=\"../assets/docs/uretim/cizim/" + x["id"] + "-stl.zip\" download>STL dosyaları (ZIP)</a>" if (S / f"assets/docs/uretim/cizim/{x['id']}-stl.zip").exists() else ""}</p></div></div></div>'''
+        b += sec("2. Yapım kitapçığı ve 3. teknik çizim", "Her model için resimli kitapçık, 3B önizleme ve çizim dosyaları.", cards)
     elif i == "lego-mr":
         d = BUILDS[i]
         b += sec("Yapım kılavuzu", "", '<div class="grid2">' + "".join(f'<div class="panel"><h3>{e(x["h"])}</h3><p>{e(x["p"])}</p></div>' for x in LEGOG["phases"]) + '</div><h3 style="margin:26px 0 10px">Bitince kontrol et</h3><div class="panel"><ul style="margin:0;padding-left:20px;color:var(--muted)">' + "".join(f"<li>{e(t)}</li>" for t in LEGOG["tests"]) + '</ul></div><div style="height:16px"></div>' + vtag("assets/video/lego-mr.mp4", "LEGO MR yapım kılavuzu") + (f'<div class="btns"><a class="btn p" href="../{d["booklet"]}" download>Adım adım talimatı indir (PDF)</a></div>' if has(d["booklet"]) else slot("Fotoğraflı adım adım talimat (PDF)", "assets/docs/lego-mr/yapim-talimati.pdf")))
@@ -167,13 +166,11 @@ def setpage(x):
     body = f'''<div class="wrap"><div class="toolbar"><a class="crumb" href="../m/uretim-ve-montaj.html">← Endüstriyel Üretim ve Montaj</a><button class="btn p" id="print">Yazdır / PDF</button></div>
 <article class="book"><h1>{e(x["title"])}</h1><p style="color:var(--muted)">{e(x["kind"])} · {e(x["level"])}</p><p>{e(x["intro"])}</p>
 <h2>Önizleme (3B)</h2>{viewer}
-<h2>Adımlar bir bakışta</h2><ol>{steps}</ol>
 <h2>Yapım kitapçığı</h2>
 {langtabs(pg(x["img_tr"]) + dl(x["booklet_tr"], "Kitapçığı indir (PDF, Türkçe)"), pg(x["img_en"]) + dl(x["booklet_en"], "Kitapçığı indir (PDF, İngilizce)"))}
-<h2>Teknik çizimler (SolidWorks)</h2><p>Bu modelin her parçası ayrı <code>.SLDPRT</code> dosyası, hepsinin birleşimi <code>.SLDASM</code> montaj dosyasıdır. Parçaları açmak için SolidWorks gerekir; yalnızca bakmak istersen ücretsiz eDrawings görüntüleyici yeterli. Lazer kesim ya da 3B baskı için SolidWorks'ten STEP, DXF veya STL olarak dışa aktar.</p>
+<h2>Teknik çizimler</h2><p>Her parça ayrı <code>.SLDPRT</code>, tüm model <code>.SLDASM</code> dosyasıdır. Açmak için SolidWorks ya da ücretsiz eDrawings gerekir.</p>
 <div class="btns" style="margin:0 0 12px"><a class="btn p" href="../assets/docs/uretim/{x["cad"]}" download>{e(x["cad_name"])} (ZIP)</a>{stlbtn}</div>
-<p><b>Pakette olanlar:</b></p><ul>{li(x["parts"])}</ul>
-<p style="color:var(--muted);font-size:14px">Adet, parça adındaki sayıdır (ör. spacer x12 = 12 adet). Kaynak göstererek kullanın: FRC 6429 4th Dimension.</p></article><div style="height:48px"></div></div>'''
+</article><div style="height:48px"></div></div>'''
     import hashlib; vv = hashlib.md5((S / 'assets/viewer.js').read_bytes()).hexdigest()[:8]
     lazy = '''<script>(function(){var v=document.querySelector(".viewer");if(!v)return;function go(){var s=document.createElement("script");s.src="../assets/viewer.js?v=''' + vv + '''";s.onerror=function(){document.querySelector(".v-status").textContent="3B önizleme yüklenemedi. Sayfayı yenile (Ctrl+Shift+R)."};document.body.appendChild(s)}if("IntersectionObserver"in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){o.disconnect();go()}},{rootMargin:"300px"});o.observe(v)}else go()})()</script>'''
     return page(f'{x["title"]} · yapım kitapçığı', body + (lazy if stls else ""), 1)
