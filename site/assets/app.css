@@ -178,10 +178,10 @@ header.top nav.main{margin-left:auto}
 .hero-copy::before,.mband .mhead::before{display:none}
 .row{grid-template-columns:1fr;padding:24px 14px}
 .row .no,.row .go{display:none}
-.meta{display:flex;flex-wrap:wrap;gap:0;margin-top:10px}
+.meta{display:flex;flex-wrap:wrap;gap:2px 16px;margin-top:10px}
 .meta .chip,.meta .chip.lv{border:0;background:none;padding:0;border-radius:0;font-size:14px;font-weight:400;color:var(--muted)}
 .meta .chip.lv{color:var(--ink);font-weight:500}
-.meta .chip+.chip::before{content:"·";margin:0 .65em;color:var(--line-2)}
+
 .rlinks{gap:6px 18px}
 .rlinks .rl{border:0;background:none;padding:0;border-radius:0;font-weight:500;color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-2);text-underline-offset:4px}
 .rlinks .rl::after{content:""}
