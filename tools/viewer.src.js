@@ -4,6 +4,8 @@ import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 const loader = new STLLoader();
+const EN = document.documentElement.lang === "en";
+const L = EN ? { load: "Loading…", fail: "Could not load the model.", nogl: "Your browser does not support 3D. You can download the parts instead." } : { load: "Yükleniyor…", fail: "Model yüklenemedi.", nogl: "Tarayıcın 3B gösterimi desteklemiyor. Parçaları indirme bölümünden alabilirsin." };
 document.querySelectorAll(".viewer").forEach(init);
 
 function init(root) {
@@ -11,7 +13,7 @@ function init(root) {
   const box = root.querySelector(".v-canvas"), status = root.querySelector(".v-status"), dim = root.querySelector(".v-dim");
   const btns = [...root.querySelectorAll(".v-part")];
   let renderer;
-  try { renderer = new WebGLRenderer({ antialias: true, alpha: true }); } catch (e) { status.textContent = "Tarayıcın 3B gösterimi desteklemiyor. Parçaları indirme bölümünden alabilirsin."; return; }
+  try { renderer = new WebGLRenderer({ antialias: true, alpha: true }); } catch (e) { status.textContent = L.nogl; return; }
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   box.appendChild(renderer.domElement);
   const scene = new Scene(), camera = new PerspectiveCamera(35, 1, 0.1, 5000);
@@ -42,8 +44,8 @@ function init(root) {
   function load(i) {
     btns.forEach((b, n) => b.setAttribute("aria-pressed", n === i));
     if (cache.has(i)) return show(cache.get(i));
-    status.textContent = "Yükleniyor…"; status.hidden = false;
-    loader.load(files[i].url, (geo) => { geo.computeVertexNormals(); cache.set(i, geo); show(geo); }, undefined, () => (status.textContent = "Model yüklenemedi."));
+    status.textContent = L.load; status.hidden = false;
+    loader.load(files[i].url, (geo) => { geo.computeVertexNormals(); cache.set(i, geo); show(geo); }, undefined, () => (status.textContent = L.fail));
   }
   btns.forEach((b, n) => b.addEventListener("click", () => load(n)));
   root.querySelector(".v-reset").addEventListener("click", () => { if (home) { camera.position.copy(home); controls.target.set(0, 0, 0); controls.update(); } });

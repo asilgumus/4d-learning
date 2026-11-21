@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Obstacle-Avoiding Robot · Arduino experiment</title><meta name="description" content="Open educational content from FRC team 6429 4th Dimension that schools and organizations can use for free."><meta name="theme-color" content="#e31b2f">
+<link rel="icon" href="/assets/img/4d-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/app.css"></head><body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap"><a class="brand" href="../index.html"><img src="/assets/img/4d-logo.png" alt=""><span><b>4D Learning</b><small>FRC 6429 4th Dimension</small></span></a>
+<nav class="main" aria-label="Main menu"><a href="../index.html#kutuphane">Library</a><a href="https://frc6429.com" rel="noopener">Team</a></nav><a class="langsw" href="/elektronik/13" hreflang="TR" lang="TR" aria-label="Türkçe">TR</a></div></header>
+<main id="main"><div class="wrap"><div class="toolbar"><a class="crumb" href="../m/cad-elektronik-yazilim.html">← CAD, Electronics, Software</a><button class="btn p" id="print">Print / PDF</button></div>
+<article class="book"><p style="color:var(--muted);font-weight:500;margin:0;font-size:14px">Arduino experiment 13</p><h1>Obstacle-Avoiding Robot</h1><p style="color:var(--muted)">Intermediate · 90 min · Robot decisions</p><p>Combine a distance sensor and motor driver to make a simple robot avoid obstacles.</p>
+<figure style="margin:0"><video class="video" controls preload="none" poster="/assets/video/elektronik/13.jpg" title="Obstacle-Avoiding Robot"><source src="/assets/video/elektronik/13.mp4" type="video/mp4"></video><figcaption style="color:var(--muted);font-size:14px;margin-top:6px">Narrated video (synthetic voice)</figcaption></figure><h2>Materials</h2><ul><li>Arduino Uno</li><li>HC-SR04</li><li>L298N motor driver</li><li>2 DC gear motors and chassis</li><li>Motor battery pack</li><li>Jumper wires</li></ul><h2>Wiring</h2><ol><li>Connect Trig to pin 7 and Echo to pin 6.</li><li>Connect L298N IN1–IN4 to pins 4, 5, 8 and 9; keep ENA/ENB jumpers installed.</li><li>Power motors from the battery through the driver. Join driver and Arduino grounds.</li></ol><h2>Code</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>const int trigPin=7, echoPin=6;
+const int in1=4, in2=5, in3=8, in4=9;
+
+void drive(int a, int b, int c, int d) {
+  digitalWrite(in1,a); digitalWrite(in2,b); digitalWrite(in3,c); digitalWrite(in4,d);
+}
+
+float distanceCm() {
+  digitalWrite(trigPin,LOW); delayMicroseconds(2);
+  digitalWrite(trigPin,HIGH); delayMicroseconds(10); digitalWrite(trigPin,LOW);
+  return pulseIn(echoPin,HIGH,30000) * 0.0343 / 2.0;
+}
+
+void setup() {
+  pinMode(trigPin,OUTPUT); pinMode(echoPin,INPUT);
+  pinMode(in1,OUTPUT); pinMode(in2,OUTPUT); pinMode(in3,OUTPUT); pinMode(in4,OUTPUT);
+}
+
+void loop() {
+  float d=distanceCm();
+  if (d &gt; 0 &amp;&amp; d &lt; 20) {
+    drive(LOW,HIGH,LOW,HIGH); delay(350);
+    drive(HIGH,LOW,LOW,HIGH); delay(450);
+  } else { drive(HIGH,LOW,HIGH,LOW); }
+}</code></pre>
+<h2>What should happen?</h2><p class="why">The robot reverses and turns when it detects an object closer than 20 cm.</p><h2>Challenge</h2><p>Test three thresholds and record which produces the most reliable movement.</p>
+<h2>Safety and troubleshooting</h2><ul><li>Cut the power before changing the wiring.</li><li>Use a resistor with every LED.</li><li>Check the board and port selection in the Arduino IDE.</li><li>Check that every wire matches the pin number in the code.</li></ul>
+<p style="color:var(--muted);font-size:14px">Note: the lesson text is in English. The original Turkish worksheet can be downloaded as a PDF.</p>
+<div class="btns"><a class="btn p" href="/assets/docs/arduino/experiment-13.pdf" download>Turkish worksheet (PDF)</a></div>
+<nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700"><a href="12.html">← Previous</a><a href="14.html">Next →</a></nav></article><div style="height:48px"></div></div></main>
+<footer><div class="wrap"><div><b>4D Learning</b><p>FRC 6429 4th Dimension, İzmir. Content is free for schools, NGOs and teams. Use, adapt and share with attribution. adg</p></div>
+<div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
+<script src="/assets/app.js"></script></body></html>

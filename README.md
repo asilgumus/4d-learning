@@ -17,3 +17,7 @@ Sonra `python3 build.py`.
 ## 3B önizleme
 - STL dosyalarını `site/assets/models/<model>/` altına koy (montaj için `Montaj.stl`), `python3 build.py`. Görüntüleyici ekrana gelince yüklenir.
 - Görüntüleyici kaynağı `tools/viewer.src.js`; değiştirirsen `sh tools/build_viewer.sh` ile `site/assets/viewer.js` yeniden üretilir.
+
+## Dil (TR/EN)
+- Türkçe sayfalar kökte, İngilizce sayfalar `site/en/` altında; ikisini de `python3 build.py` üretir.
+- İngilizce metinler `content/en.json` içinde (Türkçe metin → İngilizce karşılığı). Yeni metin eklersen derleme sonunda "çevrilmemiş metin" sayısı çıkar; listeyi görmek için `MISSING_OUT=/tmp/eksik.json python3 build.py`.

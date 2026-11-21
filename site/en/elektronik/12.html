@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Temperature and Humidity · Arduino experiment</title><meta name="description" content="Open educational content from FRC team 6429 4th Dimension that schools and organizations can use for free."><meta name="theme-color" content="#e31b2f">
+<link rel="icon" href="/assets/img/4d-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/app.css"></head><body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap"><a class="brand" href="../index.html"><img src="/assets/img/4d-logo.png" alt=""><span><b>4D Learning</b><small>FRC 6429 4th Dimension</small></span></a>
+<nav class="main" aria-label="Main menu"><a href="../index.html#kutuphane">Library</a><a href="https://frc6429.com" rel="noopener">Team</a></nav><a class="langsw" href="/elektronik/12" hreflang="TR" lang="TR" aria-label="Türkçe">TR</a></div></header>
+<main id="main"><div class="wrap"><div class="toolbar"><a class="crumb" href="../m/cad-elektronik-yazilim.html">← CAD, Electronics, Software</a><button class="btn p" id="print">Print / PDF</button></div>
+<article class="book"><p style="color:var(--muted);font-weight:500;margin:0;font-size:14px">Arduino experiment 12</p><h1>Temperature and Humidity</h1><p style="color:var(--muted)">Intermediate · 55 min · Digital sensor</p><p>Read temperature and relative humidity from a DHT11 sensor.</p>
+<figure style="margin:0"><video class="video" controls preload="none" poster="/assets/video/elektronik/12.jpg" title="Temperature and Humidity"><source src="/assets/video/elektronik/12.mp4" type="video/mp4"></video><figcaption style="color:var(--muted);font-size:14px;margin-top:6px">Narrated video (synthetic voice)</figcaption></figure><h2>Materials</h2><ul><li>Arduino Uno</li><li>DHT11 module</li><li>Jumper wires</li><li>Arduino DHT sensor library</li></ul><h2>Wiring</h2><ol><li>Connect module VCC to 5V, GND to GND and DATA to pin 4.</li><li>For a bare DHT11, add a 10 kΩ pull-up resistor between DATA and 5V.</li></ol><h2>Code</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>#include &lt;DHT.h&gt;
+#define DHTPIN 4
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(9600); dht.begin();
+}
+
+void loop() {
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+  if (isnan(humidity) || isnan(temperature)) {
+    Serial.println(&quot;Sensor read failed&quot;);
+  } else {
+    Serial.print(temperature); Serial.print(&quot; C, &quot;);
+    Serial.print(humidity); Serial.println(&quot; %&quot;);
+  }
+  delay(2000);
+}</code></pre>
+<h2>What should happen?</h2><p class="why">The Serial Monitor updates temperature and humidity about every two seconds.</p><h2>Challenge</h2><p>Add an LED warning when temperature exceeds a chosen value.</p>
+<h2>Safety and troubleshooting</h2><ul><li>Cut the power before changing the wiring.</li><li>Use a resistor with every LED.</li><li>Check the board and port selection in the Arduino IDE.</li><li>Check that every wire matches the pin number in the code.</li></ul>
+<p style="color:var(--muted);font-size:14px">Note: the lesson text is in English. The original Turkish worksheet can be downloaded as a PDF.</p>
+<div class="btns"><a class="btn p" href="/assets/docs/arduino/experiment-12.pdf" download>Turkish worksheet (PDF)</a></div>
+<nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700"><a href="11.html">← Previous</a><a href="13.html">Next →</a></nav></article><div style="height:48px"></div></div></main>
+<footer><div class="wrap"><div><b>4D Learning</b><p>FRC 6429 4th Dimension, İzmir. Content is free for schools, NGOs and teams. Use, adapt and share with attribution. adg</p></div>
+<div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
+<script src="/assets/app.js"></script></body></html>

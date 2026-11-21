@@ -6,6 +6,11 @@ R = pathlib.Path(__file__).parent
 C = R / "content"; S = R / "site"
 J = lambda p: json.load(open(C / p, encoding="utf-8"))
 e = html.escape
+LANG = "tr"
+TX = json.load(open(C / "en.json", encoding="utf-8")) if (C / "en.json").exists() else {}
+PAT = [(re.compile(p), r) for p, r in TX.pop("_patterns", [])]
+MISS = {}
+T = lambda s: (TX.get(s, s) if LANG == "en" else s)
 MODS, EXPS, COURSES, BUILDS = J("modules.json"), J("experiments.json"), J("courses.json"), J("builds.json")
 ARD, SETS, LEGOG = J("arduino.json"), J("sets.json"), J("lego-mr-guide.json")
 LV = {"ilkokul": "İlkokul", "ortaokul": "Ortaokul", "lise": "Lise", "noro": "Nöroçeşitli çocuklar", "mr": "MR'a girecek çocuklar"}
@@ -22,7 +27,7 @@ def page(title, body, depth=0, desc="", extra_head="", cls=""):
 <link rel="stylesheet" href="{p}assets/app.css">{extra_head}</head><body class="{cls}">
 <a class="skip" href="#main">İçeriğe geç</a>
 <header class="top"><div class="wrap"><a class="brand" href="{p}index.html"><img src="{p}assets/img/4d-logo.png" alt=""><span><b>4D Learning</b><small>FRC 6429 4th Dimension</small></span></a>
-<nav class="main" aria-label="Ana menü"><a href="{p}index.html#kutuphane">Kütüphane</a><a href="https://frc6429.com" rel="noopener">Takım</a></nav></div></header>
+<nav class="main" aria-label="Ana menü"><a href="{p}index.html#kutuphane">Kütüphane</a><a href="https://frc6429.com" rel="noopener">Takım</a></nav><a class="langsw" href="@@ALT@@" hreflang="@@ALTL@@" lang="@@ALTL@@" aria-label="@@ALTN@@">@@ALTL@@</a></div></header>
 <main id="main">{body}</main>
 <footer><div class="wrap"><div><b>4D Learning</b><p>FRC 6429 4th Dimension, İzmir. İçerikler okullar, STK'lar ve takımlar için ücretsizdir. Kaynak göstererek kullanın, uyarlayın, paylaşın. adg</p></div>
 <div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
@@ -33,7 +38,7 @@ def tint(m): t = TINT[(m["no"] - 1) % len(TINT)]; return f'--t:{t[0]};--tf:{t[1]
 def chips(m): return "".join(f'<span class="chip lv">{LV[l]}</span>' for l in m["levels"])
 
 def index():
-    def srch(m): return " ".join([m["title"], m["tagline"], m["summary"], m["kind"], " ".join(LV[l] for l in m["levels"]), " ".join(m["contents"])])
+    def srch(m): return " ".join(T(x) for x in [m["title"], m["tagline"], m["summary"], m["kind"], *[LV[l] for l in m["levels"]], *m["contents"]])
     def row(m):
         ln = "".join(f'<a class="rl" href="{l["href"]}">{e(l["t"])}</a>' for l in m.get("links", []))
         return f'''<div class="row" data-levels="{" ".join(m["levels"])}" data-search="{e(srch(m))}" style="{tint(m)}">
@@ -72,7 +77,7 @@ def deck_html(slides, imgs=None, label="Sunum"):
 <div class="dctl"><button data-prev aria-label="Önceki slayt">Geri</button><span class="cnt" aria-live="polite"></span><button data-next aria-label="Sonraki slayt">İleri</button><span class="sp"></span><button data-full>Tam ekran</button></div></div>'''
 
 def langtabs(tr, en):
-    return f'''<div class="lang"><div class="seg" role="group" aria-label="Dil"><button type="button" data-l="tr" aria-pressed="true">Türkçe</button><button type="button" data-l="en" aria-pressed="false">English</button></div><div data-pane="tr">{tr}</div><div data-pane="en" hidden>{en}</div></div>'''
+    return f'''<div class="lang"><div class="seg" role="group" aria-label="Dil"><button type="button" data-l="tr" aria-pressed="{str(LANG == "tr").lower()}">Türkçe</button><button type="button" data-l="en" aria-pressed="{str(LANG == "en").lower()}">English</button></div><div data-pane="tr"{" hidden" if LANG == "en" else ""}>{tr}</div><div data-pane="en"{" hidden" if LANG == "tr" else ""}>{en}</div></div>'''
 def sec(title, sub, inner): return f'<section class="msec"><h2>{e(title)}</h2>' + (f'<p class="sub">{e(sub)}</p>' if sub else "") + inner + '</section>'
 def slot(what, path): return f'<div class="todo"><b>{e(what)}</b> hazırlanıyor.</div>'
 def has(path): return bool(path) and (S / path).exists()
@@ -96,7 +101,7 @@ def module(m):
         b += sec("1. Giriş sunumu", "", langtabs(deck_html(None, imgs("uretim-tr"), "Endüstriyel üretim ve montaj sunumu") + pdf("endustriyel-uretim-ve-montaj-tr.pdf", "Sunumu indir (PDF, Türkçe)"), deck_html(None, imgs("uretim-en"), "Industrial production and assembly presentation") + pdf("industrial-manufacturing-and-assembly-en.pdf", "Sunumu indir (PDF, İngilizce)")))
         cards = ""
         for x in SETS:
-            cards += f'''<div class="panel" style="margin-bottom:20px"><div style="display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:24px;align-items:start"><img src="../assets/img/uretim/{x["img_tr"]}/p-01.jpg" alt="{e(x["title"])} kitapçığı kapağı" style="width:100%;border:1px solid var(--line);border-radius:8px" loading="lazy"><div><h3>{e(x["title"])}</h3><p>{e(x["intro"])}</p>
+            cards += f'''<div class="panel" style="margin-bottom:20px"><div style="display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:24px;align-items:start"><img src="../assets/img/uretim/{x["img_en"] if LANG == "en" else x["img_tr"]}/p-01.jpg" alt="{e(x["title"])} kitapçığı kapağı" style="width:100%;border:1px solid var(--line);border-radius:8px" loading="lazy"><div><h3>{e(x["title"])}</h3><p>{e(x["intro"])}</p>
 <div class="btns" style="margin-top:14px"><a class="btn p" href="../set/{x["id"]}.html">Kitapçığı, önizlemeyi ve çizimleri aç</a></div>
 <p style="font-size:14px;color:var(--muted);margin:14px 0 0">Doğrudan indir: <a href="../assets/docs/uretim/{x["booklet_tr"]}" download>kitapçık (TR)</a> · <a href="../assets/docs/uretim/{x["booklet_en"]}" download>booklet (EN)</a> · <a href="../assets/docs/uretim/{x["cad"]}" download>SolidWorks çizimleri (ZIP)</a>{" · <a href=\"../assets/docs/uretim/cizim/" + x["id"] + "-stl.zip\" download>STL dosyaları (ZIP)</a>" if (S / f"assets/docs/uretim/cizim/{x['id']}-stl.zip").exists() else ""}</p></div></div></div>'''
         b += sec("2. Yapım kitapçıkları ve 3. teknik çizimler", BUILDS[i]["drawings_license"], cards)
@@ -174,7 +179,7 @@ def setpage(x):
 <div class="btns" style="margin:0 0 12px"><a class="btn p" href="../assets/docs/uretim/{x["cad"]}" download>{e(x["cad_name"])} (ZIP)</a>{stlbtn}</div>
 </article><div style="height:48px"></div></div>'''
     import hashlib; vv = hashlib.md5((S / 'assets/viewer.js').read_bytes()).hexdigest()[:8]
-    lazy = '''<script>(function(){var v=document.querySelector(".viewer");if(!v)return;function go(){var s=document.createElement("script");s.src="../assets/viewer.js?v=''' + vv + '''";s.onerror=function(){document.querySelector(".v-status").textContent="3B önizleme yüklenemedi. Sayfayı yenile (Ctrl+Shift+R)."};document.body.appendChild(s)}if("IntersectionObserver"in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){o.disconnect();go()}},{rootMargin:"300px"});o.observe(v)}else go()})()</script>'''
+    lazy = '''<script>(function(){var v=document.querySelector(".viewer");if(!v)return;function go(){var s=document.createElement("script");s.src="../assets/viewer.js?v=''' + vv + '''";s.onerror=function(){document.querySelector(".v-status").textContent="''' + ("3D preview could not load. Refresh the page (Ctrl+Shift+R)." if LANG == "en" else "3B önizleme yüklenemedi. Sayfayı yenile (Ctrl+Shift+R).") + '''"};document.body.appendChild(s)}if("IntersectionObserver"in window){var o=new IntersectionObserver(function(e){if(e[0].isIntersecting){o.disconnect();go()}},{rootMargin:"300px"});o.observe(v)}else go()})()</script>'''
     return page(f'{x["title"]} · yapım kitapçığı', body + (lazy if stls else ""), 1)
 
 def lesson(a, prev, nxt):
@@ -190,13 +195,61 @@ def lesson(a, prev, nxt):
 <nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700">{nav}</nav></article><div style="height:48px"></div></div>'''
     return page(f'{a["title"]} · Arduino deneyi', body, 1)
 
+TAG = re.compile(r"(<[^>]*>)")
+ATTR = re.compile(r'\b(alt|title|aria-label|placeholder|content)="([^"]*)"')
+def tx(s, where=""):
+    """Tek bir metin parçasını İngilizceye çevirir; bulunamazsa kaydeder."""
+    k = html.unescape(s).strip()
+    if not k or not re.search(r"[A-Za-zÇĞİÖŞÜçğıöşü]{2}", k): return s
+    v = TX.get(k)
+    if v is None:
+        for rx, r in PAT:
+            m = rx.fullmatch(k)
+            if m: v = m.expand(r); break
+    if v is None:
+        if where.startswith("elektronik/") and not re.search(r"[çğıöşüÇĞİÖŞÜ]", k): return s  # ders içeriği zaten İngilizce
+        MISS.setdefault(k, where); return s
+    return s.replace(s.strip(), html.escape(v, quote=False), 1)
+def tr_html(txt, where):
+    out, skip = [], None
+    for tok in TAG.split(txt):
+        if tok.startswith("<"):
+            m = re.match(r"<(/?)(script|style|pre|code)\b", tok, re.I)
+            if m:
+                if m.group(1) == "/": skip = None
+                elif skip is None and not tok.rstrip().endswith("/>"): skip = m.group(2).lower()
+            if tok.startswith("<!") : out.append(tok); continue
+            def a(mm):
+                if mm.group(1) == "content" and not re.search(r'name="description"|name=.description', tok): return mm.group(0)
+                v = tx(mm.group(2), where)
+                return f'{mm.group(1)}="{v.replace(chr(34), "&quot;")}"'
+            out.append(ATTR.sub(a, tok) if skip is None else tok)
+        else:
+            out.append(tx(tok, where) if skip is None else tok)
+    return "".join(out)
 def w(path, txt):
-    p = S / path; p.parent.mkdir(parents=True, exist_ok=True); p.write_text(txt, encoding="utf-8")
-w("index.html", index()); w("anlasma.html", agreement())
-for m in MODS: w(f'm/{m["id"]}.html', module(m))
-for x in EXPS: w(f'deney/{x["id"]}.html', booklet(x))
-for x in SETS: w(f'set/{x["id"]}.html', setpage(x))
-ids = [a["id"] for a in ARD]
-for k, a in enumerate(ARD): w(f'elektronik/{a["id"]:02d}.html', lesson(a, ids[k-1] if k else None, ids[k+1] if k+1 < len(ids) else None))
-w("robots.txt", "User-agent: *\nAllow: /\n")
+    if LANG == "en":
+        txt = tr_html(txt, path)
+        txt = re.sub(r'(["\'(;])(?:\.\./)*assets/', r'\1/assets/', txt)
+        txt = txt.replace('<html lang="tr">', '<html lang="en">')
+    alt = ("/" + path) if LANG == "en" else ("/en/" + path)
+    if alt.endswith("index.html"): alt = alt[:-10]
+    alt = alt[:-5] if alt.endswith(".html") else alt
+    txt = txt.replace("@@ALT@@", alt or "/").replace("@@ALTL@@", "TR" if LANG == "en" else "EN").replace("@@ALTN@@", "Türkçe" if LANG == "en" else "English")
+    p = S / ("en" if LANG == "en" else "") / path; p.parent.mkdir(parents=True, exist_ok=True); p.write_text(txt, encoding="utf-8")
+def generate():
+    w("index.html", index()); w("anlasma.html", agreement())
+    for m in MODS: w(f'm/{m["id"]}.html', module(m))
+    for x in EXPS: w(f'deney/{x["id"]}.html', booklet(x))
+    for x in SETS: w(f'set/{x["id"]}.html', setpage(x))
+    ids = [a["id"] for a in ARD]
+    for k, a in enumerate(ARD): w(f'elektronik/{a["id"]:02d}.html', lesson(a, ids[k-1] if k else None, ids[k+1] if k+1 < len(ids) else None))
+    if LANG == "tr": w("robots.txt", "User-agent: *\nAllow: /\n")
+
+for LANG in ("tr", "en"):
+    generate()
+if MISS:
+    mo = os.environ.get("MISSING_OUT")
+    if mo: json.dump(MISS, open(mo, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+    print("çevrilmemiş metin:", len(MISS))
 print("ok:", len(list(S.rglob("*.html"))), "sayfa")

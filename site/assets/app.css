@@ -167,3 +167,9 @@ body.landing nav.main a{color:rgba(255,255,255,.82)}body.landing nav.main a:hove
 .seg button[aria-pressed=true]{background:var(--ink);color:#fff}
 .lang [data-pane][hidden]{display:none}
 @media print{.seg{display:none}.lang [data-pane][hidden]{display:block}}
+
+.langsw{margin-left:18px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;border:1px solid var(--line-2);border-radius:999px;padding:5px 11px;letter-spacing:.02em;background:#fff}
+.langsw:hover{border-color:var(--blue);color:var(--blue)}
+body.landing header.top .langsw{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4);color:#fff}
+@media print{.langsw{display:none}}
+header.top nav.main{margin-left:auto}

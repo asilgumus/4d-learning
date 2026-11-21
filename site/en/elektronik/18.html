@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PIR Motion Alarm · Arduino experiment</title><meta name="description" content="Open educational content from FRC team 6429 4th Dimension that schools and organizations can use for free."><meta name="theme-color" content="#e31b2f">
+<link rel="icon" href="/assets/img/4d-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/app.css"></head><body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap"><a class="brand" href="../index.html"><img src="/assets/img/4d-logo.png" alt=""><span><b>4D Learning</b><small>FRC 6429 4th Dimension</small></span></a>
+<nav class="main" aria-label="Main menu"><a href="../index.html#kutuphane">Library</a><a href="https://frc6429.com" rel="noopener">Team</a></nav><a class="langsw" href="/elektronik/18" hreflang="TR" lang="TR" aria-label="Türkçe">TR</a></div></header>
+<main id="main"><div class="wrap"><div class="toolbar"><a class="crumb" href="../m/cad-elektronik-yazilim.html">← CAD, Electronics, Software</a><button class="btn p" id="print">Print / PDF</button></div>
+<article class="book"><p style="color:var(--muted);font-weight:500;margin:0;font-size:14px">Arduino experiment 18</p><h1>PIR Motion Alarm</h1><p style="color:var(--muted)">Intermediate · 45 min · Motion sensing</p><p>Detect movement with a PIR sensor and trigger a small buzzer or LED.</p>
+<figure style="margin:0"><video class="video" controls preload="none" poster="/assets/video/elektronik/18.jpg" title="PIR Motion Alarm"><source src="/assets/video/elektronik/18.mp4" type="video/mp4"></video><figcaption style="color:var(--muted);font-size:14px;margin-top:6px">Narrated video (synthetic voice)</figcaption></figure><h2>Materials</h2><ul><li>Arduino Uno</li><li>PIR motion sensor</li><li>Active 5V buzzer or LED with 220 Ω resistor</li><li>Jumper wires</li></ul><h2>Wiring</h2><ol><li>Connect PIR VCC to 5V, GND to GND and OUT to pin 2.</li><li>Connect a low-current active buzzer to pin 8 and GND, or use an LED with a resistor.</li></ol><h2>Code</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>const int pirPin = 2, alarmPin = 8;
+
+void setup() {
+  pinMode(pirPin, INPUT); pinMode(alarmPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  bool motion = digitalRead(pirPin);
+  digitalWrite(alarmPin, motion);
+  if (motion) Serial.println(&quot;Motion detected&quot;);
+  delay(100);
+}</code></pre>
+<h2>What should happen?</h2><p class="why">After its warm-up period, the PIR activates the output when movement is detected.</p><h2>Challenge</h2><p>Keep the alarm active for five seconds after the last movement.</p>
+<h2>Safety and troubleshooting</h2><ul><li>Cut the power before changing the wiring.</li><li>Use a resistor with every LED.</li><li>Check the board and port selection in the Arduino IDE.</li><li>Check that every wire matches the pin number in the code.</li></ul>
+<p style="color:var(--muted);font-size:14px">Note: the lesson text is in English. The original Turkish worksheet can be downloaded as a PDF.</p>
+<div class="btns"><a class="btn p" href="/assets/docs/arduino/experiment-18.pdf" download>Turkish worksheet (PDF)</a></div>
+<nav style="display:flex;justify-content:space-between;margin-top:28px;font-weight:700"><a href="17.html">← Previous</a><a href="19.html">Next →</a></nav></article><div style="height:48px"></div></div></main>
+<footer><div class="wrap"><div><b>4D Learning</b><p>FRC 6429 4th Dimension, İzmir. Content is free for schools, NGOs and teams. Use, adapt and share with attribution. adg</p></div>
+<div><p><a href="mailto:frc4thdimension@gmail.com">frc4thdimension@gmail.com</a></p><p><a href="https://frc6429.com">frc6429.com</a> · <a href="https://www.instagram.com/frc4thdimension/">Instagram</a> · <a href="https://github.com/asilgumus">GitHub</a></p></div></div></footer>
+<script src="/assets/app.js"></script></body></html>
