@@ -682,7 +682,6 @@
 "3 müfredat": "3 curricula",
 "31 ders ve deney": "31 lessons and experiments",
 "Uygulama görevleri": "Hands-on tasks",
-"FRC 6429 4th Dimension takımından okullar, STK'lar ve takımlar için ücretsiz eğitim içerikleri: sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler.": "Free educational content from FRC team 6429 4th Dimension for schools, NGOs and teams: presentations, build booklets, experiment videos and open-source drawings.",
 "Ücretsiz eğitim içerikleri: sunum, kitapçık, deney": "Free educational content: slides, booklets, experiments",
 "Dijital denge anlaşması (yazdırılabilir)": "Digital balance agreement (printable)",
 "Siber güvenlik sunumu ve tartışma soruları": "Cybersecurity presentation and discussion questions",
@@ -691,5 +690,7 @@
 "LEGO MR: çocuklar için MR hazırlık ve yapım kılavuzu": "LEGO MRI: build guide to prepare children for an MRI",
 "NeuroBridge: nöroçeşitli çocuklar için kodlama oyunu": "NeuroBridge: a coding game for neurodiverse children",
 "Sense of Science: evde yapılan 8 bilim deneyi": "Sense of Science: 8 science experiments to do at home",
-"CAD, Arduino ve Python video dersleri": "CAD, Arduino and Python video lessons"
+"CAD, Arduino ve Python video dersleri": "CAD, Arduino and Python video lessons",
+"FRC 6429 4th Dimension: ücretsiz eğitim içerikleri": "FRC 6429 4th Dimension: free educational content",
+"FRC 6429 4th Dimension'dan okullar, STK'lar ve takımlar için ücretsiz eğitim içerikleri: sunum, yapım kitapçığı, deney videosu, açık kaynak çizim.": "Free educational content from FRC 6429 4th Dimension for schools, NGOs and teams: slides, build booklets, experiment videos, open-source drawings."
 }

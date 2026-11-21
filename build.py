@@ -55,7 +55,7 @@ def index():
 <div class="shelf">{rows}</div><div class="empty" id="empty" hidden><p>Eşleşen modül yok. Aramayı veya filtreyi değiştir.</p><button class="btn" id="reset" type="button">Filtreleri temizle</button></div></section></div>
 <section class="band team"><div class="wrap"><div class="team-grid"><div class="team-copy"><h2>Robot yapan bir takımdan, herkese açık eğitim.</h2><p>İzmir'den bir FIRST Robotics takımıyız. Robotik çalışmalarımızın yanında okullara ve çocuklara yönelik eğitim projeleri yürütüyoruz. Bu içerikler ücretsiz.</p><div class="btns"><a class="btn" href="https://frc6429.com">Takımı tanı</a><a class="btn" href="mailto:frc4thdimension@gmail.com">Bize yaz</a></div></div>
 <div class="team-photos"><img src="assets/img/takim.jpg" alt="4th Dimension takım üyeleri" loading="lazy"><img src="assets/img/etkinlik-1.jpg" alt="Takım üyeleri bir etkinlikte" loading="lazy"><img src="assets/img/etkinlik-2.jpg" alt="Çocuklara yönelik bir etkinlik" loading="lazy"></div></div></div></section>'''
-    return page("Ücretsiz eğitim içerikleri: sunum, kitapçık, deney", body, cls="landing", desc="FRC 6429 4th Dimension takımından okullar, STK'lar ve takımlar için ücretsiz eğitim içerikleri: sunumlar, yapım kitapçıkları, deney videoları ve açık kaynak çizimler.")
+    return page("FRC 6429 4th Dimension: ücretsiz eğitim içerikleri", body, cls="landing", desc="FRC 6429 4th Dimension'dan okullar, STK'lar ve takımlar için ücretsiz eğitim içerikleri: sunum, yapım kitapçığı, deney videosu, açık kaynak çizim.")
 
 def deck_html(slides, imgs=None, label="Sunum"):
     out = []
@@ -240,16 +240,21 @@ def url_of(lang, path):
     return BASE + (u[:-5] if u.endswith(".html") else u)
 def seo(txt, path):
     m = re.search(r"<title>(.*?)</title>", txt, re.S); core = html.unescape(m.group(1)) if m else "4D Learning"
-    title = core + " | 4D Learning" if "4D Learning" not in core and len(core) + 14 <= 62 else core
+    title = core
+    for b in (["4D Learning"] if "4th Dimension" in core else ["FRC 6429 4th Dimension", "FRC 6429 4D", "FRC 6429"]):
+        if len(core) + 3 + len(b) <= 70: title = f"{core} | {b}"; break
+    TEAM = "FRC 6429 4th Dimension"
     txt = re.sub(r"<title>.*?</title>", lambda _: "<title>%s</title>" % html.escape(title, quote=False), txt, count=1, flags=re.S)
-    m = re.search(r'<meta name="description" content="(.*?)">', txt, re.S); desc = trim(html.unescape(m.group(1))) if m else ""
+    m = re.search(r'<meta name="description" content="(.*?)">', txt, re.S); desc = html.unescape(m.group(1)) if m else ""
+    if desc and "4th Dimension" not in desc: desc = trim(desc, 158 - len(TEAM) - 3).rstrip(".") + " | " + TEAM
+    desc = trim(desc)
     txt = re.sub(r'<meta name="description" content=".*?">', lambda _: '<meta name="description" content="%s">' % html.escape(desc), txt, count=1, flags=re.S)
     en = LANG == "en"; url = url_of(LANG, path); img = BASE + "/assets/img/hero.jpg"; E = lambda s: html.escape(s, quote=True)
     tags = f'''<link rel="canonical" href="{url}">
 <link rel="alternate" hreflang="tr" href="{url_of("tr", path)}"><link rel="alternate" hreflang="en" href="{url_of("en", path)}"><link rel="alternate" hreflang="x-default" href="{url_of("tr", path)}">
-<meta property="og:type" content="website"><meta property="og:site_name" content="4D Learning"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{img}"><meta property="og:image:width" content="1672"><meta property="og:image:height" content="941"><meta property="og:locale" content="{"en_US" if en else "tr_TR"}"><meta property="og:locale:alternate" content="{"tr_TR" if en else "en_US"}">
+<meta property="og:type" content="website"><meta property="og:site_name" content="4D Learning | FRC 6429 4th Dimension"><meta name="author" content="FRC 6429 4th Dimension"><meta name="keywords" content="FRC 6429, 4th Dimension, FRC 6429 4th Dimension, FIRST Robotics, 4D Learning, {"free educational content, STEM, robotics, schools" if en else "ücretsiz eğitim içerikleri, STEM, robotik, okullar"}"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{img}"><meta property="og:image:width" content="1672"><meta property="og:image:height" content="941"><meta property="og:locale" content="{"en_US" if en else "tr_TR"}"><meta property="og:locale:alternate" content="{"tr_TR" if en else "en_US"}">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{E(title)}"><meta name="twitter:description" content="{E(desc)}"><meta name="twitter:image" content="{img}">'''
-    org = {"@type": "Organization", "@id": BASE + "/#org", "name": "FRC 6429 4th Dimension", "alternateName": "4D Learning", "url": "https://frc6429.com", "logo": BASE + "/assets/img/4d-logo.png",
+    org = {"@type": "Organization", "@id": BASE + "/#org", "name": "FRC 6429 4th Dimension", "alternateName": ["4D Learning", "4th Dimension", "FRC 6429", "Team 6429"], "description": "FIRST Robotics Competition team 6429 4th Dimension from İzmir, Türkiye." if en else "İzmir'den FIRST Robotics Competition takımı 6429 4th Dimension.", "url": "https://frc6429.com", "logo": BASE + "/assets/img/4d-logo.png",
            "sameAs": ["https://www.instagram.com/frc4thdimension/", "https://github.com/asilgumus"], "address": {"@type": "PostalAddress", "addressLocality": "İzmir", "addressCountry": "TR"}}
     if path == "index.html":
         graph = [org, {"@type": "WebSite", "name": "4D Learning", "url": url_of(LANG, "index.html"), "inLanguage": "en" if en else "tr", "publisher": {"@id": BASE + "/#org"}}]
