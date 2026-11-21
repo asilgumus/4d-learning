@@ -170,7 +170,7 @@ def setpage(x):
 <h2>Adımlar bir bakışta</h2><ol>{steps}</ol>
 <h2>Yapım kitapçığı</h2>
 {langtabs(pg(x["img_tr"]) + dl(x["booklet_tr"], "Kitapçığı indir (PDF, Türkçe)"), pg(x["img_en"]) + dl(x["booklet_en"], "Kitapçığı indir (PDF, İngilizce)"))}
-<h2>Teknik çizimler (SolidWorks)</h2><p>Bu modelin her parçası ayrı <code>.SLDPRT</code> dosyası, hepsinin birleşimi <code>.SLDASM</code> montaj dosyasıdır. Parçaları açmak için SolidWorks gerekir; yalnızca bakmak istersen ücretsiz eDrawings görüntüleyici yeterli. Lazer kesim ya da 3B baskı için SolidWorks'ten STEP, DXF veya STL olarak dışa aktar.</p>
+<h2>Teknik çizimler</h2><p>Her parça ayrı <code>.SLDPRT</code>, tüm model <code>.SLDASM</code> dosyasıdır. Açmak için SolidWorks ya da ücretsiz eDrawings gerekir.</p>
 <div class="btns" style="margin:0 0 12px"><a class="btn p" href="../assets/docs/uretim/{x["cad"]}" download>{e(x["cad_name"])} (ZIP)</a>{stlbtn}</div>
 </article><div style="height:48px"></div></div>'''
     import hashlib; vv = hashlib.md5((S / 'assets/viewer.js').read_bytes()).hexdigest()[:8]
