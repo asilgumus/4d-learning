@@ -48,7 +48,7 @@ def index():
 <div class="fbar"><label class="search"><span class="sr">Kütüphanede ara</span><input id="q" type="search" placeholder="Modül, konu veya içerik ara" autocomplete="off"></label>
 <div class="filter" role="group" aria-label="Kimin için"><span>Kimin için</span>{btns}</div></div></div>
 <div class="shelf">{rows}</div><div class="empty" id="empty" hidden><p>Eşleşen modül yok. Aramayı veya filtreyi değiştir.</p><button class="btn" id="reset" type="button">Filtreleri temizle</button></div></section></div>
-<section class="band team"><div class="wrap"><div class="team-grid"><div class="team-copy"><h2>Robot yapan bir takımdan, herkese açık eğitim.</h2><p>4th Dimension, İzmir'den bir FIRST Robotics takımı. Robotik çalışmalarının yanında okullara, çocuklara ve ailelere yönelik eğitim projeleri yürütüyoruz. Buradaki içerikler bu çalışmalardan çıkıyor ve ücretsiz.</p><div class="btns"><a class="btn" href="https://frc6429.com">Takımı tanı</a><a class="btn" href="mailto:frc4thdimension@gmail.com">Bize yaz</a></div></div>
+<section class="band team"><div class="wrap"><div class="team-grid"><div class="team-copy"><h2>Robot yapan bir takımdan, herkese açık eğitim.</h2><p>İzmir'den bir FIRST Robotics takımıyız. Robotik çalışmalarımızın yanında okullara ve çocuklara yönelik eğitim projeleri yürütüyoruz. Bu içerikler ücretsiz.</p><div class="btns"><a class="btn" href="https://frc6429.com">Takımı tanı</a><a class="btn" href="mailto:frc4thdimension@gmail.com">Bize yaz</a></div></div>
 <div class="team-photos"><img src="assets/img/takim.jpg" alt="4th Dimension takım üyeleri" loading="lazy"><img src="assets/img/etkinlik-1.jpg" alt="Takım üyeleri bir etkinlikte" loading="lazy"><img src="assets/img/etkinlik-2.jpg" alt="Çocuklara yönelik bir etkinlik" loading="lazy"></div></div></div></section>'''
     return page("4D Learning: açık eğitim kütüphanesi", body, cls="landing")
 
@@ -69,13 +69,12 @@ def deck_html(slides, imgs=None, label="Sunum"):
             else: x = f'<div class="sl"><h3>{h}</h3><ul>{"".join(f"<li>{e(i)}</li>" for i in s["items"])}</ul></div>'
             out.append(f'<div class="slide">{x}</div>')
     return f'''<div class="deck" aria-label="{label}"><div class="stage">{"".join(out)}</div><div class="bar"><i></i></div>
-<div class="dctl"><button data-prev aria-label="Önceki slayt">Geri</button><span class="cnt" aria-live="polite"></span><button data-next aria-label="Sonraki slayt">İleri</button><span class="sp"></span><button data-full>Tam ekran</button></div></div>
-<p style="color:var(--muted);font-size:14px;margin:8px 0 0">Ok tuşları veya kaydırma ile ilerle.</p>'''
+<div class="dctl"><button data-prev aria-label="Önceki slayt">Geri</button><span class="cnt" aria-live="polite"></span><button data-next aria-label="Sonraki slayt">İleri</button><span class="sp"></span><button data-full>Tam ekran</button></div></div>'''
 
 def langtabs(tr, en):
     return f'''<div class="lang"><div class="seg" role="group" aria-label="Dil"><button type="button" data-l="tr" aria-pressed="true">Türkçe</button><button type="button" data-l="en" aria-pressed="false">English</button></div><div data-pane="tr">{tr}</div><div data-pane="en" hidden>{en}</div></div>'''
 def sec(title, sub, inner): return f'<section class="msec"><h2>{e(title)}</h2>' + (f'<p class="sub">{e(sub)}</p>' if sub else "") + inner + '</section>'
-def slot(what, path): return f'<div class="todo"><b>{e(what)}</b> yüklenecek. Dosyayı <code>site/{path}</code> konumuna koyup <code>content/builds.json</code> içindeki yolu yaz, sonra <code>python3 build.py</code> çalıştır.</div>'
+def slot(what, path): return f'<div class="todo"><b>{e(what)}</b> hazırlanıyor.</div>'
 def has(path): return bool(path) and (S / path).exists()
 def panels(items): return '<div class="grid2">' + "".join(f'<div class="panel"><h3>{e(h)}</h3><p>{e(p)}</p></div>' for h, p in items) + '</div>'
 
@@ -83,18 +82,18 @@ def module(m):
     i = m["id"]; b = ""
     if i == "siber-guvenlik":
         imgs = sorted(str(p.relative_to(S)) for p in (S / "assets/slides/cybersecurity").glob("*.jpg"))
-        b += sec("Sunum", "17 slayt, Türkçe. Tam ekranda göster ya da PDF olarak indir.", deck_html(None, imgs, "Siber güvenlik sunumu") + '<div class="btns"><a class="btn p" href="../assets/docs/siber-guvenlik-sunum-tr.pdf" download>PDF indir</a></div>')
-        b += sec("Tartışma soruları", "Sunumdan sonra sınıfla konuşmak için.", panels([("Parola", "Senin parolan hangi bilgilerden oluşuyor? Biri tahmin edebilir mi?"), ("Link", "Bilmediğin birinden link gelirse ilk ne yaparsın? Kime gösterirsin?"), ("Wi-Fi", "Kafedeki açık Wi-Fi ile banka uygulamasına girmek neden riskli?"), ("Zorbalık", "Çevrimiçi biri sana kötü davranırsa kime anlatırsın, hangi kanıtları saklarsın?")]))
+        b += sec("Sunum", "", deck_html(None, imgs, "Siber güvenlik sunumu") + '<div class="btns"><a class="btn p" href="../assets/docs/siber-guvenlik-sunum-tr.pdf" download>PDF indir</a></div>')
+        b += sec("Tartışma soruları", "", panels([("Parola", "Senin parolan hangi bilgilerden oluşuyor? Biri tahmin edebilir mi?"), ("Link", "Bilmediğin birinden link gelirse ilk ne yaparsın? Kime gösterirsin?"), ("Wi-Fi", "Kafedeki açık Wi-Fi ile banka uygulamasına girmek neden riskli?"), ("Zorbalık", "Çevrimiçi biri sana kötü davranırsa kime anlatırsın, hangi kanıtları saklarsın?")]))
         b += sec("Sunucu notları", "", panels([("Süre", "Sunum 15 dk, tartışma 15 dk, parola oyunu 10 dk."), ("Parola oyunu", "Her çocuk kendi parola kuralını (gerçek parolasını değil) kağıda yazar; sınıf güçlü mü zayıf mı olduğunu oylar."), ("Dikkat", "Çocuklardan gerçek parola veya kişisel bilgi istemeyin.")]))
     elif i == "teknoloji-bagimliligi":
         d = J("decks/teknoloji-bagimliligi.json")
-        b += sec("Sunum", "14 slayt. Tartışma temelli: slaytlar arasında durup sınıfa soru sor.", deck_html(d["slides"], label="Teknoloji bağımlılığı sunumu"))
-        b += sec("Aile etkinliği", "Anlaşmayı yazdır, evde birlikte doldurun.", '<div class="btns"><a class="btn p" href="../anlasma.html">Dijital denge anlaşması</a></div>')
+        b += sec("Sunum", "", deck_html(d["slides"], label="Teknoloji bağımlılığı sunumu"))
+        b += sec("Aile etkinliği", "", '<div class="btns"><a class="btn p" href="../anlasma.html">Dijital denge anlaşması</a></div>')
     elif i == "uretim-ve-montaj":
-        b += sec("Bu sayfada ne var?", "Üç parça var, bu sırayla ilerle.", panels([("1. Giriş sunumu", "Konuya giriş: bir ürün fabrikaya gelmeden önce neler olur, üretim ve montaj nasıl işler, robotlar ne yapar, sürdürülebilirlik. Türkçe ve İngilizce."), ("2. Yapım kitapçığı", "Her modelin inşa aşamaları: hangi parça önce takılır, nereye oturur. Adım adım resimli, Türkçe ve İngilizce."), ("3. Teknik çizim", "Modeli kendin üretmek için SolidWorks (CAD) dosyaları: her parça ayrı dosya, tüm parçaların birleşimi de montaj dosyası olarak var.")]))
+        b += sec("Bu sayfada ne var?", "", panels([("1. Giriş sunumu", "Üretim ve montaj nasıl işler, robotlar fabrikada ne yapar. Türkçe ve İngilizce."), ("2. Yapım kitapçığı", "Her modelin adım adım resimli inşa aşamaları. Türkçe ve İngilizce."), ("3. Teknik çizim", "Modeli kendin üretmek için SolidWorks ve STL dosyaları, 3B önizlemeyle.")]))
         imgs = lambda d: sorted((str(q.relative_to(S)) for q in (S / f"assets/slides/{d}").glob("*.jpg")), key=lambda s: int(re.findall(r"(\d+)\.jpg", s)[0]))
         pdf = lambda href, txt: f'<div class="btns"><a class="btn p" href="../assets/docs/uretim/sunum/{href}" download>{txt}</a></div>'
-        b += sec("1. Giriş sunumu", "Dili seç, tam ekranda göster ya da PDF indir.", langtabs(deck_html(None, imgs("uretim-tr"), "Endüstriyel üretim ve montaj sunumu") + pdf("endustriyel-uretim-ve-montaj-tr.pdf", "Sunumu indir (PDF, Türkçe)"), deck_html(None, imgs("uretim-en"), "Industrial production and assembly presentation") + pdf("industrial-manufacturing-and-assembly-en.pdf", "Sunumu indir (PDF, İngilizce)")))
+        b += sec("1. Giriş sunumu", "", langtabs(deck_html(None, imgs("uretim-tr"), "Endüstriyel üretim ve montaj sunumu") + pdf("endustriyel-uretim-ve-montaj-tr.pdf", "Sunumu indir (PDF, Türkçe)"), deck_html(None, imgs("uretim-en"), "Industrial production and assembly presentation") + pdf("industrial-manufacturing-and-assembly-en.pdf", "Sunumu indir (PDF, İngilizce)")))
         cards = ""
         for x in SETS:
             cards += f'''<div class="panel" style="margin-bottom:20px"><div style="display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:24px;align-items:start"><img src="../assets/img/uretim/{x["img_tr"]}/p-01.jpg" alt="{e(x["title"])} kitapçığı kapağı" style="width:100%;border:1px solid var(--line);border-radius:8px" loading="lazy"><div><h3>{e(x["title"])}</h3><p>{e(x["intro"])}</p>
@@ -103,15 +102,15 @@ def module(m):
         b += sec("2. Yapım kitapçıkları ve 3. teknik çizimler", BUILDS[i]["drawings_license"], cards)
     elif i == "lego-mr":
         d = BUILDS[i]
-        b += sec("Yapım kılavuzu", LEGOG["note"], '<div class="grid2">' + "".join(f'<div class="panel"><h3>{e(x["h"])}</h3><p>{e(x["p"])}</p></div>' for x in LEGOG["phases"]) + '</div><h3 style="margin:26px 0 10px">Bitince kontrol et</h3><div class="panel"><ul style="margin:0;padding-left:20px;color:var(--muted)">' + "".join(f"<li>{e(t)}</li>" for t in LEGOG["tests"]) + '</ul></div><div style="height:16px"></div>' + vtag("assets/video/lego-mr.mp4", "LEGO MR yapım kılavuzu") + (f'<div class="btns"><a class="btn p" href="../{d["booklet"]}" download>Adım adım talimatı indir (PDF)</a></div>' if has(d["booklet"]) else slot("Fotoğraflı adım adım talimat (PDF)", "assets/docs/lego-mr/yapim-talimati.pdf")))
-        b += sec("Çocuğa MR'ı nasıl anlatırız?", "Çocuk ne bekleyeceğini bilirse kaygısı azalır. Modeli kurarken bu dört cümleyi kullanın.", panels([(x["h"], x["p"]) for x in d["prep"]]))
+        b += sec("Yapım kılavuzu", "", '<div class="grid2">' + "".join(f'<div class="panel"><h3>{e(x["h"])}</h3><p>{e(x["p"])}</p></div>' for x in LEGOG["phases"]) + '</div><h3 style="margin:26px 0 10px">Bitince kontrol et</h3><div class="panel"><ul style="margin:0;padding-left:20px;color:var(--muted)">' + "".join(f"<li>{e(t)}</li>" for t in LEGOG["tests"]) + '</ul></div><div style="height:16px"></div>' + vtag("assets/video/lego-mr.mp4", "LEGO MR yapım kılavuzu") + (f'<div class="btns"><a class="btn p" href="../{d["booklet"]}" download>Adım adım talimatı indir (PDF)</a></div>' if has(d["booklet"]) else slot("Fotoğraflı adım adım talimat (PDF)", "assets/docs/lego-mr/yapim-talimati.pdf")))
+        b += sec("Çocuğa MR'ı nasıl anlatırız?", "", panels([(x["h"], x["p"]) for x in d["prep"]]))
         b += sec("Aileye not", "", '<div class="panel"><ul style="margin:0;padding-left:20px;color:var(--muted)">' + "".join(f"<li>{e(x)}</li>" for x in d["family"]) + '</ul></div>')
     elif i == "neurobridge":
         d = BUILDS[i]
-        b += sec("Oyunu oyna", "Tarayıcıda çalışır, kurulum gerekmez.", f'<div class="frame"><iframe src="{d["live"]}" title="NeuroBridge oyunu" loading="lazy" allow="fullscreen"></iframe></div><div class="btns"><a class="btn p" href="{d["live"]}" rel="noopener">Tam ekran aç</a><a class="btn" href="{d["repo"]}" rel="noopener">Kaynak kod (GitHub)</a></div>')
+        b += sec("Oyunu oyna", "", f'<div class="frame"><iframe src="{d["live"]}" title="NeuroBridge oyunu" loading="lazy" allow="fullscreen"></iframe></div><div class="btns"><a class="btn p" href="{d["live"]}" rel="noopener">Tam ekran aç</a><a class="btn" href="{d["repo"]}" rel="noopener">Kaynak kod (GitHub)</a></div>')
         b += sec("Eğitmen ve aile rehberi", "", panels([(x["h"], x["p"]) for x in d["guide"]]))
     elif i == "sense-of-science":
-        b += sec("Deneyler", "Her deney için yazdırılabilir kitapçık ve sesli anlatım videosu.", '<div class="grid2">' + "".join(f'<a class="ex" href="../deney/{x["id"]}.html"><div><b>{e(x["title"])}</b><span>{x["minutes"]} dk · {len(x["materials"])} malzeme</span></div></a>' for x in EXPS) + '</div>')
+        b += sec("Deneyler", "", '<div class="grid2">' + "".join(f'<a class="ex" href="../deney/{x["id"]}.html"><div><b>{e(x["title"])}</b><span>{x["minutes"]} dk · {len(x["materials"])} malzeme</span></div></a>' for x in EXPS) + '</div>')
         b += sec("Genel güvenlik", "", panels([("Yetişkin gözetimi", "Tüm deneyler bir yetişkinle yapılır."), ("Gözlük ve önlük", "Gözleri ve kıyafeti koruyun, sıvıları içmeyin."), ("Temizlik", "Bitince çalışma alanını silin, elleri yıkayın.")]))
     elif i == "cad-elektronik-yazilim":
         courses = COURSES[:1] + [{"id":"elektronik","title":"Elektronik: Arduino ile devre","tools":"Arduino Uno, breadboard, LED, direnç, sensörler","goal":"Basit LED'den küçük robota 19 deneyle fiziksel programlama.","ard":True,"lessons":[]}] + COURSES[1:]
@@ -123,14 +122,14 @@ def module(m):
             else:
                 ls = "".join(f'<details class="les"><summary><span>{n+1}. {e(l["t"])}</span><span >{"Video" if (l["yt"] or (S / f'assets/video/ders/{c["id"]}-{n+1:02d}.mp4').exists()) else "Yazılı ders"}</span></summary><p>{e(l["d"])}</p><ol style="color:var(--muted)">{"".join(f"<li>{e(x)}</li>" for x in l["steps"])}</ol><p><b style="color:var(--ink)">Görev:</b> {e(l["task"])}</p>' + (f'<div class="video" style="margin-top:12px"><iframe src="https://www.youtube-nocookie.com/embed/{l["yt"]}" title="{e(l["t"])}" loading="lazy" allowfullscreen></iframe></div>' if l["yt"] else vtag(f'assets/video/ders/{c["id"]}-{n+1:02d}.mp4', l["t"]).replace('<figure style="margin:0">','<figure style="margin:12px 0 0">')) + '</details>' for n, l in enumerate(c["lessons"]))
             ps += f'<div data-panel="{c["id"]}" {"" if k==0 else "hidden"}><div class="panel" style="margin-bottom:16px"><h3>{e(c["title"])}</h3><p>{e(c["goal"])} Gerekenler: {e(c["tools"])}.</p></div>{ls}</div>'
-        b += sec("Müfredatlar", "Üç yolu da sırayla ya da istediğin dersten başlayarak izle. Her dersin altında sesli anlatım videosu var.", f'<div class="tabs" role="tablist" data-tabs>{tb}</div>{ps}')
+        b += sec("Müfredatlar", "", f'<div class="tabs" role="tablist" data-tabs>{tb}</div>{ps}')
     head = f'''<div class="mband" style="{tint(m)}"><div class="wrap"><div class="mhead"><a class="crumb" href="../index.html">← Kütüphane</a><h1>{e(m["title"])}</h1><p>{e(m["summary"])}</p><div class="meta">{chips(m)}<span class="chip">{e(m["minutes"])}</span></div></div></div></div><div class="wrap">{b}</div><div style="height:48px"></div>'''
     return page(f'{m["title"]} · 4D Learning', head, 1, m["tagline"])
 
 def vtag(rel, title):
     p = S / rel
     if not p.exists(): return ""
-    return f'<figure style="margin:0"><video class="video" controls preload="none" poster="../{rel[:-4]}.jpg" title="{e(title)}"><source src="../{rel}" type="video/mp4"></video><figcaption style="color:var(--muted);font-size:14px;margin-top:6px">Sesli anlatım videosu (Türkçe, sentetik ses). Çekim videosu eklenince yerini alır.</figcaption></figure>'
+    return f'<figure style="margin:0"><video class="video" controls preload="none" poster="../{rel[:-4]}.jpg" title="{e(title)}"><source src="../{rel}" type="video/mp4"></video><figcaption style="color:var(--muted);font-size:14px;margin-top:6px">Sesli anlatım (sentetik ses)</figcaption></figure>'
 
 def booklet(x):
     vid = f'<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/{x["youtube"]}" title="{e(x["title"])}" loading="lazy" allowfullscreen></iframe></div>' if x["youtube"] else (vtag(f'assets/video/deney/{x["id"]}.mp4', x["title"]) or '<div class="vslot">Deney videosu hazırlanıyor</div>')
@@ -161,7 +160,7 @@ def setpage(x):
         btns = "".join(f'<button type="button" class="v-part" aria-pressed="false">{e(lab(q))}</button>' for q in stls)
         viewer = f'''<div class="viewer" data-files="{fj}"><div class="v-canvas" role="img" aria-label="{e(x["title"])} 3B önizleme"><div class="v-status">3B model hazırlanıyor…</div><span class="v-dim"></span></div><div class="v-side"><div class="v-list" role="group" aria-label="Parça seç">{btns}</div><div class="v-foot"><button class="btn v-reset" type="button">Sıfırla</button><span>Sürükle: döndür · Tekerlek: yakınlaştır</span></div></div></div>'''
     else:
-        viewer = f'<div class="todo"><b>3B önizleme</b> için STL dosyaları yüklenecek. SolidWorks\'te <i>Dosya, Farklı kaydet, STL</i> ile dışa aktarıp <code>site/assets/models/{x["id"]}/</code> klasörüne koy (montaj dosyası <code>Montaj.stl</code> adıyla), sonra <code>python3 build.py</code> çalıştır.</div>'
+        viewer = '<div class="todo"><b>3B önizleme</b> hazırlanıyor.</div>'
     dl = lambda f, txt: f'<div class="btns" style="margin:4px 0 8px"><a class="btn p" href="../assets/docs/uretim/{f}" download>{txt}</a></div>'
     stlz = f"assets/docs/uretim/cizim/{x['id']}-stl.zip"
     stlbtn = f'<a class="btn" href="../{stlz}" download>STL dosyaları (ZIP)</a>' if (S / stlz).exists() else ""
@@ -169,7 +168,7 @@ def setpage(x):
 <article class="book"><h1>{e(x["title"])}</h1><p style="color:var(--muted)">{e(x["kind"])} · {e(x["level"])}</p><p>{e(x["intro"])}</p>
 <h2>Önizleme (3B)</h2>{viewer}
 <h2>Adımlar bir bakışta</h2><ol>{steps}</ol>
-<h2>Yapım kitapçığı</h2><p>Dili seç, resimli adımlara bak, altından PDF'ini indir.</p>
+<h2>Yapım kitapçığı</h2>
 {langtabs(pg(x["img_tr"]) + dl(x["booklet_tr"], "Kitapçığı indir (PDF, Türkçe)"), pg(x["img_en"]) + dl(x["booklet_en"], "Kitapçığı indir (PDF, İngilizce)"))}
 <h2>Teknik çizimler (SolidWorks)</h2><p>Bu modelin her parçası ayrı <code>.SLDPRT</code> dosyası, hepsinin birleşimi <code>.SLDASM</code> montaj dosyasıdır. Parçaları açmak için SolidWorks gerekir; yalnızca bakmak istersen ücretsiz eDrawings görüntüleyici yeterli. Lazer kesim ya da 3B baskı için SolidWorks'ten STEP, DXF veya STL olarak dışa aktar.</p>
 <div class="btns" style="margin:0 0 12px"><a class="btn p" href="../assets/docs/uretim/{x["cad"]}" download>{e(x["cad_name"])} (ZIP)</a>{stlbtn}</div>
@@ -184,7 +183,7 @@ def lesson(a, prev, nxt):
     nav = (f'<a href="{prev:02d}.html">← Önceki</a>' if prev else "<span></span>") + (f'<a href="{nxt:02d}.html">Sonraki →</a>' if nxt else "<span></span>")
     body = f'''<div class="wrap"><div class="toolbar"><a class="crumb" href="../m/cad-elektronik-yazilim.html">← CAD, Elektronik, Yazılım</a><button class="btn p" id="print">Yazdır / PDF</button></div>
 <article class="book"><p style="color:var(--muted);font-weight:500;margin:0;font-size:14px">Arduino deneyi {a["id"]:02d}</p><h1>{e(a["title"])}</h1><p style="color:var(--muted)">{e(a["level"])} · {e(a["time"])} · {e(a["concept"])}</p><p>{e(a["summary"])}</p>
-{vtag(f"assets/video/elektronik/{a['id']:02d}.mp4", a['title']).replace("Sesli anlatım videosu (Türkçe, sentetik ses)","Sesli anlatım videosu (İngilizce, sentetik ses)")}<h2>Malzemeler</h2><ul>{li(a["materials"])}</ul><h2>Bağlantı</h2><ol>{li(a["wiring"])}</ol><h2>Kod</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>{e(a["code"])}</code></pre>
+{vtag(f"assets/video/elektronik/{a['id']:02d}.mp4", a['title']).replace("Sesli anlatım (sentetik ses)","Sesli anlatım (İngilizce, sentetik ses)")}<h2>Malzemeler</h2><ul>{li(a["materials"])}</ul><h2>Bağlantı</h2><ol>{li(a["wiring"])}</ol><h2>Kod</h2><pre style="background:var(--ink);color:#eef;padding:16px;border-radius:10px;overflow:auto;font-size:14px;line-height:1.5"><code>{e(a["code"])}</code></pre>
 <h2>Ne olmalı?</h2><p class="why">{e(a["result"])}</p><h2>Meydan okuma</h2><p>{e(a["challenge"])}</p>
 <h2>Güvenlik ve sorun giderme</h2><ul><li>Bağlantıyı değiştirmeden önce gücü kes.</li><li>Her LED ile direnç kullan.</li><li>Kart ve port seçimini Arduino IDE'de kontrol et.</li><li>Her kablonun koddaki pin numarasıyla eşleştiğini doğrula.</li></ul>
 <p style="color:var(--muted);font-size:14px">Not: Ders metinleri İngilizcedir. Orijinal Türkçe çalışma kâğıdı PDF olarak indirilebilir.</p>
