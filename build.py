@@ -157,7 +157,8 @@ def setpage(x):
     stls = sorted((q for q in (S / f"assets/models/{x['id']}").glob("*.stl")), key=lambda q: (not re.match(r"(montaj|assembly)", q.stem.lower()), q.stem.lower())) if (S / f"assets/models/{x['id']}").exists() else []
     if stls:
         fj = e(json.dumps([{"name": q.stem, "url": f"../assets/models/{x['id']}/{quote(q.name)}"} for q in stls], ensure_ascii=False))
-        btns = "".join(f'<button type="button" class="v-part" aria-pressed="false">{e(q.stem)}</button>' for q in stls)
+        lab = lambda q: "Tüm model (montaj)" if q.stem.lower().startswith("montaj") else q.stem
+        btns = "".join(f'<button type="button" class="v-part" aria-pressed="false">{e(lab(q))}</button>' for q in stls)
         viewer = f'''<div class="viewer" data-files="{fj}"><div class="v-canvas" role="img" aria-label="{e(x["title"])} 3B önizleme"><div class="v-status">3B model hazırlanıyor…</div><span class="v-dim"></span></div><div class="v-side"><div class="v-list" role="group" aria-label="Parça seç">{btns}</div><div class="v-foot"><button class="btn v-reset" type="button">Sıfırla</button><span>Sürükle: döndür · Tekerlek: yakınlaştır</span></div></div></div>'''
     else:
         viewer = f'<div class="todo"><b>3B önizleme</b> için STL dosyaları yüklenecek. SolidWorks\'te <i>Dosya, Farklı kaydet, STL</i> ile dışa aktarıp <code>site/assets/models/{x["id"]}/</code> klasörüne koy (montaj dosyası <code>Montaj.stl</code> adıyla), sonra <code>python3 build.py</code> çalıştır.</div>'

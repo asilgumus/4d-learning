@@ -43,7 +43,7 @@ function init(root) {
     btns.forEach((b, n) => b.setAttribute("aria-pressed", n === i));
     if (cache.has(i)) return show(cache.get(i));
     status.textContent = "Yükleniyor…"; status.hidden = false;
-    loader.load(files[i].url, (geo) => { geo.computeVertexNormals(); geo.rotateX(-Math.PI / 2); cache.set(i, geo); show(geo); }, undefined, () => (status.textContent = "Model yüklenemedi."));
+    loader.load(files[i].url, (geo) => { geo.computeVertexNormals(); cache.set(i, geo); show(geo); }, undefined, () => (status.textContent = "Model yüklenemedi."));
   }
   btns.forEach((b, n) => b.addEventListener("click", () => load(n)));
   root.querySelector(".v-reset").addEventListener("click", () => { if (home) { camera.position.copy(home); controls.target.set(0, 0, 0); controls.update(); } });
