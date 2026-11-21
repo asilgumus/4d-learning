@@ -240,7 +240,7 @@ def url_of(lang, path):
     return BASE + (u[:-5] if u.endswith(".html") else u)
 def seo(txt, path):
     m = re.search(r"<title>(.*?)</title>", txt, re.S); core = html.unescape(m.group(1)) if m else "4D Learning"
-    title = core if "4D Learning" in core else core + " | 4D Learning"
+    title = core + " | 4D Learning" if "4D Learning" not in core and len(core) + 14 <= 62 else core
     txt = re.sub(r"<title>.*?</title>", lambda _: "<title>%s</title>" % html.escape(title, quote=False), txt, count=1, flags=re.S)
     m = re.search(r'<meta name="description" content="(.*?)">', txt, re.S); desc = trim(html.unescape(m.group(1))) if m else ""
     txt = re.sub(r'<meta name="description" content=".*?">', lambda _: '<meta name="description" content="%s">' % html.escape(desc), txt, count=1, flags=re.S)
