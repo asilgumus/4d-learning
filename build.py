@@ -42,7 +42,7 @@ def index():
     def row(m):
         ln = "".join(f'<a class="rl" href="{l["href"]}">{e(l["t"])}</a>' for l in m.get("links", []))
         return f'''<div class="row" data-levels="{" ".join(m["levels"])}" data-search="{e(srch(m))}" style="{tint(m)}">
-<span class="no">{m["no"]}</span><div><h2><a class="stretch" href="m/{m["id"]}.html">{e(m["title"])}</a></h2><p>{e(m["tagline"])}</p><div class="meta">{chips(m)}<span class="chip">{e(m["kind"])}</span><span class="chip">{e(m["minutes"])}</span></div>{('<div class="rlinks">' + ln + '</div>') if ln else ""}</div><span class="go">Aç</span></div>'''
+<div><h2><a class="stretch" href="m/{m["id"]}.html">{e(m["title"])}</a></h2><p>{e(m["tagline"])}</p><div class="meta">{chips(m)}<span class="chip">{e(m["kind"])}</span><span class="chip">{e(m["minutes"])}</span></div>{('<div class="rlinks">' + ln + '</div>') if ln else ""}</div></div>'''
     rows = "".join(row(m) for m in MODS)
     FL = [("all", "Tümü"), ("ilkokul", "İlkokul"), ("ortaokul", "Ortaokul"), ("lise", "Lise"), ("noro", "Nöroçeşitli çocuklar"), ("mr", "MR'a girecek çocuklar")]
     btns = "".join(f'<button type="button" data-who="{k}" aria-pressed="{str(k=="all").lower()}">{e(v)}</button>' for k, v in FL)
